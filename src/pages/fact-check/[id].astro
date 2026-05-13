@@ -1,0 +1,103 @@
+---
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import { recentFactChecks } from "../../data/demo";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return recentFactChecks.map((item) => ({
+    params: { id: item.id },
+    props: { item }
+  }));
+}
+
+const { item } = Astro.props;
+---
+
+<Layout title={`Budget 2026 Claims Monitor | ${item.title}`}>
+  <Header />
+  <main class="section">
+    <div class="shell stack-lg">
+      <div class="surface-hero">
+        <p class="eyebrow">Fact-check</p>
+        <h1>{item.title}</h1>
+        <p class="muted">{item.summary}</p>
+        <div class="stat-row">
+          {Object.entries(item.overallVerdictMix).map(([label, count]) =>
+            count > 0 ? (
+              <span class="stat-pill">
+                <strong>{count}</strong>
+                <span>{label.replaceAll("_", " ")}</span>
+              </span>
+            ) : null
+          )}
+        </div>
+        <div class="hero-actions">
+          <a class="secondary-link" href="/dashboard">Back to dashboard</a>
+          {item.calculatorLink && (
+            <a class="primary-link" href={item.calculatorLink.href} target="_blank" rel="noreferrer">
+              {item.calculatorLink.label}
+            </a>
+          )}
+        </div>
+        {item.calculatorLink && <p class="muted small">{item.calculatorLink.description}</p>}
+      </div>
+
+      <section class="surface-card">
+        <p class="eyebrow">Submitted text</p>
+        <blockquote class="post-block">{item.rawText}</blockquote>
+      </section>
+
+      <section class="stack-md">
+        <h2>Per-claim verification</h2>
+        {item.claims.map((claim) => (
+          <article class="surface-card stack-sm">
+            <div class="cluster-topline">
+              <span class={`verdict verdict-${claim.verdict}`}>{claim.verdict.replaceAll("_", " ")}</span>
+              <span class="muted small">{Math.round(claim.confidence * 100)}% confidence</span>
+            </div>
+            <h3>{claim.paraphrased}</h3>
+            <p class="claim-quote">“{claim.verbatim}”</p>
+            <p>{claim.reasoning}</p>
+
+            {claim.assumptionsRequired.length > 0 && (
+              <div>
+                <p class="eyebrow">Assumptions required</p>
+                <ul class="bullet-list">
+                  {claim.assumptionsRequired.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {claim.alternativeFramings.length > 0 && (
+              <div>
+                <p class="eyebrow">Alternative defensible framings</p>
+                <ul class="bullet-list">
+                  {claim.alternativeFramings.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div class="stack-sm">
+              <p class="eyebrow">Primary sources</p>
+              {claim.primarySources.map((source) => (
+                <a class="source-card" href={source.url} target="_blank" rel="noreferrer">
+                  <strong>{source.title}</strong>
+                  <span>{source.section} · p.{source.page}</span>
+                  <span class="muted small">{source.relevantPassage}</span>
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>

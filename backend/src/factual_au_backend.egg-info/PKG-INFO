@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: factual-au-backend
+Version: 0.1.0
+Summary: Backend scaffold for the factual.au policy claim checker
+Author: srvzt
+License: MIT
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.115
+Requires-Dist: uvicorn>=0.32
+Requires-Dist: pydantic>=2.9
+Requires-Dist: pydantic-settings>=2.6
+Requires-Dist: fastmcp>=0.2.0
+Requires-Dist: python-multipart>=0.0.12
+Provides-Extra: dev
+Requires-Dist: httpx>=0.27; extra == "dev"
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: ruff>=0.7; extra == "dev"
+
+# factual.au backend
+
+FastAPI + FastMCP scaffold for the `factual.au` verification service.
+
+## Goals of this scaffold
+
+- provide stable API boundaries for frontend integration
+- model the ingestion → extraction → retrieval → verification → clustering pipeline
+- ship deterministic demo behaviour before live Anthropic, Voyage, D1, KV, R2, and pgvector integrations are turned on
+
+## Local setup
+
+```bash
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .[dev]
+uvicorn factual_au.main:app --reload
+```
+
+## Endpoints
+
+- `GET /healthz`
+- `GET /api/v1/fact-checks`
+- `GET /api/v1/fact-checks/{submission_id}`
+- `GET /api/v1/clusters`
+- `POST /api/v1/submissions`
+
+The `POST /api/v1/submissions` endpoint currently uses a deterministic heuristic pipeline with seeded primary-source references. It is intended as the contract to preserve when live model and retrieval integrations land.
+

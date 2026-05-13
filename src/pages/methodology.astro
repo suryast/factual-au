@@ -1,0 +1,177 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Budget 2026 Claims Monitor | Methodology">
+  <Header />
+  <main class="section">
+    <div class="shell prose-block">
+      <p class="eyebrow">Methodology</p>
+      <h1>How Budget 2026 Claims Monitor evaluates in-scope claims</h1>
+      <p>
+        Budget 2026 Claims Monitor currently focuses on one specific slice of Budget 2026 scrutiny: negative gearing reform, CGT reform, and claims that these changes will materially alter founder exits or startup investment.
+        The goal is not to score debate points or infer motive. The goal is to show what the cited evidence supports, what it does not support, and which assumptions are required to get from the source material to the public claim.
+      </p>
+
+      <h2>What gets evaluated</h2>
+      <p>
+        We do not attempt to cover the full Budget 2026 package. We analyse a constrained claim set where the underlying evidence should exist in budget papers,
+        explanatory materials, ATO guidance, parliamentary bodies, or official datasets. A single post can contain several different kinds of statements, so the system separates them before assigning any verdict.
+      </p>
+      <ul>
+        <li>Claims about negative gearing policy design are checked directly against the Budget Paper 2 text.</li>
+        <li>Claims about CGT mechanics or distribution are tested against budget papers, PBO material, and related official data.</li>
+        <li>Claims about founder or startup effects are separated into factual, calculative, and predictive components before any verdict is assigned.</li>
+        <li>Recurring narratives are clustered only within this same policy subset.</li>
+      </ul>
+
+      <h2>Evaluation workflow</h2>
+      <ol>
+        <li>Claims are ingested with source context such as the original wording, URL, screenshot, or publication setting where available.</li>
+        <li>The text is decomposed into separate checkable claims, with rhetoric and narrative framing split away from factual assertions.</li>
+        <li>Each factual claim is matched to relevant primary sources and the most probative passages are retrieved.</li>
+        <li>The claim is tested against those passages, any required calculations, and any legal or definitional constraints that materially change the result.</li>
+        <li>A verdict is assigned with a written explanation, assumptions list, alternative framing where needed, and the specific source passages that bear the most weight.</li>
+        <li>Related claims are grouped into clusters so repeated assertions can be tracked and compared over time.</li>
+      </ol>
+
+      <h2>Evidence standard</h2>
+      <p>
+        Budget 2026 Claims Monitor is source-first. For this Budget 2026 subset, we prefer the most probative budget, tax, and distributional materials over commentary, and we prefer the most directly relevant passage over broad thematic citation. A claim is not treated as supported merely because a nearby document sounds directionally similar.
+      </p>
+      <ul>
+        <li>Primary sources carry the verdict whenever they exist and are sufficiently specific.</li>
+        <li>Passage-level context matters. A headline, summary line, or chart label is not enough if the body text narrows the meaning.</li>
+        <li>Where a claim depends on a calculation, the calculation path should be reconstructible from the cited materials.</li>
+        <li>Where evidence is thin, mixed, or indirect, the uncertainty is surfaced explicitly instead of hidden behind a confident badge.</li>
+      </ul>
+
+      <h2>Verdict categories</h2>
+      <ul>
+        <li><strong>supported</strong>: the claim matches the available primary sources without a material missing qualifier.</li>
+        <li><strong>partially supported</strong>: the core direction is borne out, but the wording overstates, understates, or compresses important nuance.</li>
+        <li><strong>unsupported</strong>: the most relevant primary sources contradict the claim as stated.</li>
+        <li><strong>unverifiable</strong>: public evidence does not presently resolve the claim in a way that meets the site’s standard.</li>
+        <li><strong>requires assumptions</strong>: the claim can work only under unstated assumptions, scenario choices, or legal conditions that are doing substantial hidden work.</li>
+        <li><strong>rhetorical</strong>: the statement is primarily interpretive, predictive, or normative rather than a checkable factual assertion.</li>
+      </ul>
+
+      <h2>What we do not do</h2>
+      <p>
+        Budget 2026 Claims Monitor is deliberately narrow in what it claims to resolve. Most of the Budget 2026 debate is outside scope.
+      </p>
+      <ul>
+        <li>We do not attempt to cover unrelated Budget 2026 measures just because they appear in the same political argument.</li>
+        <li>We do not infer whether the speaker believed the claim, intended to mislead, or acted in bad faith.</li>
+        <li>We do not treat future predictions as falsifiable in the same way as present-tense factual assertions.</li>
+        <li>We do not collapse legal, economic, and behavioural questions into one verdict when they need to be separated.</li>
+        <li>We do not elevate secondary commentary above directly relevant primary material simply because it is easier to read.</li>
+      </ul>
+
+      <h2>What appears in a published check</h2>
+      <ul>
+        <li>The original claim wording or a faithful paraphrase.</li>
+        <li>A verdict describing the claim’s relationship to the evidence.</li>
+        <li>A concise reasoning note explaining the decision.</li>
+        <li>The key assumptions required for the claim to hold, if any.</li>
+        <li>Alternative framings that are closer to what the evidence actually supports.</li>
+        <li>Primary-source citations with the specific passages doing the work.</li>
+      </ul>
+
+      <h2>Corpus provenance</h2>
+      <p><strong>How the claims tracked here got here</strong></p>
+      <p>
+        The integrity of this platform depends on being honest about how its corpus came to be. Here is the short version.
+      </p>
+      <p>
+        The current corpus is operator-curated. The claims visible on the dashboard were assembled by the operator from publicly circulating commentary on Budget 2026 — primarily LinkedIn posts, opinion pieces, and public statements from named commentators between 8 May and 13 May 2026. They were selected on three criteria: the claim has to be specific enough to test against primary sources, it must have appeared in commentary visible to a general audience, and it must fall within the platform's declared scope (CGT, negative gearing, and startup-impact framings in the context of Budget 2026).
+      </p>
+      <p>
+        Verdicts were applied after selection, not before. The operator did not choose claims by whether they would land as "supported" or "unsupported." Verdict distribution in the current corpus reflects what the primary sources actually say — not a target outcome.
+      </p>
+      <p>
+        Selection bias is the first risk readers should understand. The operator may have unconsciously selected claims they expected to fall in a particular direction. The platform mitigates this in three ways: verdicts are anchored in primary sources rather than operator opinion, the source trail is published on each fact-check, and the methodology is public.
+      </p>
+      <p>
+        Bootstrapping with operator-selected cases is standard practice for early-stage civic-tech projects, but it should be disclosed rather than obscured. As the tracked corpus expands, its composition should move further away from the operator's initial selection and closer to the range of claims that actually dominate public circulation.
+      </p>
+      <p>
+        This platform is not institutional authority. It is the reasoned application of a documented methodology by a disclosed operator using a published source trail. Readers are invited to read a verdict, read the cited primary source, run the calculation if there is one, and decide whether the verdict is reasonable.
+      </p>
+
+      <details class="provenance-detail">
+        <summary>Read more</summary>
+
+        <p><a id="expanded-detail"></a><strong>Initial corpus</strong></p>
+        <p>
+          The cases currently visible on the dashboard were assembled by the operator from publicly available commentary on the 2026–27 Federal Budget — primarily LinkedIn posts, opinion pieces, and public statements from named commentators and industry figures circulating between 8 May and 13 May 2026.
+        </p>
+        <p><strong>Selection criteria:</strong></p>
+        <ul>
+          <li><strong>Verifiability</strong> — the claim has to be specific enough to test against primary sources. Pure rhetoric and judgement claims are excluded as out-of-scope rather than logged as failed verifications.</li>
+          <li><strong>Public reach</strong> — the claim must have appeared in commentary visible to a general audience. Private communications, paid newsletters, and members-only forums are out of scope.</li>
+          <li><strong>Topical fit</strong> — claims must fall within the platform's declared scope: CGT, negative gearing, and startup-impact framings in the context of Budget 2026.</li>
+        </ul>
+        <p>
+          The operator did not select claims by whether they would land as "supported" or "unsupported." The verification methodology was applied after selection, not before. Verdict distribution in the current corpus reflects what the primary sources say about the claims circulating in public commentary — not a target outcome.
+        </p>
+
+        <p><strong>Why the initial corpus is operator-curated</strong></p>
+        <p>
+          A fact-checking platform with no claims tracked is not useful. A platform that waits for organic user submissions before publishing anything stays empty until it reaches network scale, which most platforms never reach. Bootstrapping the corpus with operator-selected cases is standard practice for early-stage civic-tech projects, but it should be disclosed rather than obscured.
+        </p>
+        <p>
+          The trade-off readers should understand is that the early corpus reflects the operator's reading of which claims circulating in public commentary are worth checking. As the platform matures, this composition should shift toward a broader and less operator-shaped slice of the debate.
+        </p>
+
+        <p><strong>Contribution and challenge paths</strong></p>
+        <p>
+          This deployment does not currently expose a public submission form or a self-serve correction form. That is a deliberate product choice, not something readers should have to infer.
+        </p>
+        <p>
+          Challenges to verdicts therefore have to be made directly through the operator rather than through an automated public intake path. If the product later introduces formal submission or correction workflows, this section should be updated at the same time.
+        </p>
+
+        <p><strong>Bias surface and mitigations</strong></p>
+        <p>
+          <strong>Selection bias in the seeded corpus.</strong> The operator may have unconsciously selected claims they expected to fall in a particular direction. The mitigation is that verdicts are anchored in primary sources, not operator opinion, and the claim-level reasoning is published rather than hidden.
+        </p>
+        <p>
+          <strong>Editorial bias in verdict framing.</strong> The verdict categories are deliberately factual ("supported," "unsupported," "requires assumptions," "rhetorical") rather than characterising. This reduces the surface for editorialising in verdicts but does not eliminate it. Calibration audits — re-reviewing verdicts after a delay to check whether they hold up — are planned quarterly.
+        </p>
+        <p>
+          <strong>Source catalogue bias.</strong> The current source catalogue is limited to official Australian government publications (budget papers, ATO, PBO, Treasury, ABS, RBA) and selected academic literature. Advocacy publications, think tank pieces, and partisan commentary are not in the verification source pool. This is deliberate but does mean the platform's verdicts will tend to align with the framing primary government sources use. Where government framing is itself contested in good-faith policy debate, the platform's verdict should be read as "consistent with primary sources" rather than "settled truth."
+        </p>
+        <p>
+          <strong>Operator bias.</strong> The operator is a single individual with their own views. The mitigation is transparency: the methodology is published, the source trail is visible, and the platform should be read as a reasoned application of a documented method rather than institutional authority.
+        </p>
+
+        <p><strong>Verdict revision and corpus changes</strong></p>
+        <p>
+          As the corpus grows and the methodology is calibrated, individual verdicts may be revised. When this happens, the original verdict should be preserved in a public change log, the revised verdict should cite the reason for the change, and the correction should be dated and visible on the affected case file.
+        </p>
+        <p>
+          Methodology changes that affect multiple cases should trigger systematic re-review of the affected verdicts. The change history of the methodology itself should also be published.
+        </p>
+
+        <p><strong>What this section is not</strong></p>
+        <p>
+          This section is not a defence of the corpus. It is a description of how the corpus came to be. Readers are invited to draw their own conclusions about whether the platform's design choices produce trustworthy verdicts.
+        </p>
+        <p>
+          The strongest test of that question is using the platform: read a verdict, read the cited primary source, run the calculation if there is one, and decide whether the verdict is reasonable.
+        </p>
+      </details>
+
+      <h2>Editorial posture</h2>
+      <p>
+        The site is designed to be useful inside this narrow Budget 2026 policy dispute without becoming another personality-driven arena.
+        That means the unit of analysis is the claim and the evidence trail behind it. When a claim recurs, the recurrence is
+        itself informative, but repetition does not lower the evidence threshold.
+      </p>
+    </div>
+  </main>
+  <Footer />
+</Layout>

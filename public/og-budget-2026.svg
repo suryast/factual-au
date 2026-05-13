@@ -1,0 +1,51 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F0F8FC"/>
+
+  <rect x="56" y="56" width="1088" height="518" rx="6" fill="#FFFFFF" stroke="#000000" stroke-width="4"/>
+  <rect x="64" y="64" width="1088" height="518" rx="6" fill="none" stroke="#000000" stroke-width="4"/>
+
+  <rect x="96" y="92" width="230" height="44" rx="22" fill="#88D4EE" stroke="#000000" stroke-width="3"/>
+  <text x="211" y="120" text-anchor="middle" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="1.6">BUDGET 2026 ANALYSIS</text>
+
+  <text x="96" y="206" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="700">
+    <tspan x="96" dy="0">Negative gearing,</tspan>
+    <tspan x="96" dy="78">CGT, and startup</tspan>
+    <tspan x="96" dy="78">claims checked</tspan>
+    <tspan x="96" dy="78">against the record.</tspan>
+  </text>
+
+  <text x="98" y="490" fill="#000000" fill-opacity="0.7" font-family="Courier New, monospace" font-size="27">
+    Primary-source analysis of the Budget 2026 tax debate
+  </text>
+
+  <g transform="translate(754 104)">
+    <rect x="0" y="0" width="318" height="120" rx="6" fill="#88D4EE" stroke="#000000" stroke-width="4"/>
+    <rect x="8" y="8" width="318" height="120" rx="6" fill="none" stroke="#000000" stroke-width="4"/>
+    <text x="28" y="50" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Issue lanes</text>
+    <text x="28" y="95" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">3</text>
+    <text x="104" y="95" fill="#000000" fill-opacity="0.72" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">NG • CGT • Startups</text>
+  </g>
+
+  <g transform="translate(690 260)">
+    <rect x="0" y="0" width="382" height="84" rx="6" fill="#97EE88" stroke="#000000" stroke-width="4"/>
+    <rect x="8" y="8" width="382" height="84" rx="6" fill="none" stroke="#000000" stroke-width="4"/>
+    <text x="26" y="36" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">SEEDED CASE FILES</text>
+    <text x="26" y="68" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">2 current examples</text>
+  </g>
+
+  <g transform="translate(690 370)">
+    <rect x="0" y="0" width="382" height="84" rx="6" fill="#FED170" stroke="#000000" stroke-width="4"/>
+    <rect x="8" y="8" width="382" height="84" rx="6" fill="none" stroke="#000000" stroke-width="4"/>
+    <text x="26" y="36" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">RECURRING NARRATIVES</text>
+    <text x="26" y="68" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">2 tracked clusters</text>
+  </g>
+
+  <g transform="translate(690 480)">
+    <rect x="0" y="0" width="382" height="84" rx="6" fill="#B6ACE4" stroke="#000000" stroke-width="4"/>
+    <rect x="8" y="8" width="382" height="84" rx="6" fill="none" stroke="#000000" stroke-width="4"/>
+    <text x="26" y="36" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">CORE SOURCES</text>
+    <text x="26" y="68" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">4 reference documents</text>
+  </g>
+
+  <text x="95" y="548" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Budget 2026 Claims Monitor</text>
+</svg>

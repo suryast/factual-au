@@ -1,0 +1,223 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import { appStats, clusterSummaries, featuredSources, recentFactChecks } from "../data/demo";
+
+const narrativeVerdicts = [...new Set(clusterSummaries.map((cluster) => cluster.aggregateVerdict))];
+const selectedVerdict = Astro.url.searchParams.get("verdict");
+const activeVerdict = selectedVerdict && narrativeVerdicts.includes(selectedVerdict as typeof narrativeVerdicts[number])
+  ? selectedVerdict
+  : "all";
+const filteredClusters = activeVerdict === "all"
+  ? clusterSummaries
+  : clusterSummaries.filter((cluster) => cluster.aggregateVerdict === activeVerdict);
+const flaggedNarratives = clusterSummaries.filter(
+  (cluster) => cluster.aggregateVerdict === "unsupported" || cluster.aggregateVerdict === "rhetorical"
+);
+const initialClaimCount = 6;
+const visibleClaims = recentFactChecks.slice(0, initialClaimCount);
+const remainingClaims = recentFactChecks.slice(initialClaimCount);
+---
+
+<Layout title="Budget 2026 Claims Monitor | Dashboard">
+  <Header />
+  <main class="section">
+    <div class="shell dashboard-hero">
+      <section class="dashboard-grid">
+        <div class="surface-card stack-md">
+          <div class="eyebrow-row">
+            <span class="eyebrow tag-main">Budget 2026 dashboard</span>
+            <a class="text-link" href="/methodology">Methodology</a>
+          </div>
+          <h1>Negative gearing, CGT, and startup claims checked against the record.</h1>
+          <p class="hero-copy">
+            This dashboard tracks a narrow slice of Budget 2026 scrutiny: negative gearing reform, CGT redesign, and claims about founder exits or startup-investment effects.
+          </p>
+          <p class="dash-note">
+            In scope: the text of the CGT and negative gearing changes, who benefits under the current concession, and how strongly the cited material bears on startup-impact claims.
+          </p>
+        </div>
+
+        <div class="hero-panel stack-md">
+          <div class="metric-grid">
+            <article>
+              <strong>{appStats.totalFactChecks}</strong>
+              <span>Claims tracked</span>
+            </article>
+            <article>
+              <strong>{appStats.activeClusters}</strong>
+              <span>Recurring narratives</span>
+            </article>
+            <article>
+              <strong>{appStats.primarySourcesIndexed}</strong>
+              <span>Core reference sources</span>
+            </article>
+            <article>
+              <strong>{appStats.issueLanes}</strong>
+              <span>Scrutiny lanes in scope</span>
+            </article>
+          </div>
+          <p class="panel-note">
+            Hard borders, compact cards, and source-first analysis for a very specific Budget 2026 subset.
+          </p>
+        </div>
+      </section>
+
+      <section class="surface-card stack-md">
+        <div class="section-head">
+          <div class="stack-xs">
+            <span class="eyebrow tag-danger">Recurring narratives</span>
+            <h2>Recurring narratives that currently land unsupported or rhetorical</h2>
+          </div>
+        </div>
+        <ul class="bullet-list">
+          {flaggedNarratives.map((cluster) => (
+            <li>
+              <span class={`verdict verdict-${cluster.aggregateVerdict}`}>{cluster.aggregateVerdict.replaceAll("_", " ")}</span>
+              {" "}
+              {cluster.canonicalParaphrase}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="stack-md">
+        <div class="section-head">
+          <div class="stack-xs">
+            <span class="eyebrow tag-success">Claims</span>
+            <h2>Recent claims</h2>
+          </div>
+        </div>
+        <div class="card-grid card-grid-claims">
+          {visibleClaims.map((item) => (
+            <article class="surface-card dashboard-card dashboard-card-claim">
+              <div class="card-meta">
+                <span class="eyebrow tag-main">Claim check</span>
+                <p class="muted small">{new Date(item.submittedAt).toLocaleString("en-AU", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" })}</p>
+              </div>
+              <h3>{item.title}</h3>
+              <p class="muted card-summary">{item.summary}</p>
+              <div class="hero-actions dashboard-actions">
+                <a class="primary-link" href={`/fact-check/${item.id}`}>Open claim</a>
+                {item.calculatorLink && (
+                  <a class="secondary-link" href={item.calculatorLink.href} target="_blank" rel="noreferrer">
+                    {item.calculatorLink.label}
+                  </a>
+                )}
+              </div>
+              {item.calculatorLink && (
+                <div class="stack-xs calc-link-block">
+                  <span class="eyebrow">Scenario link</span>
+                  <p class="muted small">{item.calculatorLink.description}</p>
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+        {remainingClaims.length > 0 && (
+          <details class="surface-card claims-more-block">
+            <summary class="claims-more-toggle">
+              View more claims ({remainingClaims.length})
+            </summary>
+            <div class="card-grid card-grid-claims claims-more-grid">
+              {remainingClaims.map((item) => (
+                <article class="surface-card dashboard-card dashboard-card-claim">
+                  <div class="card-meta">
+                    <span class="eyebrow tag-main">Claim check</span>
+                    <p class="muted small">{new Date(item.submittedAt).toLocaleString("en-AU", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" })}</p>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p class="muted card-summary">{item.summary}</p>
+                  <div class="hero-actions dashboard-actions">
+                    <a class="primary-link" href={`/fact-check/${item.id}`}>Open claim</a>
+                    {item.calculatorLink && (
+                      <a class="secondary-link" href={item.calculatorLink.href} target="_blank" rel="noreferrer">
+                        {item.calculatorLink.label}
+                      </a>
+                    )}
+                  </div>
+                  {item.calculatorLink && (
+                    <div class="stack-xs calc-link-block">
+                      <span class="eyebrow">Scenario link</span>
+                      <p class="muted small">{item.calculatorLink.description}</p>
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
+          </details>
+        )}
+      </section>
+
+      <section class="stack-md">
+        <div class="section-head" id="narratives">
+          <div class="stack-xs">
+            <span class="eyebrow tag-warning">Narratives</span>
+            <h2>Top narratives</h2>
+          </div>
+        </div>
+        <div class="narrative-filter-panel surface-card stack-sm">
+          <div class="stack-xs">
+            <p class="eyebrow">Filter by verdict</p>
+            <p class="muted small">Narrow the recurring narratives by verdict without leaving the dashboard.</p>
+          </div>
+          <div class="narrative-filter-row">
+            <a class={`tag-filter ${activeVerdict === "all" ? "is-active" : ""}`} href="/dashboard#narratives">All verdicts</a>
+            {narrativeVerdicts.map((verdict) => (
+              <a
+                class={`tag-filter ${activeVerdict === verdict ? "is-active" : ""}`}
+                href={`/dashboard?verdict=${encodeURIComponent(verdict)}#narratives`}
+              >
+                {verdict.replaceAll("_", " ")}
+              </a>
+            ))}
+          </div>
+        </div>
+        <div class="card-grid card-grid-narratives">
+          {filteredClusters.map((cluster) => (
+            <article class="surface-card dashboard-card dashboard-card-narrative">
+              <div class="cluster-topline">
+                <span class={`verdict verdict-${cluster.aggregateVerdict}`}>{cluster.aggregateVerdict.replaceAll("_", " ")}</span>
+                <span class="muted small">Last seen {new Date(cluster.lastSeen).toLocaleDateString("en-AU", { timeZone: "UTC" })}</span>
+              </div>
+              <h3>{cluster.canonicalParaphrase}</h3>
+              <div class="narrative-tag-row">
+                {cluster.tags.map((tag) => (
+                  <span class="tag-chip">{tag}</span>
+                ))}
+              </div>
+              <p class="muted card-summary">Variations: {cluster.sampleVariations.join(", ")}</p>
+              <p class="muted small">Common missing assumptions: {cluster.commonMissingAssumptions.slice(0, 2).join("; ")}</p>
+            </article>
+          ))}
+        </div>
+        <p class="muted small">
+          Showing {filteredClusters.length} narrative{filteredClusters.length === 1 ? "" : "s"}
+          {activeVerdict === "all" ? "." : ` with verdict "${activeVerdict.replaceAll("_", " ")}".`}
+        </p>
+      </section>
+
+      <section class="stack-md">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow tag-purple">References</p>
+            <h2>Sources for this Budget 2026 subset</h2>
+          </div>
+        </div>
+        <ul class="bullet-list references-list">
+          {featuredSources.map((source) => (
+            <li>
+              <a class="text-link" href={source.url} target="_blank" rel="noreferrer">
+                {source.title}
+              </a>
+              {" — "}
+              <span class="muted">{source.detail}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
