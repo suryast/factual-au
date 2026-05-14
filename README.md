@@ -2,6 +2,12 @@
 
 Citation-grounded analysis for a narrow slice of Budget 2026 tax claims.
 
+Live deployment:
+- https://factual-au.setiyaputra.me/
+
+Source repository:
+- https://github.com/suryast/factual-au
+
 This repository is a scaffold for the Budget 2026 Claims Monitor concept:
 
 - Astro 5 + Svelte 5 frontend for the public product surface
@@ -14,9 +20,12 @@ This repository is a scaffold for the Budget 2026 Claims Monitor concept:
 ```text
 factual-au/
 ├── src/                  # Astro frontend
+├── public/               # static assets and OG images
 ├── backend/              # FastAPI + FastMCP service scaffold
 ├── infra/d1/             # D1 schema
-└── docs/                 # Architecture and implementation notes
+├── docs/                 # architecture and implementation notes
+├── AGENTS.md             # contributor guide for humans and coding agents
+└── README.md             # public repo overview
 ```
 
 ## Frontend
@@ -46,5 +55,7 @@ This first implementation focuses on:
 - fact-check and cluster rendering
 - typed backend pipeline boundaries
 - seeded source-catalog and verdict objects
+
+The current public deploy is a product prototype with seeded/demo-backed content, intended to make the review and navigation model tangible before full live verification and ingestion systems are wired through.
 
 It does **not** yet include live Anthropic/Voyage integrations, live D1 persistence, or a production browser extension.
