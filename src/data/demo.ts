@@ -71,7 +71,7 @@ export interface ClusterSummary {
 }
 
 export const appStats = {
-  totalFactChecks: 29,
+  totalFactChecks: 30,
   activeClusters: 17,
   primarySourcesIndexed: 11,
   issueLanes: 3
@@ -97,6 +97,213 @@ function buildScenarioCalculatorHref(scenarioId: string, caseFile: string) {
 }
 
 export const recentFactChecks: SubmissionResult[] = [
+  {
+    id: "budget-2026-fairer-tax-without-penalising-aspiration-claim",
+    title: "Founder-lawyer post arguing property tax concessions were too strong but startup CGT should still be treated differently",
+    submittedAt: "2026-05-13T23:47:00Z",
+    posterLabel: "Public founder post",
+    posterNamedPublicly: false,
+    rawText:
+      "Through negative gearing, property was way too overpowered relative to other asset classes and other countries ... removing CGT discounts on startups have a detrimental impact on our fledgling ecosystem ... taxing startup exits at double other countries' rates will only compound this issue ... We can have a fairer tax system without penalising aspiration.",
+    summary:
+      "This post is strongest when it distinguishes between housing-tax reform and startup-exit treatment. The package does clearly target negative gearing on established residential property while also applying the CGT redesign to startups and other non-property assets, so the author's basic 'property reform plus startup concern' split is real. But the stronger claims about property having been decisively overpowered, startup exits being taxed at double other countries' rates, and the ecosystem consequences that follow remain assumption-sensitive or overstated. The closing line about fairness without penalising aspiration is a normative position rather than a discrete factual claim.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 1,
+      unverifiable: 0,
+      requires_assumptions: 2,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-housing-reform-plus-startup-cgt-split",
+        verbatim:
+          "Through negative gearing, property was way too overpowered ... However ... removing CGT discounts on startups have a detrimental impact on our fledgling ecosystem.",
+        paraphrased:
+          "The Budget simultaneously tightens residential-property tax concessions and applies the CGT redesign to startups and other non-property assets.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.91,
+        reasoning:
+          "That core split is visible in the official Budget materials. The housing-side negative-gearing restrictions are aimed at established residential property, while the CGT redesign reaches broader asset classes rather than carving startups out by default.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The package is not property-only: it also changes CGT treatment for startup and share gains."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026–27 Tax Explainer: Negative Gearing and Capital Gains Tax Reform",
+            publisher: "Australian Government",
+            section: "Negative gearing reforms and CGT reforms",
+            page: 4,
+            url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf",
+            supports: "supports",
+            relevantPassage:
+              "Negative gearing changes are targeted at residential property, while other asset classes such as shares remain under existing arrangements on that front even as the broader CGT redesign applies from 1 July 2027."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          }
+        ]
+      },
+      {
+        id: "claim-property-overpowered-reduced-capital-flows",
+        verbatim:
+          "Through negative gearing, property was way too overpowered relative to other asset classes and other countries, leading to extreme property prices and reduced capital flows to businesses.",
+        paraphrased:
+          "Australia's prior property-tax settings made housing too attractive relative to productive assets, contributing to high prices and weaker business capital allocation.",
+        claimType: "causal",
+        subjectDomain: "housing",
+        verdict: "requires_assumptions",
+        confidence: 0.78,
+        reasoning:
+          "This is a plausible political-economy argument, but it goes well beyond what the primary Budget sources settle directly. Measuring how much negative gearing and related settings diverted capital away from businesses, and how much that explains extreme property prices, requires empirical attribution and comparison choices not supplied in the post.",
+        assumptionsRequired: [
+          "Assumes housing tax settings were a major driver of capital allocation away from businesses rather than one factor among many.",
+          "Assumes the relevant international comparison set is fair and like-for-like."
+        ],
+        alternativeFramings: [
+          "Property tax settings likely strengthened housing's relative appeal, but the size of the capital-allocation effect is contested."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget Paper 2 2026-27",
+            publisher: "Australian Government",
+            section: "Boosting Home Ownership",
+            page: 22,
+            url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government frames the housing-tax changes as reducing distortions in the property market, but that does not by itself quantify the wider capital-allocation effect claimed in the post."
+          }
+        ]
+      },
+      {
+        id: "claim-startup-exits-taxed-double-other-countries",
+        verbatim:
+          "taxing startup exits at double other countries' rates will only compound this issue.",
+        paraphrased:
+          "The new Australian startup-exit tax burden is double that of other countries.",
+        claimType: "comparative",
+        subjectDomain: "startups",
+        verdict: "unsupported",
+        confidence: 0.84,
+        reasoning:
+          "This is a sweeping cross-country ranking claim without a fixed comparison basket or like-for-like founder-relief methodology. The site already treats similar 'double other countries' / 'most punitive developed-country regime' claims as overstated for the same reason.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "Some no-relief Australian founder-exit scenarios compare badly with founder-relief regimes overseas, but a blanket 'double other countries' claim is not established."
+        ],
+        verificationMethod: "empirical_comparison",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Australian reform sets the local side of the comparison, but it does not establish a universal doubled-rate relationship against other countries."
+          },
+          {
+            title: "IRS Publication 550",
+            publisher: "Internal Revenue Service",
+            section: "Qualified Small Business Stock",
+            page: 1,
+            url: "https://www.irs.gov/publications/p550",
+            supports: "partially_supports",
+            relevantPassage:
+              "US founder-relief treatment exists in some cases, but that does not support a simple blanket doubled-rate comparison across jurisdictions."
+          },
+          {
+            title: "GOV.UK: Business Asset Disposal Relief",
+            publisher: "GOV.UK",
+            section: "Rates and qualifying conditions",
+            page: 1,
+            url: "https://www.gov.uk/entrepreneurs-relief",
+            supports: "partially_supports",
+            relevantPassage:
+              "UK founder-style relief exists with conditions and caps, which again does not prove a uniform doubled-rate comparison."
+          }
+        ]
+      },
+      {
+        id: "claim-startup-cgt-detrimental-ecosystem",
+        verbatim:
+          "removing CGT discounts on startups have a detrimental impact on our fledgling ecosystem.",
+        paraphrased:
+          "Applying the CGT redesign to startups harms the Australian startup ecosystem.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.82,
+        reasoning:
+          "That may be true in some founder and employee-equity scenarios, but it remains a broader ecosystem-effect forecast rather than a fact directly proved by the primary source set. The scale depends on how founders, employees, investors, and policymakers respond, including whether later carve-outs emerge.",
+        assumptionsRequired: [
+          "Assumes startup behaviour is materially sensitive to the post-2027 equity-exit tax setting.",
+          "Assumes offsetting VC and startup-support measures are not enough to neutralise the harm claimed."
+        ],
+        alternativeFramings: [
+          "The redesign may add friction to startup incentives, but the aggregate ecosystem effect is still uncertain."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Business support measures",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The package tightens some founder-exit tax settings while also expanding venture capital and startup-support measures, leaving the net ecosystem effect contestable."
+          }
+        ]
+      },
+      {
+        id: "claim-fairer-tax-without-penalising-aspiration",
+        verbatim:
+          "We can have a fairer tax system without penalising aspiration.",
+        paraphrased:
+          "Australia should pursue tax fairness without penalising aspiration.",
+        claimType: "normative",
+        subjectDomain: "taxation",
+        verdict: "rhetorical",
+        confidence: 0.93,
+        reasoning:
+          "This is a political value judgement about what the tax system should aim for, not a discrete factual claim the source set can verify or falsify on its own.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The author supports reform, but wants startup treatment carved out from the broader package."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Tax reform and business support",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Budget frames the package in fairness and productivity terms, but whether it penalises aspiration is a normative debate rather than a resolved source-text fact."
+          }
+        ]
+      }
+    ]
+  },
   {
     id: "budget-2026-ai-founders-stay-claim",
     title: "LinkedIn post arguing the Budget makes startup upside less attractive and gives ambitious young Australians fewer reasons to stay",
@@ -4495,8 +4702,8 @@ export const clusterSummaries: ClusterSummary[] = [
       "Budget 2026 punishes aspiration, risk-taking, and business-building rather than rewarding it.",
     subjectDomain: "taxation",
     tags: ["aspiration", "business owners", "negative gearing", "startups"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T06:05:00Z",
+    instanceCount: 2,
+    lastSeen: "2026-05-13T23:47:00Z",
     aggregateVerdict: "rhetorical",
     commonMissingAssumptions: [
       "Treats a broad normative judgement about aspiration and nation-level economic direction as if it were a single verifiable fact.",
@@ -4505,7 +4712,8 @@ export const clusterSummaries: ClusterSummary[] = [
     sampleVariations: [
       "budget punishes aspiration",
       "anti-risk budget",
-      "terrible budget for builders"
+      "terrible budget for builders",
+      "fairer tax without penalising aspiration"
     ],
     primarySources: [
       {
@@ -4790,15 +4998,15 @@ export const clusterSummaries: ClusterSummary[] = [
       "Removing the CGT discount will cause founders or capital to leave Australia.",
     subjectDomain: "taxation",
     tags: ["founders", "capital flight", "startups"],
-    instanceCount: 15,
-    lastSeen: "2026-05-13T22:07:00Z",
+    instanceCount: 16,
+    lastSeen: "2026-05-13T23:47:00Z",
     aggregateVerdict: "requires_assumptions",
     commonMissingAssumptions: [
       "Treats tax as the dominant factor in founder location decisions",
       "Ignores expanded VC incentives in the same budget package",
       "Assumes no grandfathering or targeted founder concession affects the scenario"
     ],
-    sampleVariations: ["mass exodus", "capital flight", "Singapore move", "fewer AI companies", "fewer reasons to stay"],
+    sampleVariations: ["mass exodus", "capital flight", "Singapore move", "fewer AI companies", "fewer reasons to stay", "best companies leave"],
     primarySources: [
       {
         title: "Budget Paper 2 2026-27, p.18",
