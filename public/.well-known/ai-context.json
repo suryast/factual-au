@@ -1,0 +1,68 @@
+{
+  "name": "Budget 2026 Claims Monitor",
+  "site": "factual-au",
+  "version": "1.0",
+  "description": "A public Budget 2026 claim-analysis site focused on negative gearing, CGT reform, and startup-impact narratives, with dashboard, fact-check pages, methodology, and seeded structured claim data.",
+  "entrypoints": {
+    "home": "https://factual-au.setiyaputra.me/",
+    "dashboard": "https://factual-au.setiyaputra.me/dashboard",
+    "methodology": "https://factual-au.setiyaputra.me/methodology",
+    "feed": "https://factual-au.setiyaputra.me/feed.json",
+    "llms": "https://factual-au.setiyaputra.me/llms.txt"
+  },
+  "contentModel": {
+    "type": "claims-monitor",
+    "primarySurfaces": [
+      "dashboard",
+      "fact-check detail pages",
+      "methodology",
+      "feed.json"
+    ],
+    "claimFields": [
+      "title",
+      "summary",
+      "submittedAt",
+      "verdict",
+      "calculatorLink",
+      "sources",
+      "narrative cluster"
+    ]
+  },
+  "siteSemantics": {
+    "purpose": "Help readers inspect recurring Budget 2026 tax claims against cited material rather than rely on slogans or campaign framing.",
+    "scopeNotes": [
+      "The current site is narrow by design and focused on negative gearing, CGT redesign, and startup-impact claims.",
+      "Seeded demo data is used on the public prototype unless live backend wiring is enabled.",
+      "Verdicts describe how well cited material supports a claim, not whether a policy is normatively good."
+    ],
+    "verdictVocabulary": [
+      "supported",
+      "mixed",
+      "unsupported",
+      "rhetorical"
+    ]
+  },
+  "navigationHints": {
+    "startHere": "Use `/dashboard` for the main overview of narratives, claims, and sources.",
+    "factChecks": "Visit `/fact-check/{id}` pages for claim-level detail and linked scenario calculators where present.",
+    "methodology": "Use `/methodology` to understand verdict taxonomy and editorial discipline."
+  },
+  "relatedResources": {
+    "matrix": "https://budget-2026-cgt-negative-gearing-matrix.pages.dev/",
+    "calculator": "https://australia-cgt-reform-calculator.setiyaputra.me/",
+    "repository": "https://github.com/suryast/factual-au"
+  },
+  "agentGuidance": {
+    "preferredSources": [
+      "dashboard for high-level overview",
+      "fact-check pages for claim-specific interpretation",
+      "feed.json for structured crawlable updates",
+      "methodology page for verdict semantics"
+    ],
+    "doNotAssume": [
+      "Do not treat seeded demo content as proof of live backend ingestion.",
+      "Do not collapse verdict labels into investment advice or election forecasting.",
+      "Do not infer broad policy coverage beyond the narrow Budget 2026 scope named on the site."
+    ]
+  }
+}

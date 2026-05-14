@@ -1,0 +1,25 @@
+# Budget 2026 Claims Monitor
+
+This site publishes citation-grounded analysis for a narrow slice of Budget 2026 tax claims, especially around negative gearing, CGT reform, and startup-impact narratives.
+
+Primary URLs:
+- Home: https://factual-au.setiyaputra.me/
+- Dashboard: https://factual-au.setiyaputra.me/dashboard
+- Methodology: https://factual-au.setiyaputra.me/methodology
+- Feed: https://factual-au.setiyaputra.me/feed.json
+- Agent context JSON: https://factual-au.setiyaputra.me/.well-known/ai-context.json
+
+How to read the site:
+- Start with `/dashboard` for the main overview.
+- Use `/fact-check/{id}` pages for claim-level analysis.
+- Use `/methodology` for verdict meanings and editorial rules.
+- Treat verdicts as evidence assessments, not as investment or voting advice.
+
+Important caveats:
+- The site is intentionally narrow in scope.
+- Public prototype content may be seeded/demo-backed unless live backend integrations are enabled.
+
+Related resources:
+- Matrix viewer: https://budget-2026-cgt-negative-gearing-matrix.pages.dev/
+- Calculator: https://australia-cgt-reform-calculator.setiyaputra.me/
+- Source code: https://github.com/suryast/factual-au
