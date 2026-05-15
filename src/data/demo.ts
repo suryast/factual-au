@@ -71,7 +71,7 @@ export interface ClusterSummary {
 }
 
 export const appStats = {
-  totalFactChecks: 30,
+  totalFactChecks: 60,
   activeClusters: 17,
   primarySourcesIndexed: 11,
   issueLanes: 3
@@ -97,6 +97,1415 @@ function buildScenarioCalculatorHref(scenarioId: string, caseFile: string) {
 }
 
 export const recentFactChecks: SubmissionResult[] = [
+  {
+    id: "budget-2026-albos-tax-landing-page-claim",
+    title: "albos.tax landing page summarising the Budget 2026 CGT redesign and startup backlash",
+    submittedAt: "2026-05-15T09:20:00Z",
+    posterLabel: "Web page submission",
+    posterNamedPublicly: false,
+    sourceUrl: "https://albos.tax/",
+    rawText:
+      "Kicks in 1 July 2027. Albo wants to retire the 50% CGT discount. Instead he'll introduce inflation-adjusted indexation, plus a 30% minimum tax on realised gains which he says is about fairness. The startup and finance ecosystem have a lot of strong opinions on this. I'm curating what they're saying about it, technical, funny, even rogue posts.",
+    summary:
+      "The albos.tax landing page is strongest when it sticks to the high-level policy mechanics: the Budget does retire the current 50 per cent discount from 1 July 2027 and replaces it with indexation plus a 30 per cent floor on gains. The weaker part is not the core policy summary but the broader ecosystem framing. The page clearly documents that there is a loud startup and finance backlash, yet the severity and representativeness of that backlash are still matters of interpretation rather than facts settled by the Budget papers alone.",
+    calculatorLink: {
+      label: "Model the post-2027 gain case",
+      description:
+        "Prefills a standard post-2027 capital-gain scenario so the landing page's headline policy summary can be tested against explicit assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-cgt-founder-claim", "budget-2026-cgt-founder-claim")
+    },
+    overallVerdictMix: {
+      supported: 2,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-albos-tax-kicks-in-1-july-2027",
+        verbatim: "Kicks in 1 July 2027.",
+        paraphrased: "The redesigned CGT regime begins from 1 July 2027.",
+        claimType: "historical",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.95,
+        reasoning:
+          "This is a clean effective-date claim and it matches the primary Budget material already used across the site. The announced CGT redesign starts from 1 July 2027 rather than applying immediately to all prior gains.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The Budget redesign applies from 1 July 2027, with transition mechanics determining how pre- and post-start-date gains are treated."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "supports",
+            relevantPassage:
+              "The Government states that the redesigned capital-gains tax treatment applies from 1 July 2027."
+          }
+        ]
+      },
+      {
+        id: "claim-albos-tax-retire-50pct-discount",
+        verbatim:
+          "Albo wants to retire the 50% CGT discount. Instead he'll introduce inflation-adjusted indexation, plus a 30% minimum tax on realised gains",
+        paraphrased:
+          "The Budget replaces the current 50 per cent CGT discount with indexation plus a 30 per cent minimum tax on gains.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.94,
+        reasoning:
+          "This is an accurate high-level summary of the announced policy architecture. The page compresses the mechanics into landing-page language, but the core replacement structure it describes is the same one set out in the Budget tax-reform materials.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The current 50 per cent discount is being replaced by an indexation-based approach plus a minimum 30 per cent tax floor from 1 July 2027."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          },
+          {
+            title: "Budget 2026–27 Tax Explainer: Negative Gearing and Capital Gains Tax Reform",
+            publisher: "Australian Government",
+            section: "Capital gains tax redesign",
+            page: 4,
+            url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf",
+            supports: "supports",
+            relevantPassage:
+              "The tax explainer describes the same move from the existing discount model to inflation-linked treatment with a 30 per cent minimum tax floor."
+          }
+        ]
+      },
+      {
+        id: "claim-albos-tax-startup-finance-strong-opinions",
+        verbatim:
+          "The startup and finance ecosystem have a lot of strong opinions on this. I'm curating what they're saying about it, technical, funny, even rogue posts.",
+        paraphrased:
+          "There is a broad, visible and emotionally charged startup-and-finance-sector reaction to the CGT changes.",
+        claimType: "interpretive",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.74,
+        reasoning:
+          "The page clearly shows many linked reactions from founders, investors and publications, so the basic observation that there is visible ecosystem reaction is fair. But how representative, broad or one-sided that reaction is depends on editorial selection. A curated page can prove that many strong takes exist; it cannot by itself prove that the displayed mood is the full ecosystem consensus.",
+        assumptionsRequired: [
+          "Assumes the curated outbound links are representative of the wider startup and finance conversation rather than a selected slice.",
+          "Assumes link volume and tone are a good proxy for ecosystem-wide intensity."
+        ],
+        alternativeFramings: [
+          "The page demonstrates that there is substantial visible backlash and commentary, but not necessarily that the displayed sentiment is comprehensive or unanimous.",
+          "A curated reaction page is evidence of debate intensity, not a full survey of the ecosystem."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "albos.tax",
+            publisher: "Web page",
+            section: "Landing page curation",
+            page: 1,
+            url: "https://albos.tax/",
+            supports: "partially_supports",
+            relevantPassage:
+              "The landing page collects a large number of founder, investor and media links, which is direct evidence of visible reaction but not of full-sample representativeness."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "budget-2026-linkedin-winners-losers-claim",
+    title: "LinkedIn post listing who supposedly wins and loses from the Budget 2026 tax changes",
+    submittedAt: "2026-05-15T08:27:00Z",
+    posterLabel: "LinkedIn screenshot submission",
+    posterNamedPublicly: false,
+    rawText:
+      "Here's a quick cheat sheet on the Winners and Losers from Jim Chalmers' abhorrence. LOSERS: Anyone aged under 40 wanting to buy an investment property; anyone aged under 40 wanting to buy shares or any other asset that might allow them to build real wealth; anyone wanting to work for a startup (you'll need to move to New Zealand, or frankly anywhere else); anyone aged under 40 who will be paying the interest on $1.25 trillion of accumulated and rapidly growing debt; anyone paying income tax which is not being adjusted for rampant inflation; business owners who battle for years on a meagre wage and will then be paying 47% tax on capital in one hit. WINNERS: Boomers who own existing investment properties and can keep negative gearing to their heart's content; foreign owned tech companies who use transfer pricing to pay zero tax in Australia; oil and gas companies (many foreign owned) who pay virtually no tax to extract our resources; millionaire superannuation holders who will continue to pay only 15% CGT; foreign investors buying Australian assets who will continue to pay 0% CGT; wealthy boomers who will continue to get refunds into their super for imputed dividend payments; thousands of crooked suppliers who have turned the NDIS into their own $50b cash machine; business valuers who somehow need to value every single Australian entity next July; anyone wanting to be a highly paid public servant; accountants who will be paid a lot more to deal with massively increased tax code complexity.",
+    summary:
+      "This post mixes one solid grandfathering point with several age-targeting, founder-flight, super-tax and foreign-investor claims that either overstate the current source base or depend heavily on unstated assumptions. The strongest claim in the screenshot is that existing property investors keep grandfathered negative-gearing treatment while later buyers of established housing lose access. But the broader framing that under-40 Australians are the clear losers across both housing and share investing is too sweeping for the indexed evidence here, the 47 per cent founder-exit line still depends on a no-relief scenario, and the claims about super and foreign investors compress more legal detail than the post acknowledges.",
+    calculatorLink: {
+      label: "Model the founder-exit case",
+      description:
+        "Prefills a no-relief zero-cost-base business scenario so the screenshot's 47 per cent capital-tax claim can be tested against explicit assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-zero-cost-base-business-claim", "budget-2026-zero-cost-base-business-claim")
+    },
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 2,
+      unverifiable: 0,
+      requires_assumptions: 3,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-under-40-losers-across-property-and-shares",
+        verbatim:
+          "Anyone aged under 40 wanting to buy an investment property; anyone aged under 40 wanting to buy shares or any other asset that might allow them to build real wealth",
+        paraphrased:
+          "Budget 2026 mainly makes under-40 Australians trying to build wealth through property or shares into the core losers of the package.",
+        claimType: "comparative",
+        subjectDomain: "taxation",
+        verdict: "unsupported",
+        confidence: 0.83,
+        reasoning:
+          "The screenshot is pushing a much broader age-based conclusion than the current source set supports. The package does tighten housing and CGT settings in ways that can matter for younger investors, but the official distributional material on the current CGT discount does not show the concession as mainly protecting under-40 Australians. The strongest evidence instead points to benefits being concentrated among older and higher-income cohorts. So the post may express a political view about intergenerational effects, but the categorical 'under 40 = loser' framing is not established by the indexed primary sources here.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "Some younger investors may face less generous after-tax wealth-building pathways under the redesigned regime, but the age-wide effect is not settled by the core distribution tables alone.",
+          "The current CGT discount is not primarily a concession for under-40 Australians, even if some younger investors use it."
+        ],
+        verificationMethod: "empirical_comparison",
+        primarySources: [
+          {
+            title: "PBO: Operation of the CGT discount",
+            publisher: "Parliamentary Budget Office",
+            section: "Distribution tables",
+            page: 1,
+            url: "https://www.pbo.gov.au/publications-and-data/publications/costings/operation-CGT-discount",
+            supports: "contradicts",
+            relevantPassage:
+              "The PBO distribution tables show the current CGT discount is heavily concentrated among higher-income recipients rather than functioning mainly as a broad under-40 wealth-building concession."
+          },
+          {
+            title: "Treasury TEIS chart data workbook",
+            publisher: "Australian Treasury",
+            section: "Age and income chart data",
+            page: 1,
+            url: "https://treasury.gov.au/sites/default/files/2025-12/p2025-721342-chart-data.xlsx",
+            supports: "contradicts",
+            relevantPassage:
+              "Treasury's chart data is used on the site as the main age-split reference and does not support the idea that the concession is chiefly a subsidy for younger adults."
+          }
+        ]
+      },
+      {
+        id: "claim-startup-workers-must-move-offshore",
+        verbatim:
+          "Anyone wanting to work for a startup (you'll need to move to New Zealand, or frankly anywhere else)",
+        paraphrased:
+          "The Budget's tax changes will make startup work in Australia unattractive enough that people will need to move offshore for viable startup opportunities.",
+        claimType: "predictive",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.79,
+        reasoning:
+          "This is a forecast-heavy competitiveness claim, not a settled fact in the current source base. Some founder and employee-equity outcomes can look less attractive after the CGT redesign, and that creates a real competitiveness concern. But whether startup workers actually need to move to New Zealand or elsewhere depends on labour-market options, ESS design, migration frictions, venture conditions, and the offsetting startup-support measures that sit elsewhere in the same Budget package. The screenshot states the behavioural conclusion far more strongly than the primary texts warrant on their own.",
+        assumptionsRequired: [
+          "Assumes tax treatment is a dominant driver of where startup employees choose to work.",
+          "Assumes Australian startups cannot redesign compensation or ownership structures to remain competitive.",
+          "Assumes the Budget's venture-capital and productivity-side measures are too weak to offset any founder-side drag."
+        ],
+        alternativeFramings: [
+          "The redesign may weaken Australia's appeal for some startup-equity cases, but the size of any talent outflow remains uncertain.",
+          "Competitiveness concerns are real, but 'you'll need to move overseas' is a stronger claim than the cited policy text can settle."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The reform clearly changes after-tax outcomes for gains, which is the basis for startup-competitiveness concern."
+          },
+          {
+            title: "Budget 2026-27 Productivity page",
+            publisher: "Australian Government",
+            section: "Investment and innovation measures",
+            page: 1,
+            url: "https://budget.gov.au/content/03-productivity.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Budget also presents itself as strengthening innovation and venture-capital settings, which means the net startup effect is not resolved by the CGT change alone."
+          }
+        ]
+      },
+      {
+        id: "claim-business-owners-47-capital-tax-in-one-hit",
+        verbatim:
+          "Business owners who battle for years on a meagre wage and will then be paying 47% tax on capital in one hit",
+        paraphrased:
+          "Business owners will generally face a full 47 per cent tax on exit gains under the Budget 2026 redesign.",
+        claimType: "comparative",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.88,
+        reasoning:
+          "This is the zero-cost-base founder argument in compressed form. In a fully post-2027, no-relief, top-marginal-rate case with little or no cost base, the effective burden can indeed converge toward the top personal rate. But the screenshot presents that scenario as if it were the universal business-owner outcome. It is not. Eligibility for Subdivision 152 and other small-business relief, ownership structure, timing, and cost-base facts all matter materially. So the claim identifies a real harsh-case scenario but overstates how automatic it is.",
+        assumptionsRequired: [
+          "Assumes an individual owner taxed at the top marginal rate.",
+          "Assumes little or no cost base so indexation does minimal work.",
+          "Assumes small-business CGT concessions or other relief do not apply."
+        ],
+        alternativeFramings: [
+          "Some no-relief founder exits can face tax near the top marginal rate under the redesigned system.",
+          "The harshest founder scenarios are real, but they are not every business-owner scenario."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent discount with indexation plus a minimum 30 per cent tax on gains from 1 July 2027."
+          },
+          {
+            title: "ATO: Small business CGT concessions",
+            publisher: "Australian Taxation Office",
+            section: "Eligibility overview",
+            page: 1,
+            url: "https://www.ato.gov.au/SBCGT",
+            supports: "contradicts",
+            relevantPassage:
+              "ATO guidance shows eligible small business owners may reduce or disregard gains through specific CGT concessions, so the full-rate outcome is not automatic."
+          }
+        ]
+      },
+      {
+        id: "claim-existing-boomers-keep-negative-gearing",
+        verbatim:
+          "Boomers who own existing investment properties and can keep negative gearing to their heart's content",
+        paraphrased:
+          "Existing residential property investors are largely grandfathered and keep their current negative-gearing treatment.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.92,
+        reasoning:
+          "This is the cleanest policy-mechanics point in the screenshot. The package limits negative gearing to new builds from 1 July 2027 and removes the wage-offset treatment for post-Budget buyers of established housing, but it does not wipe out the current benefit for existing holders. The post uses loaded language by framing this as a 'boomers' point, yet the underlying grandfathering claim is real.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "Existing investors keep grandfathered treatment, while later buyers of established housing lose access.",
+          "The reform narrows negative gearing rather than abolishing it universally."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026–27 Tax Explainer: Negative Gearing and Capital Gains Tax Reform",
+            publisher: "Australian Government",
+            section: "Negative gearing transition rules",
+            page: 3,
+            url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf",
+            supports: "supports",
+            relevantPassage:
+              "The package limits negative gearing to new builds from 1 July 2027 while preserving grandfathered treatment for existing investors and distinguishing later established-property purchases."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Negative gearing",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "supports",
+            relevantPassage:
+              "The Government states that later buyers of established housing lose access while the measure is targeted at new supply rather than universal abolition."
+          }
+        ]
+      },
+      {
+        id: "claim-millionaire-super-only-15-percent-cgt",
+        verbatim:
+          "Millionaire superannuation holders who will continue to pay only 15% CGT",
+        paraphrased:
+          "High-balance superannuation investors will simply continue paying a flat 15 per cent CGT rate on gains.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.76,
+        reasoning:
+          "This is too compressed to be cleanly right as written. Super funds do sit in a concessional tax environment and capital gains are often taxed more lightly than personal gains, which is the intuition the screenshot is reaching for. But the exact outcome depends on whether the fund is in accumulation or pension phase, whether the gain qualifies for the one-third CGT discount, and how any higher-balance super tax settings interact with the broader picture. So the claim gestures at a real concessionary structure but oversimplifies the legal mechanics.",
+        assumptionsRequired: [
+          "Assumes the gain is realised in accumulation phase rather than a tax-exempt pension setting.",
+          "Assumes the one-third discount applies in the way the poster implies.",
+          "Assumes no separate high-balance super tax settings materially alter the effective burden."
+        ],
+        alternativeFramings: [
+          "Super remains a more concessional environment for many gains than personal investing outside super.",
+          "The effective tax on super gains depends on phase, fund structure and gain character, not just a single headline number."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "ATO: Tax on capital gains in a super fund",
+            publisher: "Australian Taxation Office",
+            section: "Capital gains in super",
+            page: 1,
+            url: "https://www.ato.gov.au/tax-rates-and-codes/key-superannuation-rates-and-thresholds/tax-on-superannuation",
+            supports: "partially_supports",
+            relevantPassage:
+              "ATO guidance treats superannuation as a concessional tax environment, but the exact CGT outcome depends on fund circumstances and holding period."
+          }
+        ]
+      },
+      {
+        id: "claim-foreign-investors-zero-percent-cgt",
+        verbatim:
+          "Foreign investors buying Australian assets who will continue to pay 0% CGT",
+        paraphrased:
+          "Foreign investors can generally keep buying Australian assets without paying CGT.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "unsupported",
+        confidence: 0.86,
+        reasoning:
+          "This is too broad and materially misleading as stated. Foreign residents do not simply enjoy a universal 0 per cent CGT outcome on Australian assets. Their treatment depends on asset type, and taxable Australian property remains within the CGT net. Foreign residents are also not entitled to the same discount treatment as resident individuals in many cases. The screenshot compresses a more complex and asset-specific regime into a universal zero-rate slogan.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "Foreign-resident CGT treatment is narrower and more asset-specific than the post suggests.",
+          "Some foreign investors may still face less tax on some structures than Australian residents, but not via a universal 0 per cent CGT rule."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "ATO: Foreign resident capital gains withholding and taxable Australian property",
+            publisher: "Australian Taxation Office",
+            section: "Taxable Australian property",
+            page: 1,
+            url: "https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/foreign-residents-and-capital-gains-tax",
+            supports: "contradicts",
+            relevantPassage:
+              "ATO guidance makes clear that foreign residents are still taxable on taxable Australian property rather than enjoying a universal 0 per cent CGT outcome."
+          },
+          {
+            title: "ATO: CGT discount for foreign residents",
+            publisher: "Australian Taxation Office",
+            section: "Discount rules",
+            page: 1,
+            url: "https://www.ato.gov.au/forms-and-instructions/capital-gains-tax-guide-2022/part-a-about-capital-gains-tax/discount-capital-gains",
+            supports: "contradicts",
+            relevantPassage:
+              "ATO guidance does not support the idea that foreign investors generally continue paying 0 per cent CGT on Australian assets."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "budget-2026-ess-productive-capital-claim",
+    title: "Post arguing property speculation should be tightened but ESS, startup equity and stock-market wealth-building should be treated differently",
+    submittedAt: "2026-05-15T03:05:00Z",
+    posterLabel: "Public text submission",
+    posterNamedPublicly: false,
+    rawText:
+      "I wholeheartedly agree with tightening CGT concessions around property speculation. Homes are homes first, not investment vehicles. But I think working families building wealth on the stock market, startup equity, ESS and entrepreneurial risk are fundamentally different from passive property investment ... if I receive $100 in ESS, it's taxed as if it were $100 of real salary income ... If those shares later grow to $1,000, I'm then taxed again on the capital gain ... if the shares fall below the issued price, the asymmetry becomes obvious ... it becomes far less risky to simply take the $100 as salary instead of equity ... if employees stop seeing ESS as attractive, Australia loses something important ... Australian founders and high-growth companies will increasingly choose to build elsewhere where the tax treatment is more competitive",
+    summary:
+      "This post is strongest when it distinguishes between housing speculation and non-property risk capital. The Budget really does tighten housing-side tax concessions while still applying the broader CGT redesign to shares, startup equity and business gains. The ESS discussion also points to a real design tension: some ESS discounts are taxed as employment income, and later gains can still fall into the CGT system. But the post states that too generally, because ESS treatment varies across taxed-upfront, tax-deferred and start-up-concession schemes. The larger claims about workers abandoning equity, wealth shifting away from employees, and founders choosing to build offshore are directionally plausible but still forecast-heavy rather than settled facts in the current primary-source set.",
+    calculatorLink: {
+      label: "Model a non-property investor case",
+      description:
+        "Prefills a post-2027 non-housing scenario so the claim about productive assets, startup equity and employee upside can be pressure-tested against explicit assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-cgt-founder-claim", "budget-2026-cgt-founder-claim")
+    },
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 4,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-property-speculation-vs-productive-assets-split",
+        verbatim:
+          "working families building wealth on the stock market, startup equity, ESS and entrepreneurial risk are fundamentally different from passive property investment.",
+        paraphrased:
+          "The Budget's housing-side tax tightening is materially different in scope from its treatment of non-property assets like shares, ESS and startup equity.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.91,
+        reasoning:
+          "That core distinction is real in the policy design. The negative-gearing restriction is aimed at established residential property, while the CGT redesign itself is broader and still reaches non-property gains from 1 July 2027. So the post is right that the package is not simply a property-speculation reform and that productive-asset cases sit in a different policy lane.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "Housing-side tax changes and the broader CGT redesign are separate parts of the package, even if they are politically bundled together."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026–27 Tax Explainer: Negative Gearing and Capital Gains Tax Reform",
+            publisher: "Australian Government",
+            section: "Negative gearing reforms and CGT reforms",
+            page: 4,
+            url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf",
+            supports: "supports",
+            relevantPassage:
+              "Negative gearing changes are targeted at residential property, while the broader capital gains tax redesign applies from 1 July 2027 beyond housing alone."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          }
+        ]
+      },
+      {
+        id: "claim-ess-taxed-like-salary-then-cgt",
+        verbatim:
+          "if I receive $100 in ESS, it's taxed as if it were $100 of real salary income ... If those shares later grow to $1,000, I'm then taxed again on the capital gain.",
+        paraphrased:
+          "ESS can be taxed as employment income on acquisition and then later taxed again under CGT if the shares rise in value.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.84,
+        reasoning:
+          "This is broadly possible, but too sweeping as stated. Under some taxed-upfront ESS arrangements, the discount is included in assessable income and later gains are taxed under the CGT rules. But ESS treatment varies materially across taxed-upfront, tax-deferred and start-up-concession schemes, and the later CGT calculation uses a reset cost base after the ESS taxing point. So the post is pointing at a real design issue, but not every ESS grant follows the same path or creates the same effective asymmetry.",
+        assumptionsRequired: [
+          "Assumes the ESS interest is in a taxed-upfront scheme rather than a tax-deferred or start-up-concession arrangement.",
+          "Assumes the employee is actually taxed near the top marginal rate on the ESS discount.",
+          "Assumes the later gain is still realised under the post-2027 CGT regime and is not neutralised by a concession or loss."
+        ],
+        alternativeFramings: [
+          "Some ESS arrangements tax the discount as employment income first, then tax later price appreciation under the CGT rules.",
+          "The severity of the ESS asymmetry depends on the scheme type and the taxing point, not just on the headline issue price."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "ATO: Employees – employee share schemes",
+            publisher: "Australian Taxation Office",
+            section: "Shares at a discounted price",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/corporate-tax-measures-and-assurance/employee-share-schemes/employees",
+            supports: "partially_supports",
+            relevantPassage:
+              "The discount on ESS interests can form part of assessable income, but the ATO also notes that tax treatment depends on the type of scheme and when the interests were acquired."
+          },
+          {
+            title: "ATO: ESS and capital gains tax",
+            publisher: "Australian Taxation Office",
+            section: "CGT treatment after the taxing point",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/corporate-tax-measures-and-assurance/employee-share-schemes/employees/ess-and-your-tax/ess-and-capital-gains-tax",
+            supports: "partially_supports",
+            relevantPassage:
+              "In most cases, ESS interests are exempt from CGT implications until the discount has been taxed, and later gains or losses are then worked out under CGT with the cost base reset at the taxing point."
+          },
+          {
+            title: "ATO: Calculating the discount",
+            publisher: "Australian Taxation Office",
+            section: "Start-up concession and tax-deferred schemes",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/corporate-tax-measures-and-assurance/employee-share-schemes/employers/calculating-the-discount",
+            supports: "contradicts",
+            relevantPassage:
+              "The ATO sets out start-up concession and tax-deferred ESS pathways, showing that not all ESS interests are taxed upfront in the way the post implies."
+          }
+        ]
+      },
+      {
+        id: "claim-ess-downside-asymmetry",
+        verbatim:
+          "if the shares fall below the issued price, the asymmetry becomes obvious. My tax obligation can end up being greater than the value I ultimately receive.",
+        paraphrased:
+          "Some ESS structures can leave an employee with a tax outcome that feels asymmetrically harsh if the shares later fall in value.",
+        claimType: "logical",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.8,
+        reasoning:
+          "This concern is directionally plausible in some taxed-upfront ESS cases where the discount is taxed before later value declines. But whether the employee's net tax burden actually exceeds ultimate realised value depends on the exact ESS structure, timing, disposal outcome, cost base at the taxing point, and whether capital losses are available later. The post is highlighting a real perceived asymmetry, but the strongest version of the claim still depends on scenario detail.",
+        assumptionsRequired: [
+          "Assumes the ESS discount is taxed before the later share-price decline is known.",
+          "Assumes the employee cannot fully offset the later loss in a way that makes the after-tax outcome less harsh.",
+          "Assumes the relevant comparison is between tax paid and eventual sale value rather than total remuneration package value."
+        ],
+        alternativeFramings: [
+          "Taxed-upfront ESS arrangements can create a harsh-feeling downside if later share performance disappoints.",
+          "The asymmetry concern is real as a design critique, but the exact after-tax outcome depends on the ESS pathway and later loss treatment."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "ATO: ESS and capital gains tax",
+            publisher: "Australian Taxation Office",
+            section: "CGT treatment after the taxing point",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/corporate-tax-measures-and-assurance/employee-share-schemes/employees/ess-and-your-tax/ess-and-capital-gains-tax",
+            supports: "partially_supports",
+            relevantPassage:
+              "Later ESS gains and losses are handled under CGT after the taxing point, which is why upside and downside can be separated across different tax rules."
+          },
+          {
+            title: "ATO: Does capital gains tax apply to you?",
+            publisher: "Australian Taxation Office",
+            section: "Capital losses",
+            page: 1,
+            url: "https://www.ato.gov.au/forms-and-instructions/capital-gains-tax-guide-2022/part-a-about-capital-gains-tax/does-capital-gains-tax-apply-to-you",
+            supports: "contradicts",
+            relevantPassage:
+              "Capital losses can only be used against capital gains, which explains part of the asymmetry concern but also means the post's harshest outcome is still scenario-dependent."
+          }
+        ]
+      },
+      {
+        id: "claim-workers-will-prefer-salary-over-equity",
+        verbatim:
+          "it becomes far less risky to simply take the $100 as salary instead of equity. But if employees stop seeing ESS as attractive, Australia loses something important",
+        paraphrased:
+          "The tax treatment will make ordinary workers less willing to take ESS and more likely to prefer salary over equity.",
+        claimType: "predictive",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.78,
+        reasoning:
+          "This is a plausible behavioural response, but it is still a forecast rather than a settled fact. Whether employees prefer salary over equity depends on risk appetite, liquidity needs, employer quality, vesting restrictions, ESS design, and whether the scheme uses concessional or deferred treatment. The post identifies a real incentive concern, but the size of the response is not established by the primary-source set alone.",
+        assumptionsRequired: [
+          "Assumes enough employees understand and respond to the tax asymmetry when making compensation choices.",
+          "Assumes employers cannot redesign ESS terms to preserve attractiveness.",
+          "Assumes salary and ESS are realistic substitutes for the same worker cohort."
+        ],
+        alternativeFramings: [
+          "Harsher-feeling ESS treatment may make equity less attractive for some employees at the margin.",
+          "Whether workers actually switch from equity to salary depends on scheme design and labour-market context."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "ATO: Types of ESS",
+            publisher: "Australian Taxation Office",
+            section: "Different scheme types",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/corporate-tax-measures-and-assurance/employee-share-schemes/employees/types-of-ess",
+            supports: "partially_supports",
+            relevantPassage:
+              "The ATO distinguishes between different ESS types and concessional treatments, showing that employee incentives can vary materially by scheme design."
+          }
+        ]
+      },
+      {
+        id: "claim-founders-build-elsewhere-more-competitive",
+        verbatim:
+          "Australian founders and high-growth companies will increasingly choose to build elsewhere where the tax treatment is more competitive",
+        paraphrased:
+          "The CGT redesign will increasingly push founders and high-growth companies to build offshore in more competitive tax jurisdictions.",
+        claimType: "predictive",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.8,
+        reasoning:
+          "This is directionally plausible but still forecast-heavy. The reform can make some founder and employee-equity outcomes less attractive, and overseas regimes do offer different founder and ESS treatment in some cases. But whether that translates into a meaningful increase in offshore company formation depends on mobility, market access, migration frictions, venture conditions, and whether Australian policy later adds carve-outs or relief.",
+        assumptionsRequired: [
+          "Assumes tax treatment is a major driver of where high-growth companies choose to incorporate and scale.",
+          "Assumes foreign comparison jurisdictions are meaningfully more attractive on a like-for-like founder or ESS basis.",
+          "Assumes the Budget's venture-capital and startup-support measures do not offset enough of the drag."
+        ],
+        alternativeFramings: [
+          "The redesign may weaken Australia's competitiveness for some founder and employee-equity cases, but the size of any offshoring response remains uncertain.",
+          "Cross-border startup location choices depend on more than tax alone."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Australian reform clearly changes founder- and investor-side after-tax outcomes, which is why competitiveness concerns arise."
+          },
+          {
+            title: "Budget 2026-27 Productivity page",
+            publisher: "Australian Government",
+            section: "Incentivising investment and innovation",
+            page: 1,
+            url: "https://budget.gov.au/content/03-productivity.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Budget also presents itself as strengthening startup and venture-capital support, so the net location effect is not resolved by the CGT change alone."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "budget-2026-head-read-capital-formation-claim",
+    title: "Post calling the Budget destructive to capital formation, ambition, and aspiration",
+    submittedAt: "2026-05-15T02:45:00Z",
+    posterLabel: "Public text submission",
+    posterNamedPublicly: false,
+    rawText:
+      "The Government needs to have its head read! This was recorded well before the 2026 Budget which will destroy efficient capital formation in Australia. It's destroying ambition and aspiration for all Australians particularly the young!",
+    summary:
+      "This submission is mostly political and evaluative, but it does contain one broader economic-effects claim. The statement that the Budget will destroy efficient capital formation in Australia is a strong forecast about how investors and builders will respond to the new tax settings, not a fact established directly by the primary-source set. The further lines about destroying ambition and aspiration, especially for the young, are even broader rhetorical judgements rather than cleanly testable propositions on the present record.",
+    calculatorLink: {
+      label: "Model a non-property investor case",
+      description:
+        "Prefills a post-2027 non-housing scenario so the capital-formation concern can be pressure-tested against explicit tax assumptions rather than headline rhetoric.",
+      href: buildScenarioCalculatorHref("budget-2026-cgt-founder-claim", "budget-2026-cgt-founder-claim")
+    },
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 2
+    },
+    claims: [
+      {
+        id: "claim-budget-destroys-efficient-capital-formation",
+        verbatim:
+          "the 2026 Budget ... will destroy efficient capital formation in Australia.",
+        paraphrased:
+          "Budget 2026 will materially damage efficient capital formation in Australia.",
+        claimType: "causal",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.79,
+        reasoning:
+          "This is a strong macroeconomic forecast rather than a source-text fact. The Budget clearly changes the taxation of post-2027 gains and therefore the after-tax attractiveness of some founder, share, and business outcomes. But whether that rises to 'destroying efficient capital formation' depends on behavioural responses, substitution into other assets, the role of small-business concessions, and whether offsetting venture-capital and startup-support measures preserve some of the investment case.",
+        assumptionsRequired: [
+          "Assumes the CGT redesign is a major determinant of capital allocation decisions in the affected sectors.",
+          "Assumes investors and founders do not substantially offset the change through concessions, structures, or other asset choices.",
+          "Assumes the Budget's startup and venture-capital support measures do not materially cushion capital formation."
+        ],
+        alternativeFramings: [
+          "The redesign may weaken some forms of productive capital formation, but the size of the effect is still uncertain.",
+          "The policy changes after-tax incentives; whether that meaningfully impairs capital formation is a broader empirical question."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          },
+          {
+            title: "Budget 2026-27 Productivity page",
+            publisher: "Australian Government",
+            section: "Incentivising investment and innovation",
+            page: 1,
+            url: "https://budget.gov.au/content/03-productivity.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Budget also presents itself as supporting innovation and investment through venture-capital and startup measures, which is why the net capital-formation effect is not mechanically settled by the tax change alone."
+          }
+        ]
+      },
+      {
+        id: "claim-budget-destroys-ambition-and-aspiration",
+        verbatim:
+          "It's destroying ambition and aspiration for all Australians",
+        paraphrased:
+          "Budget 2026 destroys ambition and aspiration for Australians.",
+        claimType: "interpretive",
+        subjectDomain: "taxation",
+        verdict: "rhetorical",
+        confidence: 0.93,
+        reasoning:
+          "This is a broad moral and political judgement about what the package signals to society, not a discrete factual proposition that can be verified or falsified from the policy texts alone.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The author believes the package sends a deeply anti-aspiration signal."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Overall tax reform package",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government frames the package as fairness- and productivity-enhancing, which shows the author's 'destroying ambition' language is a competing political judgement rather than a settled fact."
+          }
+        ]
+      },
+      {
+        id: "claim-budget-destroys-aspiration-for-young",
+        verbatim:
+          "particularly the young!",
+        paraphrased:
+          "The Budget especially destroys ambition and aspiration for younger Australians.",
+        claimType: "interpretive",
+        subjectDomain: "taxation",
+        verdict: "rhetorical",
+        confidence: 0.9,
+        reasoning:
+          "This is an age-targeted extension of the same evaluative argument. The site already tracks several cleaner young-Australian and first-home-saver claims separately, but this phrasing itself is still political rhetoric rather than a testable factual proposition.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The post argues that younger Australians bear a disproportionate motivational and wealth-building hit from the package."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Tax reform and home ownership framing",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The package is partly framed as helping home ownership and intergenerational fairness, which is exactly the framing this younger-Australians critique rejects."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "budget-2026-charlie-gearside-housing-vs-productive-assets-claim",
+    title: "Charlie Gearside post arguing housing reform is welcome but the wider CGT package still shifts the equation against productive risk-taking",
+    submittedAt: "2026-05-15T02:11:00Z",
+    posterLabel: "Charlie Gearside on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "this budget should be applauded for its bold changes to shake us out of housing complacency ... but without tweaks, it risks undermining the very foundations of the australian spirit ... it's kids saving for a home, putting their time and money into productive assets — shares, ETFs and employee share ownership plans — to grow the pie for all of us ... these changes don't affect me. they do shift the equation for the next decade of australians who try",
+    summary:
+      "This post is strongest when it distinguishes between the housing-side tax reform and the broader non-housing CGT redesign. The Budget does plainly tighten residential-property tax concessions while still applying the CGT change to shares, business assets, and employee equity. But the bigger claims that the package undermines the foundations of the Australian spirit, or shifts the next decade decisively against people who try, are evaluative and causal arguments rather than clean facts established by the source set alone.",
+    calculatorLink: {
+      label: "Model a non-property investor case",
+      description:
+        "Prefills a post-2027 non-housing scenario so the claim about productive assets like shares and business equity can be checked against explicit assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-cgt-founder-claim", "budget-2026-cgt-founder-claim")
+    },
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-gearside-housing-reform-plus-productive-assets-split",
+        verbatim:
+          "this budget should be applauded for its bold changes to shake us out of housing complacency ... it's kids saving for a home, putting their time and money into productive assets — shares, ETFs and employee share ownership plans",
+        paraphrased:
+          "The Budget simultaneously targets housing-tax settings while leaving broader CGT consequences for productive assets like shares and employee equity in place.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.9,
+        reasoning:
+          "That core split is real. The housing-side package restricts negative gearing on established residential property and is framed as tackling housing distortions, while the CGT redesign itself still applies more broadly from 1 July 2027 to gains beyond housing. So the post is on solid ground when it says the reform is not just about property.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The package tightens housing-side concessions while also changing tax treatment for non-property gains such as shares and founder equity."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026–27 Tax Explainer: Negative Gearing and Capital Gains Tax Reform",
+            publisher: "Australian Government",
+            section: "Negative gearing reforms and CGT reforms",
+            page: 4,
+            url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf",
+            supports: "supports",
+            relevantPassage:
+              "Negative gearing changes are targeted at residential property, while the broader capital gains tax redesign applies from 1 July 2027 beyond housing alone."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          }
+        ]
+      },
+      {
+        id: "claim-gearside-next-decade-equation-shifts",
+        verbatim:
+          "these changes ... do shift the equation for the next decade of australians who try",
+        paraphrased:
+          "The Budget 2026 tax package materially shifts the next decade against Australians trying to build through productive risk-taking.",
+        claimType: "causal",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.81,
+        reasoning:
+          "That is a plausible strategic concern, but it is still an effects claim rather than a directly established fact. The source set shows a real change in after-tax outcomes for some non-housing gains, yet whether that materially changes the life chances or behaviour of the next decade of strivers depends on tax rate, asset type, concession access, housing conditions, labour-market conditions, and whether other Budget startup-support measures offset some of the drag.",
+        assumptionsRequired: [
+          "Assumes the CGT redesign materially changes saving, risk-taking, or business-building behaviour at the margin.",
+          "Assumes the people most exposed are not mostly buffered by concessional structures, super, or small-business CGT relief.",
+          "Assumes offsetting startup and venture-capital support measures do not neutralise much of the effect."
+        ],
+        alternativeFramings: [
+          "The package may shift incentives against some forms of non-housing risk-taking, but the size of that effect is still uncertain.",
+          "The policy clearly changes tax treatment; whether it changes the next decade's behaviour is a broader causal question."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The CGT reform changes post-1 July 2027 after-tax outcomes for eligible gains, which is the basis for the incentive concern raised in the post."
+          },
+          {
+            title: "Budget 2026-27 Productivity page",
+            publisher: "Australian Government",
+            section: "Incentivising investment and innovation",
+            page: 1,
+            url: "https://budget.gov.au/content/03-productivity.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Budget also presents itself as supporting innovation and investment through venture-capital and startup measures, which is why the net effect remains contestable."
+          }
+        ]
+      },
+      {
+        id: "claim-gearside-undermines-australian-spirit",
+        verbatim:
+          "without tweaks, it risks undermining the very foundations of the australian spirit.",
+        paraphrased:
+          "Without changes, the Budget undermines the foundations of the Australian spirit.",
+        claimType: "interpretive",
+        subjectDomain: "taxation",
+        verdict: "rhetorical",
+        confidence: 0.93,
+        reasoning:
+          "This is a high-level moral and national-character judgement, not a discrete factual proposition the source base can verify. It expresses the author's view that the tax package sends the wrong signal about ambition, risk, and nation-building.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The post argues that the package sends an anti-aspiration cultural signal even if its housing-side goals are accepted."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Overall tax reform package",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government frames the package as fairness- and productivity-enhancing, which shows the post's 'Australian spirit' line is an opposing political and cultural judgement rather than a settled fact."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "budget-2026-profit-indexation-founder-proposal",
+    title: "Post proposing gain-side indexation instead of cost-base indexation for founder exits",
+    submittedAt: "2026-05-15T00:12:00Z",
+    posterLabel: "Public text submission",
+    posterNamedPublicly: false,
+    rawText:
+      "There is such an easy solution to Labor's CGT problem that now overtaxes founders and small business owners relative to investors. Switch indexing to the profit rather than the cost. If a founder launches a company and sells 10 years later for $1m, their cost base for those shares is probably zero. Indexing means multiplying the price they paid by inflation to make it higher. That works for investors, but it still leaves the cost base at zero for founders because $0 x anything is still zero. However, if the $1m exit was reduced by an inflation indexing factor, that would result in a lower gain. Imagine the inflation was 25% over that period. Instead of the cost base rising by 25%, the gain goes down by 25%, to $750k. That's 25% less tax for the founder. Tax on $750k of gain instead of $1m. There are a few issues, mostly that it will collect less tax ... Overall, it's a clean mathematical solution that could be applied universally to all cost bases so no carve out is required. Startup founders might not go overseas, and cafe and retail founders might still take the risk ... it doesn't change the fact that this CGT change is unfair and punitive, and will slow the deployment of capital to productive enterprise.",
+    summary:
+      "This submission is strongest on one narrow arithmetic criticism of the Budget's CGT redesign: if a founder really has a zero cost base, cost-base indexation does not create any uplift. The worked hypothetical that a $1 million gain reduced by a 25 per cent inflation factor becomes $750,000 is also mathematically correct as an alternative design example. But the stronger claims that founders and small business owners are now categorically overtaxed relative to investors, that gain-side indexation is a clean universal fix needing no carve-out, or that the reform will slow productive capital deployment all require additional policy assumptions that the post does not resolve.",
+    calculatorLink: {
+      label: "Model the zero-cost-base founder case",
+      description:
+        "Prefills a post-2027 founder-style exit with little or no cost base so the submission's asymmetry critique can be checked against explicit concession and rate assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-zero-cost-base-business-claim", "budget-2026-zero-cost-base-business-claim")
+    },
+    overallVerdictMix: {
+      supported: 2,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 3,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-profit-indexation-founders-overtaxed-relative-to-investors",
+        verbatim:
+          "Labor's CGT problem now overtaxes founders and small business owners relative to investors.",
+        paraphrased:
+          "The Budget 2026 CGT redesign now overtaxes founders and small business owners relative to investors as a class.",
+        claimType: "comparative",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.83,
+        reasoning:
+          "The post identifies a real asymmetry for some low-cost-base founder cases, especially when compared with investors whose cost base can be meaningfully indexed. But the broader relative-tax claim is still too categorical as stated. It depends on what kind of investor is being used as the comparator, whether the investor is in a new build that keeps a special CGT choice, whether the founder or small business owner can use Subdivision 152 concessions, and what marginal tax rate and holding pattern are assumed.",
+        assumptionsRequired: [
+          "Assumes the founder or owner does not materially benefit from the small business CGT concessions.",
+          "Assumes the comparator investor has a cost base and holding pattern that produces a materially better outcome under indexation.",
+          "Assumes a like-for-like comparison across taxpayer type, marginal rate, and asset structure."
+        ],
+        alternativeFramings: [
+          "Some zero-cost-base founder cases look harsher under cost-base indexation than investor cases with a meaningful indexed cost base.",
+          "Whether founders are categorically overtaxed relative to investors depends on concessions, asset mix, and the comparator chosen."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          },
+          {
+            title: "ATO: Small business CGT concessions eligibility overview",
+            publisher: "Australian Taxation Office",
+            section: "How the concessions work",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/incentives-and-concessions/small-business-cgt-concessions/small-business-cgt-concessions-eligibility-conditions/cgt-concessions-eligibility-overview",
+            supports: "contradicts",
+            relevantPassage:
+              "The small business CGT concessions allow you to reduce, disregard or defer some or all of a capital gain from an active asset used in a small business."
+          }
+        ]
+      },
+      {
+        id: "claim-profit-indexation-zero-cost-base-stays-zero",
+        verbatim:
+          "$0 x anything is still zero.",
+        paraphrased:
+          "If the relevant founder share cost base is zero, cost-base indexation still leaves the indexed cost base at zero.",
+        claimType: "calculation",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.97,
+        reasoning:
+          "That arithmetic point is correct. If the starting cost base is genuinely zero, multiplying it by an inflation factor does not create a positive indexed cost base. That is the narrow mathematical weakness the post is highlighting in a founder case with little or no acquisition cost.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The zero-cost-base problem is really a problem for founder cases where the first-element cost base is nil or very low."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "ATO: Cost base of assets",
+            publisher: "Australian Taxation Office",
+            section: "Work out the cost base for a capital gain",
+            page: 1,
+            url: "https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/calculating-your-cgt/cost-base-of-asset",
+            supports: "supports",
+            relevantPassage:
+              "The cost base of a capital gains tax asset is generally what it cost you to buy it, plus other costs you incur to hold and dispose of it."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation."
+          }
+        ]
+      },
+      {
+        id: "claim-profit-indexation-25pc-example",
+        verbatim:
+          "Imagine the inflation was 25% over that period. Instead of the cost base rising by 25%, the gain goes down by 25%, to $750k.",
+        paraphrased:
+          "Under the post's proposed alternative design, a $1 million gain reduced by a 25 per cent inflation factor would become a $750,000 taxable gain.",
+        claimType: "calculation",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.98,
+        reasoning:
+          "As a worked arithmetic example of the author's proposed alternative design, this is correct: reducing a $1 million nominal gain by 25 per cent produces a $750,000 gain. That also means the tax base in the example falls by 25 per cent relative to a $1 million taxable gain. The check here is only the arithmetic of the hypothetical, not whether the law uses that design.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The worked example is mathematically sound as an illustration of a gain-side indexation design."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Budget chooses cost-base indexation and a minimum 30 per cent tax on gains, which is why the post is offering a different mathematical design."
+          }
+        ]
+      },
+      {
+        id: "claim-profit-indexation-universal-clean-fix",
+        verbatim:
+          "It's a clean mathematical solution that could be applied universally to all cost bases so no carve out is required.",
+        paraphrased:
+          "Gain-side indexation is a clean universal CGT fix that could replace founder carve-outs.",
+        claimType: "policy_design",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.85,
+        reasoning:
+          "This is a design judgement, not a settled fact. The proposal would address one narrow asymmetry in zero-cost-base founder cases, but it does not by itself resolve the rest of the policy architecture. Lawmakers would still need to decide how the 30 per cent minimum tax interacts with the proposal, how to treat losses and apportionment, how existing small business concessions should interact with it, and whether broad investor distributional goals are still being met. Calling it a universal no-carve-out solution therefore overstates how much work the arithmetic alone does.",
+        assumptionsRequired: [
+          "Assumes lawmakers would want to replace cost-base indexation with gain-side indexation across all asset classes.",
+          "Assumes the proposal integrates cleanly with the 30 per cent minimum tax and other CGT concessions.",
+          "Assumes solving the zero-cost-base founder asymmetry is the main policy problem that needs fixing."
+        ],
+        alternativeFramings: [
+          "Gain-side indexation is one plausible way to reduce the zero-cost-base founder asymmetry without drafting a founder-only concession.",
+          "Whether it is the cleanest universal solution is a policy-design question, not a mathematical certainty."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The reform combines inflation indexation with a minimum 30 per cent tax on gains from 1 July 2027."
+          },
+          {
+            title: "ATO: Small business CGT concessions eligibility overview",
+            publisher: "Australian Taxation Office",
+            section: "How the concessions work",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/incentives-and-concessions/small-business-cgt-concessions/small-business-cgt-concessions-eligibility-conditions/cgt-concessions-eligibility-overview",
+            supports: "contradicts",
+            relevantPassage:
+              "The small business CGT concessions already reduce, disregard or defer some gains, which shows the existing design still contains carve-out-style relief choices."
+          }
+        ]
+      },
+      {
+        id: "claim-profit-indexation-slows-productive-capital",
+        verbatim:
+          "This CGT change is unfair and punitive, and will slow the deployment of capital to productive enterprise.",
+        paraphrased:
+          "The Budget 2026 CGT redesign will slow the deployment of capital to productive businesses.",
+        claimType: "predictive",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.77,
+        reasoning:
+          "This is a plausible concern, but it remains a forward-looking behavioural claim rather than something established by the current primary-source set. The Budget clearly changes after-tax founder and investor incentives, yet the same package also claims to support innovation through venture-capital and startup measures. Whether productive capital deployment slows on net depends on behavioural responses, concession use, and how investors trade off the tax increase against those offsets.",
+        assumptionsRequired: [
+          "Assumes the CGT redesign outweighs the Budget's other startup and venture-capital support measures.",
+          "Assumes capital allocators are materially sensitive to this specific after-tax change at the margin.",
+          "Assumes founder and investor behaviour does not adjust through other structures or concessions."
+        ],
+        alternativeFramings: [
+          "The redesign may weaken some founder and productive-capital incentives, but the net investment effect is still contested.",
+          "The source base establishes a tax change, not a mechanically proven collapse in productive capital deployment."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The reform changes how post-1 July 2027 gains are taxed, which is why concerns about capital allocation arise in the first place."
+          },
+          {
+            title: "Budget 2026-27 Productivity page",
+            publisher: "Australian Government",
+            section: "Startup and venture measures",
+            page: 1,
+            url: "https://budget.gov.au/content/03-productivity.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Budget also presents itself as supporting innovation and investment through venture-capital and productivity measures."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "budget-2026-wyatt-roy-startup-cgt-claim",
+    title: "Wyatt Roy post arguing the Budget would cut Australia's innovation economy off at the knees",
+    submittedAt: "2026-05-14T12:37:00Z",
+    posterLabel: "Wyatt Roy on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "I have tried very hard not to engage in public political debate since leaving politics. Labor's Budget made that untenable. If unchanged, it proposes to cut the Australian innovation economy off at the knees ... Labor's changes, ruled out before the election, would roughly double the effective tax on a capital gain to between 33 and 47 per cent. That would make Australia the worst place in the developed world to realise a capital gain. Higher than every G7 economy ... no one has explained how a sledgehammer on Australian entrepreneurs, investors and the thousands they employ helps a young Australian buy a home ... Capital and talent are more mobile today than a decade ago. Doubling the tax on the upside of a decade of risk does not keep founders, engineers and investors at home. It books their flights.",
+    summary:
+      "This post mixes one real policy-mechanics point with several much broader ranking and economic-effect claims. It is correct that Budget 2026 replaces the 50 per cent CGT discount with inflation indexation plus a minimum 30 per cent tax on gains from 1 July 2027, and that in some no-relief founder scenarios the effective tax burden can rise sharply relative to the old discounted-gain regime. But the stronger framing that the Budget would roughly double the effective tax to 33 to 47 per cent as a general proposition, make Australia the worst place in the developed world to realise a capital gain, or send founders and investors offshore still depends on narrow assumptions or evidence not supplied in the post. The claim that this therefore does not help home ownership is also a broader causal and policy-judgement argument rather than a settled fact.",
+    calculatorLink: {
+      label: "Model the no-relief founder exit",
+      description:
+        "Prefills a fully post-2027 founder exit at the top marginal rate so the post's 'doubling' and founder-flight claims can be pressure-tested against explicit concession assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-zero-cost-base-business-claim", "budget-2026-zero-cost-base-business-claim")
+    },
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 1,
+      unverifiable: 0,
+      requires_assumptions: 3,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-wyatt-roy-budget-roughly-doubles-effective-tax",
+        verbatim:
+          "Labor's changes ... would roughly double the effective tax on a capital gain to between 33 and 47 per cent.",
+        paraphrased:
+          "The Budget can roughly double the effective tax burden on some capital gains, taking it into a 33 to 47 per cent range.",
+        claimType: "comparative",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.87,
+        reasoning:
+          "This is directionally plausible only in a narrower subset of cases than the post implies. The Budget does replace the 50 per cent CGT discount with inflation indexation plus a minimum 30 per cent tax on gains from 1 July 2027, which can push a no-relief top-rate founder case from something like the old discounted-gain benchmark toward much higher effective rates. But 'roughly double' and the 33 to 47 per cent band are not universal capital-gain outcomes: they depend on the owner's marginal rate, inflation path, cost base, when gains accrue, and whether small business CGT concessions or other relief apply.",
+        assumptionsRequired: [
+          "Assumes the taxpayer is an individual taxed at or near the top marginal rate.",
+          "Assumes little shelter from cost-base uplift relative to the real gain.",
+          "Assumes concession relief does not materially reduce, defer, or disregard the gain."
+        ],
+        alternativeFramings: [
+          "In some no-relief founder or high-real-gain cases, the post-2027 regime can produce a much higher effective tax burden than the old 50 per cent discount system.",
+          "Whether the burden 'roughly doubles' depends on explicit assumptions and is not a universal capital-gains result."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          },
+          {
+            title: "ATO: Tax rates – Australian resident",
+            publisher: "Australian Taxation Office",
+            section: "Resident tax rates 2025–26",
+            page: 1,
+            url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents?lang=en&pubdate=636168759750000000",
+            supports: "partially_supports",
+            relevantPassage:
+              "Top resident marginal tax settings determine the upper-bound personal-rate benchmark that some founder or investor exit calculations can approach once the 50 per cent discount is removed."
+          },
+          {
+            title: "ATO: Small business CGT concessions eligibility overview",
+            publisher: "Australian Taxation Office",
+            section: "How the concessions work",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/incentives-and-concessions/small-business-cgt-concessions/small-business-cgt-concessions-eligibility-conditions/cgt-concessions-eligibility-overview",
+            supports: "contradicts",
+            relevantPassage:
+              "The small business CGT concessions allow you to reduce, disregard or defer some or all of a capital gain from an active asset used in a small business."
+          }
+        ]
+      },
+      {
+        id: "claim-wyatt-roy-australia-worst-developed-world-capital-gain",
+        verbatim:
+          "That would make Australia the worst place in the developed world to realise a capital gain. Higher than every G7 economy.",
+        paraphrased:
+          "The Budget would leave Australia with the highest capital-gains tax burden in the developed world, above every G7 economy.",
+        claimType: "comparative",
+        subjectDomain: "taxation",
+        verdict: "unsupported",
+        confidence: 0.86,
+        reasoning:
+          "This is a sweeping cross-country ranking claim that the post does not substantiate. To establish it, the comparison would need a fixed country basket, a like-for-like taxpayer profile, consistent treatment of founder relief and exemptions, and a clearly specified gain scenario. The Budget materials only establish the Australian side of the equation. They do not prove that Australia is categorically the worst developed-country jurisdiction or above every G7 economy across comparable cases.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "Some no-relief Australian founder-exit scenarios may compare badly with founder-relief regimes overseas, but a blanket 'worst in the developed world' claim is not established here.",
+          "Cross-country CGT comparisons depend heavily on taxpayer profile, relief eligibility, holding period, and what counts as a comparable case."
+        ],
+        verificationMethod: "empirical_comparison",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Australian reform sets the local tax-treatment change, but it does not establish a universal developed-world ranking."
+          },
+          {
+            title: "IRS Publication 550",
+            publisher: "Internal Revenue Service",
+            section: "Qualified Small Business Stock and capital gains treatment",
+            page: 1,
+            url: "https://www.irs.gov/publications/p550",
+            supports: "partially_supports",
+            relevantPassage:
+              "US founder-relief treatment exists in some cases, showing why jurisdictional comparisons can differ substantially by scenario rather than collapsing into one simple ranking."
+          },
+          {
+            title: "GOV.UK: Business Asset Disposal Relief",
+            publisher: "GOV.UK",
+            section: "Rates and qualifying conditions",
+            page: 1,
+            url: "https://www.gov.uk/business-asset-disposal-relief",
+            supports: "partially_supports",
+            relevantPassage:
+              "UK founder-style relief exists with conditions and caps, again showing that like-for-like cross-country ranking requires more than a single headline rate comparison."
+          }
+        ]
+      },
+      {
+        id: "claim-wyatt-roy-home-ownership-sledgehammer",
+        verbatim:
+          "no one has explained how a sledgehammer on Australian entrepreneurs, investors and the thousands they employ helps a young Australian buy a home.",
+        paraphrased:
+          "Harsher tax treatment of founders and investors does not clearly help young Australians buy homes.",
+        claimType: "causal",
+        subjectDomain: "housing",
+        verdict: "requires_assumptions",
+        confidence: 0.78,
+        reasoning:
+          "This is a broader causal and policy-judgement argument rather than a cleanly settled factual point. The Budget does frame the negative-gearing reform as a home-ownership measure, but the post asks whether wider non-property CGT tightening undermines that goal. That depends on broader assumptions about housing demand, investment substitution, capital allocation, entrepreneurship, and whether any housing-access gains outweigh the claimed non-property costs.",
+        assumptionsRequired: [
+          "Assumes the broader CGT redesign materially harms entrepreneurship and investment activity relevant to younger households.",
+          "Assumes any home-ownership gains from the housing-side reform do not outweigh those broader costs."
+        ],
+        alternativeFramings: [
+          "The package combines a home-ownership rationale with broader non-property CGT tightening, so whether it helps younger Australians overall is still contestable.",
+          "Housing-market gains and entrepreneurship costs sit on different margins, which is why the net effect cannot be read straight off the policy text."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget Paper 2 2026-27",
+            publisher: "Australian Government",
+            section: "Tax Reform – Boosting Home Ownership",
+            page: 22,
+            url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The measure is framed as focusing tax support on new supply and improving home ownership, but the policy text alone does not resolve the post's wider founder-and-investor counterargument."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax and negative gearing",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The package combines home-ownership reforms with broader CGT redesign, which is exactly why the net effect across housing and entrepreneurship remains assumption-sensitive."
+          }
+        ]
+      },
+      {
+        id: "claim-wyatt-roy-capital-and-talent-offshore",
+        verbatim:
+          "Capital and talent are more mobile today than a decade ago. Doubling the tax on the upside of a decade of risk does not keep founders, engineers and investors at home. It books their flights.",
+        paraphrased:
+          "The CGT redesign will push founders, engineers, investors, capital and talent offshore.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.82,
+        reasoning:
+          "This is a strong behavioural forecast rather than a fact established by the primary-source set. The intuition is plausible: if after-tax founder and investor outcomes worsen, mobility may matter more. But whether that actually leads to material relocation, lower investment, or founder flight depends on many additional variables, including company-stage realities, domestic market opportunities, policy offsets, global conditions, and how often concession relief changes the real outcome.",
+        assumptionsRequired: [
+          "Assumes founders, engineers and investors are highly responsive to this specific tax change at the margin.",
+          "Assumes offsetting domestic advantages or startup-support measures are not enough to retain them."
+        ],
+        alternativeFramings: [
+          "The redesign may weaken Australia's competitiveness for some mobile founder and investor cases, but the size of any relocation effect is uncertain.",
+          "A stronger case would be that harsher exit taxation could add friction to an already mobile startup ecosystem, not that flight is automatic."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The reform clearly changes after-tax incentives, but the official materials do not themselves show that founders or investors will leave the country as a result."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Boosting resilience and dynamism",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Government simultaneously says it is supporting risk taking, resilience and start-ups through measures like loss carry back, loss refundability and stronger R&D support."
+          }
+        ]
+      },
+      {
+        id: "claim-wyatt-roy-cut-innovation-economy-off-at-the-knees",
+        verbatim:
+          "If unchanged, it proposes to cut the Australian innovation economy off at the knees.",
+        paraphrased:
+          "The Budget would cripple Australia's innovation economy.",
+        claimType: "interpretive",
+        subjectDomain: "startups",
+        verdict: "rhetorical",
+        confidence: 0.94,
+        reasoning:
+          "This is a high-intensity rhetorical summary of the post's broader argument, not a discrete factual claim that can be verified directly against the primary-source set.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The author believes the package would materially damage Australia's startup and innovation ecosystem."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Overall tax reform package",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government presents the package as encouraging productive investment and supporting businesses, which is the framing this post rejects in emphatic rhetorical terms."
+          }
+        ]
+      }
+    ]
+  },
   {
     id: "budget-2026-fairer-tax-without-penalising-aspiration-claim",
     title: "Founder-lawyer post arguing property tax concessions were too strong but startup CGT should still be treated differently",
@@ -4572,6 +5981,1022 @@ export const recentFactChecks: SubmissionResult[] = [
         ]
       }
     ]
+  },
+  {
+    id: "budget-2026-fintech-australia-uncertainty-claim",
+    title: "LinkedIn post arguing consultation uncertainty is already hurting startup hiring, capital and competitiveness",
+    submittedAt: "2026-05-14T03:07:00Z",
+    posterLabel: "Rehan Mark D'Almeida on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "Yes, the proposed CGT changes will go through consultation ... The real impact is on jobs, the broader economy, innovation, and Australia's ability to compete for capital and talent against more founder-friendly markets. ... investors are getting jittery ... capital pauses ... Founders' hiring plans get deferred ... Policy uncertainty always has a cost that is being paid by the very startups committed to this market.",
+    summary:
+      "This post is less about the arithmetic of founder exits and more about the cost of uncertainty. The official Budget materials still do not establish a specific startup-equity consultation commitment in the form described here. The broader claims about jittery investors, paused capital, deferred hiring and reduced national competitiveness may all be directionally plausible, but they rely on private market reactions and causal chains that are not resolved by the current primary-source set alone. What the source base does establish is the CGT redesign itself and the fact that it sits alongside other startup-support measures, which is why the aggregate jobs-and-innovation effect remains contested rather than mechanically proven.",
+    calculatorLink: {
+      label: "Model the no-relief founder exit",
+      description:
+        "Prefills a post-2027 founder-equity scenario so the broader competitiveness and startup-impact claims can be tested against explicit tax assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-zero-cost-base-business-claim", "budget-2026-zero-cost-base-business-claim")
+    },
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 1,
+      unverifiable: 0,
+      requires_assumptions: 3,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-cgt-changes-will-go-through-consultation",
+        verbatim:
+          "Yes, the proposed CGT changes will go through consultation",
+        paraphrased:
+          "The official Budget response includes a clear consultation commitment on the proposed CGT changes as they affect startups and founders.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "unsupported",
+        confidence: 0.86,
+        reasoning:
+          "As with several other founder-sector posts already on the site, the reviewed official Budget materials establish the CGT redesign and a broader startup-support package, but they do not themselves identify the specific consultation commitment described here. The statement may reflect media reporting or stakeholder conversations outside the Budget papers, but it is not established on the current primary-source basis used by the dashboard.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The reviewed Budget materials do not themselves surface a specific startup-equity consultation commitment."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Reviewed policy announcements",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The reviewed page sets out the CGT redesign and startup-support measures, but does not identify the quoted startup-equity consultation wording."
+          }
+        ]
+      },
+      {
+        id: "claim-real-impact-on-jobs-innovation-and-competitiveness",
+        verbatim:
+          "The real impact is on jobs, the broader economy, innovation, and Australia's ability to compete for capital and talent against more founder-friendly markets.",
+        paraphrased:
+          "The CGT redesign will materially harm jobs, innovation, the broader economy, and Australia's competitiveness for founder talent and capital.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.82,
+        reasoning:
+          "This is a multi-step macro claim. The source base clearly establishes the policy change itself, but not the size or direction of the downstream economy-wide effect. The same Budget package also contains venture capital and startup-support measures, which means the aggregate jobs-and-competitiveness outcome cannot be read straight off the CGT headline alone.",
+        assumptionsRequired: [
+          "Assumes founder-exit tax settings dominate over the package's offsetting startup and venture-capital supports.",
+          "Assumes startups and investors respond strongly enough for labour-market and innovation effects to show up materially at the economy-wide level."
+        ],
+        alternativeFramings: [
+          "The redesign may add friction for some founder and investor scenarios, but the broader jobs and competitiveness effect remains uncertain."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          },
+          {
+            title: "Budget 2026-27 Productivity page",
+            publisher: "Australian Government",
+            section: "Innovation and startup measures",
+            page: 1,
+            url: "https://budget.gov.au/content/03-productivity.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Budget also expands venture capital settings, improves the R&D tax incentive, and introduces additional startup-support measures, which is why the net competitiveness effect is contestable."
+          }
+        ]
+      },
+      {
+        id: "claim-investors-jittery-capital-pauses-hiring-deferred",
+        verbatim:
+          "I'm hearing it directly from members that investors are getting jittery. When the projected returns on Australian earlystage bets starts to wobble, capital pauses. Founders' hiring plans get deferred. New jobs that could've been unlocked are now on hold. Applicants and employees are also rethinking their career pathways.",
+        paraphrased:
+          "The reform debate is already making investors more cautious, pausing startup capital, and pushing founders and workers to defer hiring and career decisions.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.79,
+        reasoning:
+          "This is partly based on private member conversations and short-run market sentiment rather than on public primary-source evidence. The behaviour described may be real in some firms or networks, but the dashboard's source base cannot independently verify its scale or whether the observed hesitation is caused mainly by this policy rather than by wider funding-market conditions.",
+        assumptionsRequired: [
+          "Assumes the anecdotal investor and hiring reactions described are representative rather than isolated.",
+          "Assumes current funding-market hesitation is caused mainly by the Budget 2026 CGT debate rather than by broader startup-market conditions."
+        ],
+        alternativeFramings: [
+          "Policy uncertainty may be adding caution in some startup networks, but the scale and attribution are not independently established here."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The policy change creates the conditions for changed investor arithmetic, but the page does not establish the claimed real-time behavioural response."
+          }
+        ]
+      },
+      {
+        id: "claim-policy-uncertainty-has-a-cost-paid-by-startups",
+        verbatim:
+          "Policy uncertainty always has a cost that is being paid by the very startups committed to this market.",
+        paraphrased:
+          "The current uncertainty around the CGT redesign is already imposing real costs on startups that remain committed to Australia.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.8,
+        reasoning:
+          "At a high level, uncertainty can impose planning and financing costs. But the size, distribution and timing of those costs are not directly quantified or established by the current primary-source set. The claim is therefore directionally plausible but still assumption-sensitive.",
+        assumptionsRequired: [
+          "Assumes startups materially change hiring, fundraising, or incorporation decisions in response to the current policy uncertainty.",
+          "Assumes those uncertainty costs are not offset by other supports or by later policy clarification."
+        ],
+        alternativeFramings: [
+          "The uncertainty may already be imposing planning costs on some startups, but the magnitude is not independently established here."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The page confirms a significant post-2027 redesign, which is the policy uncertainty being discussed, but it does not quantify startup planning costs."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-conversation-tax-changes-coming-claim",
+    title: "The Conversation pre-budget piece saying CGT, negative gearing and trust changes were coming",
+    submittedAt: "2026-05-15T11:33:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://theconversation.com/in-this-years-budget-chalmers-has-to-keep-a-lid-on-spending-or-risk-stoking-inflation-281875",
+    rawText:
+      "Tax will be the centrepiece of the budget. The government has signalled it intends to reduce the capital gains tax discount, negative gearing and tax concessions for trusts.",
+    summary:
+      "This visible article card is mainly a pre-budget expectation piece. The claim it makes on-page is that the government had clearly signalled a package covering CGT, negative gearing and trusts, which is consistent with the published article text.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-conversation-tax-changes-coming-claim",
+        verbatim: "The government has signalled it intends to reduce the capital gains tax discount, negative gearing and tax concessions for trusts.",
+        paraphrased: "Before budget night, the government had publicly signalled a package spanning CGT, negative gearing and trust concessions.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.9,
+        reasoning:
+          "Within the source article itself, this is a straightforward description of what was being publicly flagged ahead of the budget. The card is not making a tricky quantitative claim here.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://theconversation.com/in-this-years-budget-chalmers-has-to-keep-a-lid-on-spending-or-risk-stoking-inflation-281875",
+            supports: "supports",
+            relevantPassage:
+              "The article says tax will be the budget centrepiece and that the government had signalled changes to the CGT discount, negative gearing and trust concessions."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-smartcompany-sme-concessions-claim",
+    title: "SmartCompany article arguing SME CGT concession thresholds were not indexed with the reform",
+    submittedAt: "2026-05-15T11:34:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.smartcompany.com.au/tax/hypocrisy-lift-sme-concessions-match-cgt-reform/",
+    rawText:
+      "Budget documents state four pre-existing concessions will continue unchanged through the transition, while the small business thresholds and the $500,000 retirement exemption have not been indexed for many years.",
+    summary:
+      "The visible article card is built around a concrete threshold-design claim. On the text available, the clean factual point is that the budget leaves the existing small-business CGT concession settings unchanged rather than indexing them alongside the broader CGT redesign.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-smartcompany-sme-concessions-claim",
+        verbatim: "Budget documents state four pre-existing concessions ... will continue unchanged through the transition.",
+        paraphrased: "The budget leaves the existing small-business CGT concession framework unchanged through the transition.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.92,
+        reasoning:
+          "The article text explicitly says the concessions continue unchanged, and that is the narrow factual point being checked here.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.smartcompany.com.au/tax/hypocrisy-lift-sme-concessions-match-cgt-reform/",
+            supports: "supports",
+            relevantPassage:
+              "The article says budget documents state four pre-existing concessions continue unchanged through the transition."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-startupdaily-coalition-repeal-claim",
+    title: "Startup Daily article saying the Coalition would repeal Labor’s CGT and negative gearing overhaul",
+    submittedAt: "2026-05-15T11:35:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.startupdaily.net/topic/politics-news-analysis/coalition-repeal-labor-cgt-negative-gearing-overhaul/",
+    rawText:
+      "The Coalition says it will repeal Labor’s proposed CGT reforms and negative gearing changes if elected.",
+    summary:
+      "This article card contains a simple political-position claim. The visible text says the Coalition publicly committed to oppose and repeal the reforms if it returned to government.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-startupdaily-coalition-repeal-claim",
+        verbatim: "We’re going to oppose them. We will repeal them.",
+        paraphrased: "The Coalition publicly said it would repeal the proposed CGT and negative gearing reforms.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.95,
+        reasoning:
+          "The article quotes an unambiguous public statement from the Shadow Treasurer.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.startupdaily.net/topic/politics-news-analysis/coalition-repeal-labor-cgt-negative-gearing-overhaul/",
+            supports: "supports",
+            relevantPassage:
+              "The article quotes Tim Wilson saying the Coalition will oppose the reforms and repeal them."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-conversation-housing-fairer-claim",
+    title: "The Conversation article saying existing negatively geared investments are fully grandfathered",
+    submittedAt: "2026-05-15T11:36:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://theconversation.com/will-this-budget-really-make-housing-fairer-for-more-australians-its-a-good-start-282367",
+    rawText:
+      "While existing negatively geared investments are fully grandfathered, the reforms to the capital gains discount are likely to reduce the incentive to hold onto these loss-making properties regardless.",
+    summary:
+      "The article’s clean mechanical point is about transition design. It says existing negatively geared investments are grandfathered even though the broader package changes future incentives.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-conversation-housing-fairer-claim",
+        verbatim: "While existing negatively geared investments are fully grandfathered ...",
+        paraphrased: "Existing negatively geared investments keep grandfathered treatment under the package.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.9,
+        reasoning:
+          "This is a direct transition-rule claim presented explicitly in the source text.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://theconversation.com/will-this-budget-really-make-housing-fairer-for-more-australians-its-a-good-start-282367",
+            supports: "supports",
+            relevantPassage:
+              "The article says existing negatively geared investments are fully grandfathered."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-conversation-extreme-uncertainty-claim",
+    title: "The Conversation roundup describing the budget as combining CGT and negative gearing reform with a delayed start",
+    submittedAt: "2026-05-15T11:37:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://theconversation.com/a-budget-with-a-bundle-of-reforms-in-a-time-of-extreme-uncertainty-282255",
+    rawText:
+      "The government will abolish the capital gains tax discount, replace it with an inflation adjustment and a 30% minimum tax, and limit negative gearing for residential property to new builds from July 1 2027.",
+    summary:
+      "This visible article card restates the headline architecture of the package. The page text clearly describes both the CGT redesign and the negative-gearing limit as delayed reforms beginning on 1 July 2027.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-conversation-extreme-uncertainty-claim",
+        verbatim: "The discount will be abolished, replaced by an inflation adjustment ... The government will also limit negative gearing for residential property to new builds.",
+        paraphrased: "The article says the budget replaces the CGT discount and limits residential negative gearing to new builds from 1 July 2027.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.95,
+        reasoning:
+          "This is a clean summary claim explicitly spelled out in the source text.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://theconversation.com/a-budget-with-a-bundle-of-reforms-in-a-time-of-extreme-uncertainty-282255",
+            supports: "supports",
+            relevantPassage:
+              "The article says the discount will be abolished and negative gearing for residential property will be limited to new builds from July 1 2027."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-startupdaily-rethink-startup-cgt-claim",
+    title: "Startup Daily article saying Labor was weighing startup-specific CGT calculation changes",
+    submittedAt: "2026-05-15T11:38:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.startupdaily.net/topic/politics-news-analysis/government-signals-rethink-on-startup-cgt-rules-amid-backlash/",
+    rawText:
+      "Labor appears to be weighing up whether adjustments to the way CGT is calculated for startups could soften some of the impact without introducing a full exemption.",
+    summary:
+      "This article card is about a reported rethink rather than settled enacted policy. The visible text supports that the government was considering startup-specific calculation changes, but not that any final carve-out had been agreed.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-startupdaily-rethink-startup-cgt-claim",
+        verbatim: "Labor now appears to be further weighing up whether adjustments to the way CGT is calculated for startups could soften some of the impact without introducing a full exemption.",
+        paraphrased: "The government was considering startup-specific changes to how the new CGT rules would calculate gains.",
+        claimType: "descriptive",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.82,
+        reasoning:
+          "The article presents this as an active policy consideration and quotes concern about low or zero cost bases, but it is still a report about ongoing consideration rather than a final rule.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.startupdaily.net/topic/politics-news-analysis/government-signals-rethink-on-startup-cgt-rules-amid-backlash/",
+            supports: "partially_supports",
+            relevantPassage:
+              "The article says Labor appears to be weighing adjustments to startup CGT calculations and quotes Daniel Mulino on low or zero cost bases."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-smartcompany-trust-restructure-claim",
+    title: "SmartCompany opinion piece saying stamp duty can make trust restructuring commercially prohibitive",
+    submittedAt: "2026-05-15T11:39:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.smartcompany.com.au/opinion/trust-tax-overhaul-trap-businesses-wmillion-dollar-restructuring-bills/",
+    rawText:
+      "For many legitimate businesses holding commercial or development property, stamp duty means restructuring out of trust structures may not be a commercial option.",
+    summary:
+      "The visible article card makes a practical-constraints claim about the trust package. It is plausible and well argued in the source text, but the extent of the problem depends on business type, state duties, and the availability of workable restructuring paths.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-smartcompany-trust-restructure-claim",
+        verbatim: "In states such as Victoria and New South Wales, transferring commercial or development property can give rise to stamp duty liabilities in the millions of dollars.",
+        paraphrased: "For some trust-held property groups, restructuring could be blocked by very large stamp-duty costs.",
+        claimType: "causal",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.8,
+        reasoning:
+          "The article offers a credible commercial-mechanics argument, but it is sector- and state-specific rather than a universal consequence established for all affected trusts.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.smartcompany.com.au/opinion/trust-tax-overhaul-trap-businesses-wmillion-dollar-restructuring-bills/",
+            supports: "partially_supports",
+            relevantPassage:
+              "The article argues that stamp duty on transfers of commercial or development property can make restructuring commercially unrealistic for some groups."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-smartcompany-startup-tweaks-claim",
+    title: "SmartCompany article saying Labor was considering startup CGT tweaks after backlash",
+    submittedAt: "2026-05-15T11:40:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.smartcompany.com.au/federal-budget-2026/labor-startup-cgt-tweaks-founder-backlash/",
+    rawText:
+      "The Albanese government is considering changes to how startup founders and investors are treated under the proposed CGT overhaul.",
+    summary:
+      "This visible article card points to an active policy reconsideration driven by founder backlash. The article text supports that startup-specific tweaks were under consideration, but not that a final carve-out was locked in.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-smartcompany-startup-tweaks-claim",
+        verbatim: "The Albanese government is considering changes to how startup founders and investors are treated under its proposed capital gains tax overhaul.",
+        paraphrased: "The government was considering startup-specific treatment changes within the proposed CGT overhaul.",
+        claimType: "descriptive",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.83,
+        reasoning:
+          "The source supports an active policy discussion, but the content is still about consideration and consultation rather than enacted settled treatment.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.smartcompany.com.au/federal-budget-2026/labor-startup-cgt-tweaks-founder-backlash/",
+            supports: "partially_supports",
+            relevantPassage:
+              "The article says the government is considering changes to how startup founders and investors are treated under the proposed overhaul."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-afr-tech-crowd-expects-win-claim",
+    title: "AFR article saying tech leaders expected favourable amendments after backlash",
+    submittedAt: "2026-05-15T11:41:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.afr.com/technology/tech-crowd-expects-cgt-win-as-some-cringe-at-billionaire-complaints-20260515-p5zxc2?ref=rss&utm_medium=rss&utm_source=rss_feed",
+    rawText:
+      "Days of private meetings and public venting left tech sector leaders confident of favourable amendments after anger over the budget’s capital gains tax changes.",
+    summary:
+      "This article card is about industry sentiment and expected negotiation outcomes. It demonstrates that prominent tech figures believed amendments were possible, but confidence about future amendments is not the same thing as a confirmed policy result.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-afr-tech-crowd-expects-win-claim",
+        verbatim: "Days of private meetings and public venting has left the tech sector’s leaders confident of favourable amendments ...",
+        paraphrased: "Tech leaders believed backlash and lobbying would likely produce favourable amendments.",
+        claimType: "predictive",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.78,
+        reasoning:
+          "The source can support the existence of that confidence, but not whether the amendments would in fact arrive or be favourable in substance.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.afr.com/technology/tech-crowd-expects-cgt-win-as-some-cringe-at-billionaire-complaints-20260515-p5zxc2?ref=rss&utm_medium=rss&utm_source=rss_feed",
+            supports: "partially_supports",
+            relevantPassage:
+              "The article says the sector’s leaders were confident of favourable amendments after meetings and public backlash."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-capitalbrief-founders-scramble-claim",
+    title: "Capital Brief article saying startup groups were mobilising for CGT carveout talks",
+    submittedAt: "2026-05-15T11:42:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.capitalbrief.com/article/startup-founders-scramble-for-a-seat-at-chalmers-table-for-talks-over-cgt-carveout-91b09dcd-b31d-4c7f-9788-a1d7c35fad0d/",
+    rawText:
+      "Treasurer Jim Chalmers said the government would consult on the impact of the CGT reforms, and multiple groups were mobilising to ensure startup voices were heard.",
+    summary:
+      "The visible article card is strongest as an organising-and-consultation story. It supports that founder and investor groups were mobilising in anticipation of talks over startup treatment.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-capitalbrief-founders-scramble-claim",
+        verbatim: "Multiple groups are now mobilising to ensure the little guy’s voice is heard.",
+        paraphrased: "Startup groups were mobilising to influence the expected consultation over startup CGT treatment.",
+        claimType: "descriptive",
+        subjectDomain: "startups",
+        verdict: "supported",
+        confidence: 0.86,
+        reasoning:
+          "The article directly describes those groups mobilising and frames the issue as a live consultation fight.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.capitalbrief.com/article/startup-founders-scramble-for-a-seat-at-chalmers-table-for-talks-over-cgt-carveout-91b09dcd-b31d-4c7f-9788-a1d7c35fad0d/",
+            supports: "supports",
+            relevantPassage:
+              "The article says multiple groups were mobilising so smaller startup voices would be heard in the CGT debate."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-conversation-at-a-glance-claim",
+    title: "The Conversation summary card saying Budget 2026 takes big swings on CGT and negative gearing",
+    submittedAt: "2026-05-15T11:43:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://theconversation.com/at-a-glance-budget-2026-281024",
+    rawText:
+      "The federal budget takes some big swings, with reforms to capital gains tax and negative gearing.",
+    summary:
+      "This visible article card is a short summary card rather than a detailed argument. Its core factual point is simply that Budget 2026 includes headline reforms to CGT and negative gearing.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-conversation-at-a-glance-claim",
+        verbatim: "The federal budget takes some big swings, with reforms to capital gains tax and negative gearing.",
+        paraphrased: "Budget 2026 includes major reforms to CGT and negative gearing.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.96,
+        reasoning:
+          "This is a direct summary statement from the source card itself.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://theconversation.com/at-a-glance-budget-2026-281024",
+            supports: "supports",
+            relevantPassage:
+              "The card says the budget takes big swings with reforms to capital gains tax and negative gearing."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-capitalbrief-vc-response-claim",
+    title: "Capital Brief opinion piece saying the loudest anti-CGT response missed wider startup needs",
+    submittedAt: "2026-05-15T11:44:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.capitalbrief.com/article/i-spent-five-years-in-vc-the-hysterical-cgt-response-misses-the-point-7fb90765-ed1d-4881-8355-b6c550c455d8/",
+    rawText:
+      "Tech’s loudest voices say capital gains tax reform will stifle innovation. But founders also need local capital, affordable housing and room to take risks.",
+    summary:
+      "This visible article card is primarily an opinion framing rather than a discrete checkable policy-mechanics claim. It is best treated as a rhetorical counter-position inside the wider founder backlash debate.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-capitalbrief-vc-response-claim",
+        verbatim: "Tech’s loudest voices say capital gains tax reform will stifle innovation. But founders also need local capital, affordable housing and room to take risks.",
+        paraphrased: "The backlash narrative is incomplete because startup success also depends on local capital, housing affordability and broader conditions.",
+        claimType: "interpretive",
+        subjectDomain: "startups",
+        verdict: "rhetorical",
+        confidence: 0.88,
+        reasoning:
+          "This is an evaluative argument about what matters most for founders, not a narrowly falsifiable policy fact.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.capitalbrief.com/article/i-spent-five-years-in-vc-the-hysterical-cgt-response-misses-the-point-7fb90765-ed1d-4881-8355-b6c550c455d8/",
+            supports: "partially_supports",
+            relevantPassage:
+              "The card frames itself as a rebuttal to the loudest anti-CGT voices by emphasizing broader founder needs."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-capitalbrief-young-builders-claim",
+    title: "Capital Brief opinion piece saying the budget punishes young Australians trying to build wealth",
+    submittedAt: "2026-05-15T11:45:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.capitalbrief.com/article/this-budget-punishes-young-australians-trying-to-build-something-c0ae36c9-5191-4512-b694-d6cd54969e98/",
+    rawText:
+      "Young Australians need a credible path to wealth. Instead, this budget protects existing property owners and taxes risk-taking harder.",
+    summary:
+      "This visible article card is fundamentally a normative judgment about generational fairness and acceptable risk-taking incentives. It overlaps with other aspiration-themed entries already on the page and is best classified as rhetoric rather than a settled factual proposition.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-capitalbrief-young-builders-claim",
+        verbatim: "This budget protects existing property owners and taxes risk-taking harder.",
+        paraphrased: "The budget is framed as favouring incumbents while making non-property wealth-building harder for younger Australians.",
+        claimType: "interpretive",
+        subjectDomain: "taxation",
+        verdict: "rhetorical",
+        confidence: 0.9,
+        reasoning:
+          "The statement bundles multiple policy effects into a political judgement about fairness and aspiration.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.capitalbrief.com/article/this-budget-punishes-young-australians-trying-to-build-something-c0ae36c9-5191-4512-b694-d6cd54969e98/",
+            supports: "partially_supports",
+            relevantPassage:
+              "The card frames the budget as protecting existing property owners while taxing risk-taking more heavily."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-conversation-regional-australia-claim",
+    title: "The Conversation article saying farming family trusts were exempt from the new trust minimum tax",
+    submittedAt: "2026-05-15T11:46:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://theconversation.com/despite-some-wins-this-budget-wont-transform-regional-australia-282715",
+    rawText:
+      "Tuesday’s budget confirmed farming family trusts would be exempt from a new 30% minimum tax rate on discretionary trusts.",
+    summary:
+      "This visible article card contains one clean regional-policy point: farming family trusts were described as exempt from the new 30 per cent discretionary-trust minimum tax.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-conversation-regional-australia-claim",
+        verbatim: "Tuesday’s budget confirmed farming family trusts would be exempt from a new 30% minimum tax rate on discretionary trusts.",
+        paraphrased: "Farming family trusts were exempted from the new 30 per cent minimum tax on discretionary trusts.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.92,
+        reasoning:
+          "The article states the carve-out directly and presents it as a confirmed budget feature.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://theconversation.com/despite-some-wins-this-budget-wont-transform-regional-australia-282715",
+            supports: "supports",
+            relevantPassage:
+              "The article says farming family trusts would be exempt from the new 30 per cent minimum tax."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-smartcompany-coalition-axe-claim",
+    title: "SmartCompany republication saying the Coalition would axe the CGT and negative gearing overhaul",
+    submittedAt: "2026-05-15T11:47:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.smartcompany.com.au/business-advice/politics/coalition-vows-axe-labor-cgt-negative-gearing-overhaul/",
+    rawText:
+      "Shadow Treasurer Tim Wilson says the Coalition will repeal Labor’s proposed capital gains tax and negative gearing reforms if elected.",
+    summary:
+      "This visible article card repeats the Coalition’s repeal position in republished form. The claim itself is still a simple political-position statement rather than a disputed technical interpretation.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-smartcompany-coalition-axe-claim",
+        verbatim: "We’re going to oppose them. We will repeal them.",
+        paraphrased: "The Coalition said it would repeal the proposed CGT and negative gearing changes if elected.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.95,
+        reasoning:
+          "The source again contains an unambiguous repeal commitment.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.smartcompany.com.au/business-advice/politics/coalition-vows-axe-labor-cgt-negative-gearing-overhaul/",
+            supports: "supports",
+            relevantPassage:
+              "The article quotes Tim Wilson saying the Coalition would oppose the reforms and repeal them."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-afr-house-flipping-claim",
+    title: "AFR article arguing most individual capital gains do not come from property",
+    submittedAt: "2026-05-15T11:48:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.afr.com/policy/tax-and-super/pm-told-to-limit-cgt-changes-to-house-flipping-20260514-p5zwz5?ref=rss&utm_medium=rss&utm_source=rss_feed",
+    rawText:
+      "Less than 40 per cent of capital gains earned by individuals come from property, with a bit over 60 per cent coming from listed shares, managed funds, trusts and other assets.",
+    summary:
+      "This visible article card advances a composition claim about where individuals’ capital gains come from. It may be directionally important for the housing-versus-other-assets debate, but as presented here it depends on the underlying AFR/ATO analysis rather than on primary tables shown directly in the card.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-afr-house-flipping-claim",
+        verbatim: "Less than 40 per cent of capital gains earned by individuals come from property ... A bit over 60 per cent ... come from ASX-listed shares, managed funds, trusts and other assets.",
+        paraphrased: "Most individual capital gains come from non-property assets rather than property.",
+        claimType: "empirical",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.77,
+        reasoning:
+          "The article presents this as an analysis of ATO statistics, but the visible card excerpt does not itself expose the underlying calculation table.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "empirical_comparison",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.afr.com/policy/tax-and-super/pm-told-to-limit-cgt-changes-to-house-flipping-20260514-p5zwz5?ref=rss&utm_medium=rss&utm_source=rss_feed",
+            supports: "partially_supports",
+            relevantPassage:
+              "The AFR card says less than 40 per cent of individuals’ capital gains come from property and over 60 per cent from other assets."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-conversation-landlords-tax-claim",
+    title: "The Conversation article claiming landlords paid much more tax than owner-occupiers over the past decade",
+    submittedAt: "2026-05-15T11:49:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://theconversation.com/landlords-pay-almost-7billion-a-year-more-in-tax-than-home-owners-pushing-rents-higher-282238",
+    rawText:
+      "Allowing for income tax on rent, capital gains tax and land tax, landlords paid about $6.9 billion a year in extra taxes on average over the decade compared with owner-occupiers.",
+    summary:
+      "This visible article card makes a large quantitative incidence claim based on the author’s reconstruction from ATO, ABS and other material. The estimate may be serious work, but the card itself does not expose enough of the underlying method to treat the number as a settled mechanical fact here.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-conversation-landlords-tax-claim",
+        verbatim: "Landlords paid a total of $6.9 billion in a typical year from 2013–14 to 2022–23 ... owner-occupiers didn’t have to pay.",
+        paraphrased: "Over the past decade, landlords paid materially more housing-related tax than owner-occupiers.",
+        claimType: "empirical",
+        subjectDomain: "housing",
+        verdict: "requires_assumptions",
+        confidence: 0.76,
+        reasoning:
+          "The source gives a specific estimate based on a methodology summary, but not enough visible underlying detail to independently validate the exact figure inside this card alone.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "empirical_comparison",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://theconversation.com/landlords-pay-almost-7billion-a-year-more-in-tax-than-home-owners-pushing-rents-higher-282238",
+            supports: "partially_supports",
+            relevantPassage:
+              "The article says landlords paid around $6.9 billion a year in extra taxes on average compared with owner-occupiers."
+          }
+        ]
+      }
+    ]
   }
 ];
 
@@ -4702,8 +7127,8 @@ export const clusterSummaries: ClusterSummary[] = [
       "Budget 2026 punishes aspiration, risk-taking, and business-building rather than rewarding it.",
     subjectDomain: "taxation",
     tags: ["aspiration", "business owners", "negative gearing", "startups"],
-    instanceCount: 2,
-    lastSeen: "2026-05-13T23:47:00Z",
+    instanceCount: 4,
+    lastSeen: "2026-05-15T02:45:00Z",
     aggregateVerdict: "rhetorical",
     commonMissingAssumptions: [
       "Treats a broad normative judgement about aspiration and nation-level economic direction as if it were a single verifiable fact.",
@@ -4713,7 +7138,9 @@ export const clusterSummaries: ClusterSummary[] = [
       "budget punishes aspiration",
       "anti-risk budget",
       "terrible budget for builders",
-      "fairer tax without penalising aspiration"
+      "fairer tax without penalising aspiration",
+      "housing reform good but anti-productivity overall",
+      "destroying ambition and aspiration"
     ],
     primarySources: [
       {
@@ -4923,14 +7350,19 @@ export const clusterSummaries: ClusterSummary[] = [
       "A zero-cost-base self-funded business will automatically face a full 47 per cent tax on sale under the Budget 2026 CGT reform.",
     subjectDomain: "taxation",
     tags: ["founders", "small business", "capital gains"],
-    instanceCount: 7,
-    lastSeen: "2026-05-13T09:12:00Z",
+    instanceCount: 8,
+    lastSeen: "2026-05-15T00:12:00Z",
     aggregateVerdict: "requires_assumptions",
     commonMissingAssumptions: [
       "Assumes an individual owner taxed at the top marginal rate",
       "Ignores small business CGT concessions that can reduce or disregard gains"
     ],
-    sampleVariations: ["sweat equity taxed at 47%", "zero cost base means full 47%", "self-funded business exit tax"],
+    sampleVariations: [
+      "sweat equity taxed at 47%",
+      "zero cost base means full 47%",
+      "self-funded business exit tax",
+      "index the gain not the cost base"
+    ],
     primarySources: [
       {
         title: "Budget 2026-27 Tax reform page",
@@ -4998,8 +7430,8 @@ export const clusterSummaries: ClusterSummary[] = [
       "Removing the CGT discount will cause founders or capital to leave Australia.",
     subjectDomain: "taxation",
     tags: ["founders", "capital flight", "startups"],
-    instanceCount: 16,
-    lastSeen: "2026-05-13T23:47:00Z",
+    instanceCount: 17,
+    lastSeen: "2026-05-14T03:07:00Z",
     aggregateVerdict: "requires_assumptions",
     commonMissingAssumptions: [
       "Treats tax as the dominant factor in founder location decisions",
