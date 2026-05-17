@@ -71,7 +71,7 @@ export interface ClusterSummary {
 }
 
 export const appStats = {
-  totalFactChecks: 60,
+  totalFactChecks: 62,
   activeClusters: 17,
   primarySourcesIndexed: 11,
   issueLanes: 3
@@ -6993,6 +6993,106 @@ export const recentFactChecks: SubmissionResult[] = [
             supports: "partially_supports",
             relevantPassage:
               "The article says landlords paid around $6.9 billion a year in extra taxes on average compared with owner-occupiers."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-afr-trusts-die-with-dignity-claim",
+    title: "AFR opinion piece arguing the trust minimum tax copies the burden of company tax without the matching framework",
+    submittedAt: "2026-05-17T20:20:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.afr.com/politics/federal/if-labor-wants-trusts-to-die-let-them-die-with-dignity-20260517-p5zxu0?ref=rss&utm_medium=rss&utm_source=rss_feed",
+    rawText:
+      "The government has chosen the worst of both worlds: impose a corporate-style minimum tax while denying trusts access to a genuine corporate tax framework.",
+    summary:
+      "This visible AFR card is mainly an argument about legal and policy coherence, not a narrow mechanical fact. The card clearly frames the new trust minimum tax as borrowing company-style burden without a matching company-style framework, but that 'worst of both worlds' conclusion depends on normative judgments about what treatment would count as coherent or fair.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 0,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-afr-trusts-die-with-dignity-claim",
+        verbatim: "The government has chosen the worst of both worlds: impose a corporate-style minimum tax while denying trusts access to a genuine corporate tax framework.",
+        paraphrased: "The trust reforms are framed as imposing company-like tax burden on trusts without giving them an equivalent company-style framework.",
+        claimType: "interpretive",
+        subjectDomain: "taxation",
+        verdict: "rhetorical",
+        confidence: 0.86,
+        reasoning:
+          "The visible card is making a policy-design critique rather than reporting a neutral factual observation. Its core force comes from the author's judgment that the framework is incoherent, not from a simple measurable claim exposed directly in the excerpt alone.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.afr.com/politics/federal/if-labor-wants-trusts-to-die-let-them-die-with-dignity-20260517-p5zxu0?ref=rss&utm_medium=rss&utm_source=rss_feed",
+            supports: "partially_supports",
+            relevantPassage:
+              "The card says the policy imposes a corporate-style minimum tax on trusts while denying them a genuine corporate tax framework."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-afr-hawke-fiscal-repair-claim",
+    title: "AFR article comparing Budget 2026 to Hawke-era fiscal repair through CGT indexation and negative gearing restraint",
+    submittedAt: "2026-05-17T20:21:00Z",
+    posterLabel: "albos.tax linked article",
+    posterNamedPublicly: false,
+    sourceUrl: "https://www.afr.com/politics/federal/hawke-government-fixed-budget-on-spending-and-revenue-sides-in-1980s-20260517-p5zxty?ref=rss&utm_medium=rss&utm_source=rss_feed",
+    rawText:
+      "Fiscal repair 40 years ago included two components restored by Labor in the 2026 budget: inflation adjustment for CGT and restrictions on negative gearing.",
+    summary:
+      "This visible AFR card makes a compressed historical-comparison claim. The comparison is plausible on its face because Budget 2026 does include CGT indexation and tighter negative-gearing settings, but the stronger assertion that these are specific Hawke-era fiscal-repair components being 'restored' depends on historical framing and comparison choices not demonstrated directly in the excerpt itself.",
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 0
+    },
+    claims: [
+      {
+        id: "claim-budget-2026-afr-hawke-fiscal-repair-claim",
+        verbatim: "Fiscal repair 40 years ago included two components restored by Labor in the 2026 budget: inflation adjustment for CGT and restrictions on negative gearing.",
+        paraphrased: "The Budget 2026 package revives two features associated with Hawke-era fiscal repair: CGT indexation and tighter negative gearing treatment.",
+        claimType: "historical",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.8,
+        reasoning:
+          "The visible card links today's package to a specific historical precedent, but it does not itself surface the underlying historical record or define the comparison standard for 'restored'. The current source set can confirm the 2026 package features, yet the Hawke-era parallel remains excerpt-dependent here.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The source documents this as one visible part of the wider Budget 2026 reaction and explanation cycle."
+        ],
+        verificationMethod: "empirical_comparison",
+        primarySources: [
+          {
+            title: "Visible albos.tax linked article",
+            publisher: "Web article",
+            section: "Article excerpt",
+            page: 1,
+            url: "https://www.afr.com/politics/federal/hawke-government-fixed-budget-on-spending-and-revenue-sides-in-1980s-20260517-p5zxty?ref=rss&utm_medium=rss&utm_source=rss_feed",
+            supports: "partially_supports",
+            relevantPassage:
+              "The card says Labor restored two Hawke-era fiscal-repair components: inflation adjustment for CGT and restrictions on negative gearing."
           }
         ]
       }
