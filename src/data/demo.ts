@@ -71,7 +71,7 @@ export interface ClusterSummary {
 }
 
 export const appStats = {
-  totalFactChecks: 62,
+  totalFactChecks: 63,
   activeClusters: 17,
   primarySourcesIndexed: 11,
   issueLanes: 3
@@ -97,6 +97,196 @@ function buildScenarioCalculatorHref(scenarioId: string, caseFile: string) {
 }
 
 export const recentFactChecks: SubmissionResult[] = [
+  {
+    id: "budget-2026-chris-brycki-three-miscalculations-claim",
+    title: "Chris Brycki post arguing the Budget will be remembered for three generational and political miscalculations",
+    submittedAt: "2026-05-18T05:38:00Z",
+    posterLabel: "Chris Brycki on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "Jim Chalmers' fifth budget may ultimately be remembered for three political miscalculations: 1. Believing Gen Z has given up on aspiration 2. Believing Gen X and Millennials won't feel betrayed 3. Unintentionally favouring Baby Boomers",
+    summary:
+      "This LinkedIn post is mostly political interpretation rather than narrow factual description. The strongest factual hook is the suggestion that the package can still leave older incumbent asset owners looking relatively protected while younger people face weaker post-2027 wealth-building settings outside housing, but even that depends on how broadly you define the comparison group and which concessions matter most. The sharper generational mind-reading claims about Gen Z aspiration and Gen X or Millennial betrayal are not things the Budget papers themselves can verify. They are plausible political readings of the reform, not settled factual outcomes.",
+    calculatorLink: {
+      label: "Open young ETF saver scenario",
+      description:
+        "Prefills a younger-investor savings case so the post's generational winners-and-losers framing can be pressure-tested against explicit housing, ETF, and tax assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-young-etf-home-deposit-claim", "budget-2026-young-etf-home-deposit-claim")
+    },
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 3,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-brycki-three-political-miscalculations",
+        verbatim:
+          "Jim Chalmers' fifth budget may ultimately be remembered for three political miscalculations",
+        paraphrased:
+          "The Budget 2026 tax package will ultimately be remembered as three major political miscalculations.",
+        claimType: "interpretive",
+        subjectDomain: "politics",
+        verdict: "rhetorical",
+        confidence: 0.95,
+        reasoning:
+          "This is a retrospective political frame about how history and voters will remember the Budget, not a discrete factual proposition that can be verified from the policy texts or current source set.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The post argues the package is a major political own goal on generational and aspiration grounds."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Overall tax reform package",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government frames the package as fairness- and productivity-enhancing, which shows the post's 'three miscalculations' line is a competing political judgement rather than a settled factual descriptor."
+          }
+        ]
+      },
+      {
+        id: "claim-brycki-gen-z-given-up-on-aspiration",
+        verbatim:
+          "Believing Gen Z has given up on aspiration",
+        paraphrased:
+          "The Budget is built on the belief that Gen Z has given up on aspiration.",
+        claimType: "interpretive",
+        subjectDomain: "politics",
+        verdict: "requires_assumptions",
+        confidence: 0.82,
+        reasoning:
+          "This is effectively a claim about the Government's political reading of younger voters, not about the black-letter tax rules themselves. The source base does show the package is sold partly through housing fairness and redistribution language, and other tracked claims show younger non-property savers can still face harsher post-2027 share and ETF treatment. But the leap from policy design to an asserted belief that Gen Z has 'given up on aspiration' requires mind-reading and broader political assumptions the Budget papers do not establish.",
+        assumptionsRequired: [
+          "Assumes the package's design reflects a deliberate political judgement about Gen Z's aspirations rather than a narrower housing-and-equity policy objective.",
+          "Assumes Gen Z would mainly read the package as hostile to ambition instead of as a housing-fairness measure."
+        ],
+        alternativeFramings: [
+          "A stronger factual version is that the package may land badly with younger savers who want to build wealth through assets outside owner-occupied housing.",
+          "The policy can be read as down-weighting some aspiration pathways for younger investors, but not as proof of what ministers believe Gen Z thinks."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Boosting resilience and dynamism",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Government says the package will improve productivity, boost resilience and back start-ups, which cuts against the idea that it openly assumes younger Australians have abandoned aspiration."
+          },
+          {
+            title: "Budget 2026–27 Tax Explainer: Negative Gearing and Capital Gains Tax Reform",
+            publisher: "Australian Government",
+            section: "Negative gearing reforms and CGT reforms",
+            page: 4,
+            url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The package tightens housing concessions while also redesigning CGT more broadly, which is why younger-saver aspiration concerns appear in multiple submissions even though the Government frames the package differently."
+          }
+        ]
+      },
+      {
+        id: "claim-brycki-gen-x-millennials-wont-feel-betrayed",
+        verbatim:
+          "Believing Gen X and Millennials won't feel betrayed",
+        paraphrased:
+          "Gen X and Millennial voters will feel betrayed by the Budget 2026 tax package.",
+        claimType: "predictive",
+        subjectDomain: "politics",
+        verdict: "requires_assumptions",
+        confidence: 0.8,
+        reasoning:
+          "This is a political forecast about voter emotion and reaction, not something the current primary-source set can prove. The underlying policy mechanics do create visible reasons some middle-aged asset-builders and founders may dislike the package, but whether that amounts to a widespread feeling of betrayal across Gen X and Millennial cohorts depends on housing tenure, portfolio mix, business exposure, income level, and broader partisan context.",
+        assumptionsRequired: [
+          "Assumes the affected parts of Gen X and Millennial cohorts are numerous and politically salient enough to define the reaction.",
+          "Assumes perceived losses on shares, business exits, or investment-property pathways outweigh any support for housing-side reform."
+        ],
+        alternativeFramings: [
+          "Some Gen X and Millennial savers, founders and investors may feel the package closes off familiar wealth-building routes.",
+          "The policy creates plausible resentment among some mid-life asset builders, but a broad generational betrayal verdict remains a forecast."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget Paper 2 2026-27",
+            publisher: "Australian Government",
+            section: "Tax Reform – Boosting Home Ownership",
+            page: 22,
+            url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The housing-side measure narrows tax support for established property investment, which creates a clear basis for backlash among some existing or would-be investors even though the paper frames the policy as improving home ownership."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The broader CGT redesign changes after-tax outcomes for shares, business assets and other gains, which helps explain why some middle-aged investors and founders might react negatively."
+          }
+        ]
+      },
+      {
+        id: "claim-brycki-unintentionally-favouring-baby-boomers",
+        verbatim:
+          "Unintentionally favouring Baby Boomers",
+        paraphrased:
+          "The Budget unintentionally favours Baby Boomers over younger cohorts.",
+        claimType: "comparative",
+        subjectDomain: "intergenerational_equity",
+        verdict: "requires_assumptions",
+        confidence: 0.84,
+        reasoning:
+          "There is a plausible factual spine here, but the claim still compresses too much. The source set does show that existing established-housing owners remain grandfathered while post-Budget-night buyers of established housing lose key negative-gearing treatment, and other tracked submissions show younger share and ETF investors can also face harsher post-2027 CGT settings. That can create a relative-incumbent advantage story that often maps onto older owners. But the post overstates what can be proven about age cohorts specifically, and 'unintentionally' is an intent claim the Budget papers do not establish.",
+        assumptionsRequired: [
+          "Assumes Baby Boomers are disproportionately represented among the grandfathered incumbent asset owners who keep the strongest relative protections.",
+          "Assumes younger cohorts are more exposed to the newly worsened housing and non-housing wealth-building settings.",
+          "Assumes the Government did not intend that age-skewed distributional effect."
+        ],
+        alternativeFramings: [
+          "The package can leave incumbent asset owners looking relatively more protected than younger entrants, which often overlaps with an older-cohort advantage.",
+          "A tighter claim is that grandfathering and incumbent protections may favour existing owners more than new entrants, rather than proving a deliberate generational transfer to Boomers."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget Paper 2 2026-27",
+            publisher: "Australian Government",
+            section: "Tax Reform – Boosting Home Ownership",
+            page: 22,
+            url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "Investors who already own established housing remain grandfathered, while investors who buy established housing after Budget night and make rental losses will not be able to deduct them against wages."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The CGT redesign applies more broadly from 1 July 2027, which is why younger-entrant and incumbent-owner comparisons recur across multiple fact-checked submissions."
+          }
+        ]
+      }
+    ]
+  },
   {
     id: "budget-2026-albos-tax-landing-page-claim",
     title: "albos.tax landing page summarising the Budget 2026 CGT redesign and startup backlash",
