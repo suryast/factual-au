@@ -4,6 +4,9 @@ import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import { appStats, clusterSummaries, featuredSources, recentFactChecks } from "../data/demo";
 
+const sortedFactChecks = [...recentFactChecks].sort(
+  (a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()
+);
 const narrativeVerdicts = [...new Set(clusterSummaries.map((cluster) => cluster.aggregateVerdict))];
 const selectedVerdict = Astro.url.searchParams.get("verdict");
 const activeVerdict = selectedVerdict && narrativeVerdicts.includes(selectedVerdict as typeof narrativeVerdicts[number])
@@ -16,8 +19,8 @@ const flaggedNarratives = clusterSummaries.filter(
   (cluster) => cluster.aggregateVerdict === "unsupported" || cluster.aggregateVerdict === "rhetorical"
 );
 const initialClaimCount = 6;
-const visibleClaims = recentFactChecks.slice(0, initialClaimCount);
-const remainingClaims = recentFactChecks.slice(initialClaimCount);
+const visibleClaims = sortedFactChecks.slice(0, initialClaimCount);
+const remainingClaims = sortedFactChecks.slice(initialClaimCount);
 ---
 
 <Layout title="Budget 2026 Claims Monitor | Dashboard">

@@ -4,11 +4,15 @@ import { clusterSummaries, recentFactChecks } from "../data/demo";
 
 export const prerender = true;
 
+const sortedFactChecks = [...recentFactChecks].sort(
+  (a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()
+);
+
 export const GET: APIRoute = () => {
   return new Response(
     JSON.stringify(
       {
-        factChecks: recentFactChecks.map((item) => ({
+        factChecks: sortedFactChecks.map((item) => ({
           id: item.id,
           title: item.title,
           submittedAt: item.submittedAt,
