@@ -71,7 +71,7 @@ export interface ClusterSummary {
 }
 
 export const appStats = {
-  totalFactChecks: 63,
+  totalFactChecks: 64,
   activeClusters: 17,
   primarySourcesIndexed: 11,
   issueLanes: 3
@@ -97,6 +97,192 @@ function buildScenarioCalculatorHref(scenarioId: string, caseFile: string) {
 }
 
 export const recentFactChecks: SubmissionResult[] = [
+  {
+    id: "budget-2026-chris-brycki-wealth-divide-article-claim",
+    title: "Chris Brycki article arguing three Budget 2026 miscalculations lock in a wider wealth divide",
+    submittedAt: "2026-05-18T05:39:00Z",
+    posterLabel: "Newspaper screenshot submission",
+    posterNamedPublicly: true,
+    rawText:
+      "Three key miscalculations that lock in wealth divide. 1. Misreading Gen Z 2. Breaching trust 3. Favouring Boomers. The article argues younger Australians increasingly feel there is no obvious wealth-building path, that Gen X and Millennials who followed long-standing wealth-building advice will feel betrayed, and that Baby Boomers remain the quiet beneficiaries because primary residences stay tax exempt and existing shares, investment properties and business assets are effectively grandfathered.",
+    summary:
+      "This article version advances the same generational critique as the shorter Chris Brycki post, but with a clearer factual spine around grandfathering and incumbent-owner protection. The strongest checkable piece is that existing owner advantages remain significant: the family home stays exempt, and established-housing incumbents are treated more favourably than new post-Budget-night entrants. But the broader claims about Gen Z giving up on aspiration, a breach of trust with Gen X and Millennials, or a widening wealth divide remain interpretation-heavy and depend on behavioural and cohort assumptions that the Budget papers do not themselves settle.",
+    calculatorLink: {
+      label: "Open young ETF saver scenario",
+      description:
+        "Prefills a younger-investor case so the article's intergenerational wealth-divide framing can be tested against explicit housing, share, and tax assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-young-etf-home-deposit-claim", "budget-2026-young-etf-home-deposit-claim")
+    },
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 2,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-brycki-wealth-divide-lock-in",
+        verbatim:
+          "Three key miscalculations that lock in wealth divide",
+        paraphrased:
+          "The Budget 2026 package locks in a wider wealth divide.",
+        claimType: "interpretive",
+        subjectDomain: "intergenerational_equity",
+        verdict: "rhetorical",
+        confidence: 0.93,
+        reasoning:
+          "This is a broad evaluative headline about the package's social meaning and distributive effect, not a narrow factual proposition the current source set can prove by itself.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The article argues the package entrenches incumbent advantages and narrows wealth-building routes for newer entrants."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Overall tax reform package",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government frames the package as fairness- and productivity-enhancing, which shows the article's 'lock in wealth divide' headline is a competing political judgement rather than a settled factual descriptor."
+          }
+        ]
+      },
+      {
+        id: "claim-brycki-misreading-gen-z-article",
+        verbatim:
+          "Misreading Gen Z",
+        paraphrased:
+          "The Budget misreads younger Australians by assuming they have accepted that traditional wealth-building is no longer realistic.",
+        claimType: "interpretive",
+        subjectDomain: "politics",
+        verdict: "requires_assumptions",
+        confidence: 0.81,
+        reasoning:
+          "The article ties the policy package to a political reading of younger Australians' aspirations. That concern is plausible given the site's other young-saver entries on shares, ETFs and housing, but it still requires mind-reading and broader political assumptions. The Budget papers do not establish that ministers consciously assumed younger Australians had abandoned traditional wealth-building.",
+        assumptionsRequired: [
+          "Assumes the package's design reflects a deliberate political judgement about younger Australians' aspirations.",
+          "Assumes younger Australians mainly experience the package as closing off traditional wealth-building channels rather than opening housing opportunities."
+        ],
+        alternativeFramings: [
+          "A narrower factual claim is that the package may still leave younger non-property savers with weaker post-2027 wealth-building incentives.",
+          "The article's Gen Z point is best read as a political interpretation of how the package lands with younger cohorts."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Boosting resilience and dynamism",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Government says the package will improve productivity, boost resilience and back start-ups, which cuts against the idea that it openly assumes younger Australians have abandoned aspiration."
+          },
+          {
+            title: "Budget 2026–27 Tax Explainer: Negative Gearing and Capital Gains Tax Reform",
+            publisher: "Australian Government",
+            section: "Negative gearing reforms and CGT reforms",
+            page: 4,
+            url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The package tightens housing concessions while also redesigning CGT more broadly, which is why younger-saver aspiration concerns appear repeatedly even though the Government frames the package differently."
+          }
+        ]
+      },
+      {
+        id: "claim-brycki-breach-of-trust-article",
+        verbatim:
+          "Breaching trust",
+        paraphrased:
+          "The Budget breaches trust with Gen X and Millennial Australians who followed the usual wealth-building playbook of housing, shares and super.",
+        claimType: "predictive",
+        subjectDomain: "politics",
+        verdict: "requires_assumptions",
+        confidence: 0.79,
+        reasoning:
+          "There is a real basis for some backlash among mid-life investors and founders because the package changes post-2027 outcomes for shares, businesses and investment-property pathways. But 'breach of trust' is still a political and emotional conclusion that depends on whether those cohorts expected the prior settings to persist and whether their losses outweigh any support for the package's housing goals.",
+        assumptionsRequired: [
+          "Assumes a large enough share of Gen X and Millennials used those asset pathways and see the package as reneging on the old rules.",
+          "Assumes disappointment and policy disagreement rise to the level of a broad cohort-level trust breach."
+        ],
+        alternativeFramings: [
+          "The package creates plausible resentment among middle-aged investors who built plans around housing, shares and business assets.",
+          "A stronger factual version is that familiar wealth-building pathways become less attractive for some incumbent or emerging mid-life investors."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget Paper 2 2026-27",
+            publisher: "Australian Government",
+            section: "Tax Reform – Boosting Home Ownership",
+            page: 22,
+            url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The housing-side measure narrows tax support for established property investment, which creates a clear basis for backlash among some existing or would-be investors even though the paper frames the policy as improving home ownership."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The broader CGT redesign changes after-tax outcomes for shares, business assets and other gains, which helps explain why some mid-life investors and founders might react negatively."
+          }
+        ]
+      },
+      {
+        id: "claim-brycki-favouring-boomers-article",
+        verbatim:
+          "Favouring Boomers",
+        paraphrased:
+          "The package still favours older incumbent asset owners because the primary residence remains exempt and existing assets remain relatively protected through grandfathering.",
+        claimType: "comparative",
+        subjectDomain: "intergenerational_equity",
+        verdict: "supported",
+        confidence: 0.88,
+        reasoning:
+          "This is the strongest factual spine in the article. The family home remains outside CGT, and the housing measure explicitly preserves better treatment for incumbent established-housing owners than for buyers who enter after Budget night. It is also fair to say that older incumbent owners are more likely to be overrepresented among those protected groups. The age-cohort mapping is still inferential, but the underlying incumbent-protection mechanism is real.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "A tighter version is that the package preserves significant advantages for incumbent asset owners relative to new entrants, which often overlaps with older cohorts.",
+          "The key factual point is incumbent protection and grandfathering, not a provable intent to reward Boomers as a class."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget Paper 2 2026-27",
+            publisher: "Australian Government",
+            section: "Tax Reform – Boosting Home Ownership",
+            page: 22,
+            url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf",
+            supports: "supports",
+            relevantPassage:
+              "Investors who already own established housing remain grandfathered, while investors who buy established housing after Budget night and make rental losses will not be able to deduct them against wages."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The CGT redesign applies more broadly from 1 July 2027, which is why incumbent-owner versus new-entrant comparisons recur across multiple fact-checked submissions."
+          }
+        ]
+      }
+    ]
+  },
   {
     id: "budget-2026-chris-brycki-three-miscalculations-claim",
     title: "Chris Brycki post arguing the Budget will be remembered for three generational and political miscalculations",
