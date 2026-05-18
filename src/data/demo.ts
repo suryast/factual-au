@@ -71,7 +71,7 @@ export interface ClusterSummary {
 }
 
 export const appStats = {
-  totalFactChecks: 64,
+  totalFactChecks: 67,
   activeClusters: 17,
   primarySourcesIndexed: 11,
   issueLanes: 3
@@ -97,6 +97,589 @@ function buildScenarioCalculatorHref(scenarioId: string, caseFile: string) {
 }
 
 export const recentFactChecks: SubmissionResult[] = [
+  {
+    id: "budget-2026-benjamin-humphrey-startup-equity-hiring-claim",
+    title:
+      "Benjamin Humphrey post arguing the CGT redesign makes startup employee equity materially less attractive",
+    submittedAt: "2026-05-18T23:03:00Z",
+    posterLabel: "Benjamin Humphrey on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "The newly proposed CGT changes that hiring equation. The 50% discount is being scrapped for future equity grants and replaced by inflation indexation, which effectively halves the value of startup equity for employees ... Under the new rules, indexation provides exactly zero relief because employees invest 'sweat equity', leaving them with a starting cost base of $0 ... Instead of a 23.5% effective tax rate, they get hit with the full 47% top marginal rate ... People will move elsewhere ... Tech professionals will vote with their feet. More startups will be built overseas.",
+    summary:
+      "This post is strongest when it says the Budget makes some startup-equity packages less attractive at the margin. Budget 2026 really does replace the old 50 per cent discount with indexation plus a 30 per cent minimum tax from 1 July 2027, which can worsen after-tax outcomes in some high-growth employee-equity cases. But the post over-compresses the mechanics when it says startup employees simply have a zero cost base and therefore get exactly zero indexation relief and a full 47 per cent tax rate. That can happen in narrower no-relief cases, but ESS treatment varies, and many arrangements reset the cost base at the ESS taxing point rather than staying at zero. The stronger claims about engineers moving abroad and startups being built overseas are plausible competitive concerns, but they remain predictive rather than established fact in the current source set.",
+    calculatorLink: {
+      label: "Model a startup-equity exit case",
+      description:
+        "Prefills a post-2027 zero-cost-base business-equity scenario so the post's employee-upside and hiring claims can be pressure-tested against explicit ESS and tax-rate assumptions.",
+      href: buildScenarioCalculatorHref(
+        "budget-2026-zero-cost-base-business-claim",
+        "budget-2026-benjamin-humphrey-startup-equity-hiring-claim"
+      )
+    },
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 1,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 2,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-humphrey-cgt-changes-startup-hiring-equation",
+        verbatim:
+          "The newly proposed CGT changes that hiring equation.",
+        paraphrased:
+          "The Budget's CGT redesign makes startup hiring packages that rely on equity less attractive in at least some cases.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "partially_supported",
+        confidence: 0.84,
+        reasoning:
+          "There is a real factual basis for this claim, but the wording is broader than the primary sources can settle. The Budget does replace the 50 per cent CGT discount with inflation indexation plus a 30 per cent minimum tax from 1 July 2027, which can reduce after-tax upside for some founder and employee-equity cases. At the same time, the package also includes startup-support measures such as loss refundability, venture-capital changes and stronger R&D settings. So the hiring-equation claim captures a genuine tension, but whether startup hiring becomes materially harder overall depends on which workers, company stages and compensation structures are being compared.",
+        assumptionsRequired: [
+          "Assumes the employee-equity portion of compensation is large enough to materially affect candidate choice.",
+          "Assumes the CGT tightening matters more than the Budget's separate startup-support measures in the relevant hiring market."
+        ],
+        alternativeFramings: [
+          "The redesign weakens the after-tax appeal of some startup-equity packages even though the Budget also contains pro-startup offsets.",
+          "The clearest factual version is that some post-2027 employee-equity outcomes look worse than under the old discount regime."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The reform replaces the 50 per cent CGT discount with inflation indexation and a minimum 30 per cent tax on gains from 1 July 2027, which is the basis for concern about weaker equity upside."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Boosting resilience and dynamism",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The same package also claims to support start-ups through loss carry back, startup loss refundability, venture-capital changes and improved R&D settings."
+          }
+        ]
+      },
+      {
+        id: "claim-humphrey-effective-halves-startup-equity-value",
+        verbatim:
+          "The 50% discount is being scrapped for future equity grants and replaced by inflation indexation, which effectively halves the value of startup equity for employees.",
+        paraphrased:
+          "Replacing the discount with indexation effectively halves the value of startup equity for employees.",
+        claimType: "comparative",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.8,
+        reasoning:
+          "This framing is too broad to stand on its own. In some narrow no-relief cases, the shift from a discounted-gain regime to a near-top-rate gain can roughly double the tax burden on the upside and materially reduce the employee's after-tax value. But ESS treatment varies across taxed-upfront, tax-deferred and start-up-concession schemes, and the actual value hit depends on the employee's marginal rate, the cost base after the ESS taxing point, inflation, holding period and whether any concession applies. So the direction is plausible, but the claim as stated needs more scenario detail.",
+        assumptionsRequired: [
+          "Assumes the employee is in a scheme where the post-2027 gain is materially exposed to the new CGT regime rather than cushioned by ESS-specific settings.",
+          "Assumes the employee is taxed at or near the top marginal rate and the gain is large enough that indexation gives little practical shelter.",
+          "Assumes the relevant benchmark is after-tax upside rather than the headline pre-tax equity value."
+        ],
+        alternativeFramings: [
+          "Some high-growth employee-equity cases could lose a large share of their after-tax upside under the redesign.",
+          "The redesign can materially reduce the after-tax value of startup equity for some employees, but not by a fixed fraction in every ESS case."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The official reform does replace the 50 per cent discount with inflation indexation and a 30 per cent minimum tax on gains, which can materially change the value of post-2027 upside."
+          },
+          {
+            title: "ATO: ESS and capital gains tax",
+            publisher: "Australian Taxation Office",
+            section: "CGT treatment after the taxing point",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/corporate-tax-measures-and-assurance/employee-share-schemes/employees/ess-and-your-tax/ess-and-capital-gains-tax",
+            supports: "contradicts",
+            relevantPassage:
+              "In most cases, ESS interests are exempt from CGT implications until the discount has been taxed, and later gains or losses are then worked out under CGT with the cost base reset at the taxing point."
+          }
+        ]
+      },
+      {
+        id: "claim-humphrey-zero-cost-base-full-47-rate",
+        verbatim:
+          "Under the new rules, indexation provides exactly zero relief because employees invest 'sweat equity', leaving them with a starting cost base of $0 ... Instead of a 23.5% effective tax rate, they get hit with the full 47% top marginal rate.",
+        paraphrased:
+          "Startup employees generally get zero indexation relief and can move from about a 23.5 per cent effective rate to the full top marginal rate on exit.",
+        claimType: "calculation",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.85,
+        reasoning:
+          "The arithmetic is possible in a narrow zero-cost-base, no-relief, top-rate case, but the post states it far too generally. If a gain really is exposed to the post-2027 regime with effectively no cost base and little shelter from indexation, the old 50 per cent discount can map to an effective rate around 23.5 per cent while the new rules can approach the top marginal rate. But ESS rules often tax the discount first and then reset the CGT cost base at the taxing point, which means the claim cannot be treated as the default employee outcome for startup equity.",
+        assumptionsRequired: [
+          "Assumes a genuine zero-cost-base or equivalent no-relief case rather than a standard ESS pathway with a reset cost base.",
+          "Assumes the employee is taxed personally at or near the top marginal rate including Medicare.",
+          "Assumes the gain is overwhelmingly post-2027 and not materially reduced by any other concession or offset."
+        ],
+        alternativeFramings: [
+          "Some zero-cost-base business-equity cases can move from roughly a discounted-gain rate to something much closer to the top marginal rate.",
+          "The harshest post-2027 employee-equity arithmetic is scenario-specific, not the universal result for all startup staff."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget Paper 2 2026-27",
+            publisher: "Australian Government",
+            section: "Tax Reform – Boosting Home Ownership",
+            page: 21,
+            url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "From 1 July 2027, eligible taxpayers move from the 50 per cent CGT discount to indexation plus a 30 per cent minimum tax on net capital gains."
+          },
+          {
+            title: "ATO: Tax rates – Australian resident",
+            publisher: "Australian Taxation Office",
+            section: "Resident tax rates 2025–26",
+            page: 1,
+            url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents?lang=en&pubdate=636168759750000000",
+            supports: "partially_supports",
+            relevantPassage:
+              "Resident tax rates 2025–26 ... taxable income over $190,000 is taxed at 45c for each $1 over $190,000."
+          },
+          {
+            title: "ATO: ESS and capital gains tax",
+            publisher: "Australian Taxation Office",
+            section: "CGT treatment after the taxing point",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/corporate-tax-measures-and-assurance/employee-share-schemes/employees/ess-and-your-tax/ess-and-capital-gains-tax",
+            supports: "contradicts",
+            relevantPassage:
+              "ATO guidance says that in most ESS cases the cost base is worked out after the ESS discount has already been taxed, which is why a universal zero-cost-base claim is too strong."
+          }
+        ]
+      },
+      {
+        id: "claim-humphrey-tech-professionals-vote-with-their-feet",
+        verbatim:
+          "Tech professionals will vote with their feet. More startups will be built overseas.",
+        paraphrased:
+          "The CGT redesign will push tech professionals overseas and cause more startups to be built outside Australia.",
+        claimType: "predictive",
+        subjectDomain: "startups",
+        verdict: "rhetorical",
+        confidence: 0.79,
+        reasoning:
+          "This is a plausible competitive concern, but it is still a forward-looking judgement rather than a settled fact in the current source set. The official materials establish a tax change that could weaken some employee and founder upside, but they do not establish any quantified migration or company-formation response. Whether mobile tech workers or startups actually leave depends on many other variables including salary competition, housing costs, capital access, migration settings and the Budget's separate innovation measures.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The redesign may weaken Australia's appeal for some mobile tech workers and founders, but the size of any offshore response is still uncertain.",
+          "A narrower factual version is that some startup-equity packages become less attractive than before."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The official materials establish the tax change that motivates the concern, but they do not identify any actual talent flight or overseas startup-building response."
+          },
+          {
+            title: "Productivity | Budget 2026-27",
+            publisher: "Australian Government",
+            section: "Incentivising investment and innovation",
+            page: 1,
+            url: "https://budget.gov.au/content/03-productivity.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Budget also presents itself as supporting innovation and investment, which means the broader competitiveness prediction is not mechanically resolved by the CGT change alone."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "budget-2026-tim-tyndale-startup-frustration-offshore-claim",
+    title: "Tim Tyndale post arguing CGT has become a symbol of anti-aspiration frustration and that startup talent is moving offshore",
+    submittedAt: "2026-05-18T05:53:00Z",
+    posterLabel: "Tim Tyndale on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "CGT is a symbol of accumulated frustration ... Housing affordability + inflation + tax bracket creep + govt overspending + perceived incompetence on innovation policy have led to a point where tax changes that further penalise risk-taking feel like the final straw. Talent is genuinely moving offshore ... A number of founders (from an admittedly small sample size) have already moved offshore, and more are actively making plans ... Australia can't offer competitive incentives to retain all of our best and brightest.",
+    summary:
+      "This post blends one broad political diagnosis with two stronger startup-mobility claims. The opening framing that CGT has become a symbol of accumulated anti-progress or anti-aspiration frustration is an interpretive read on the mood around Budget 2026, not a falsifiable fact. The claim that the new tax settings further penalise risk-taking has a real policy basis because the Budget does tighten post-2027 treatment of many capital gains even while also claiming to back start-ups through venture and productivity measures. But the stronger line that talent is genuinely moving offshore is only supported here by a small unnamed sample, so it cannot be verified from the public source set alone. The broader competitiveness claim remains plausible but still depends on behavioural and policy-trade-off assumptions rather than settled evidence.",
+    calculatorLink: {
+      label: "Model the mobile-founder case",
+      description:
+        "Prefills a post-2027 founder scenario so the post's startup-flight and competitiveness concerns can be pressure-tested against explicit concession and rate assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-zero-cost-base-business-claim", "budget-2026-tim-tyndale-startup-frustration-offshore-claim")
+    },
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 1,
+      unsupported: 0,
+      unverifiable: 1,
+      requires_assumptions: 1,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-tyndale-cgt-symbol-accumulated-frustration",
+        verbatim:
+          "CGT is a symbol of accumulated frustration.",
+        paraphrased:
+          "The CGT debate has become a symbol of broader anti-progress or anti-aspiration frustration in Australia, especially in startup circles.",
+        claimType: "interpretive",
+        subjectDomain: "politics",
+        verdict: "rhetorical",
+        confidence: 0.93,
+        reasoning:
+          "This is a political reading of what the CGT controversy represents, not a discrete factual proposition the current source set can prove or disprove.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The post uses CGT as a shorthand for wider frustration about aspiration, innovation policy and economic pressure."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Overall tax reform package",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The official package text explains the reform mechanics, but it cannot determine whether the public now treats CGT as a symbol of broader frustration."
+          }
+        ]
+      },
+      {
+        id: "claim-tyndale-tax-changes-further-penalise-risk-taking",
+        verbatim:
+          "tax changes that further penalise risk-taking feel like the final straw.",
+        paraphrased:
+          "The Budget's tax changes further penalise entrepreneurial risk-taking.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "partially_supported",
+        confidence: 0.82,
+        reasoning:
+          "There is a real factual basis for this concern, but the phrasing still compresses too much. The Budget does tighten post-2027 tax treatment of many capital gains, which can worsen after-tax outcomes for some founders, investors and employee-equity holders. At the same time, the same package also says it is supporting risk taking through loss carry back, startup loss refundability, venture-capital changes and stronger R&D support. So the post captures a genuine tension in the package, but whether the net effect is a further penalty on risk-taking depends on which taxpayers and offsets are being compared.",
+        assumptionsRequired: [
+          "Assumes the post-2027 CGT tightening matters more in practice than the package's startup-support offsets.",
+          "Assumes the relevant founder or employee case is materially exposed to the harsher CGT outcome rather than protected by other concessions."
+        ],
+        alternativeFramings: [
+          "The package creates a real tension between tougher capital-gains treatment and separate startup-support measures.",
+          "Some entrepreneurial cases are likely to face weaker after-tax upside, but the net risk-taking effect is not mechanically settled."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The reform replaces the 50 per cent discount with inflation indexation and a minimum 30 per cent tax on gains from 1 July 2027, which is the basis for concern about weaker founder and investor upside."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Boosting resilience and dynamism",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The same Budget also claims to support risk taking and start-ups through loss carry back, startup loss refundability, venture-capital changes and improved R&D settings."
+          }
+        ]
+      },
+      {
+        id: "claim-tyndale-talent-genuinely-moving-offshore",
+        verbatim:
+          "Talent is genuinely moving offshore ... A number of founders (from an admittedly small sample size) have already moved offshore, and more are actively making plans.",
+        paraphrased:
+          "Founders and startup talent are already moving offshore because of the current policy environment.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "unverifiable",
+        confidence: 0.9,
+        reasoning:
+          "The post itself narrows the evidence base to a small unnamed sample, which makes the claim impossible to verify from the public materials used on this site. It may be true for the speaker's network, but the current source set does not identify who moved, when, why, or whether tax policy rather than other business or personal factors drove the relocation. That means the claim is anecdotal rather than publicly established here.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The author reports anecdotal founder relocations and offshore planning within a small personal sample.",
+          "A broader claim about startup talent flight would need public data or attributable cases rather than an unnamed sample."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The official materials establish a tax change that could motivate concern, but they do not identify any actual founder relocations."
+          }
+        ]
+      },
+      {
+        id: "claim-tyndale-australia-cant-retain-best-brightest",
+        verbatim:
+          "Australia can't offer competitive incentives to retain all of our best and brightest.",
+        paraphrased:
+          "Australia's current policy settings are not competitive enough to retain top startup talent.",
+        claimType: "predictive",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.8,
+        reasoning:
+          "This is a broader competitiveness judgement, not a settled fact. The concern is directionally plausible because tax treatment can affect founder and employee upside, especially in mobile startup sectors. But whether Australia's overall incentives are uncompetitive depends on many additional variables, including local capital access, housing costs, wages, market size, startup concessions, immigration settings, and how the Budget's non-CGT support measures compare with the tax tightening.",
+        assumptionsRequired: [
+          "Assumes tax treatment is a decisive retention factor for a large enough share of top startup talent.",
+          "Assumes the Budget's startup-support measures and other domestic advantages are not enough to offset the weaker tax treatment in key cases.",
+          "Assumes the relevant benchmark is other startup jurisdictions with more attractive founder or employee-equity outcomes."
+        ],
+        alternativeFramings: [
+          "The package may weaken Australia's competitiveness for some mobile founder and startup-talent cases, but the overall retention effect is still contested.",
+          "A narrower factual version is that some post-2027 founder and employee-equity scenarios look less attractive than under the old rules."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The reform changes after-tax founder and investor outcomes, which is why competitiveness concerns arise at all."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Boosting resilience and dynamism",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The package also includes startup and productivity measures intended to support business dynamism, which means the overall competitiveness effect is not resolved by the tax change alone."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "budget-2026-richard-holden-capital-gains-rationale-claim",
+    title: "Richard Holden post arguing lower capital-gains taxation reflects after-tax saving and should shift tax away from labour",
+    submittedAt: "2026-05-18T05:39:00Z",
+    posterLabel: "Richard Holden on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "I can't believe I'm saying this, but Barnaby Joyce is right. \"You buy assets out of after-tax income.\" That's why every advanced economy taxes capital gains at a lower rate than ordinary/labour income. And if we want to lower the burden on workers then we should tax labour income less and consumption more.",
+    summary:
+      "This post has one real tax-policy intuition, one overstatement, and one normative recommendation. The strongest factual spine is that concessional capital-gains treatment is often justified partly by double-taxation and inflation concerns, and Australia's own Budget 2026 materials still rely on that kind of rationale when they say investors should only pay tax on their real gain. But the jump to 'every advanced economy' goes too far: recent OECD work says most OECD countries tax capital gains more favourably than labour income, not all. The final labour-versus-consumption line is a policy preference rather than a falsifiable factual claim.",
+    calculatorLink: {
+      label: "Model a post-2027 share gain",
+      description:
+        "Prefills a non-housing capital-gains scenario so the post's lower-than-labour-tax intuition can be compared against explicit marginal-rate and inflation assumptions.",
+      href: buildScenarioCalculatorHref("budget-2026-cgt-founder-claim", "budget-2026-richard-holden-capital-gains-rationale-claim")
+    },
+    overallVerdictMix: {
+      supported: 0,
+      partially_supported: 2,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-richard-holden-after-tax-income-rationale",
+        verbatim:
+          "\"You buy assets out of after-tax income.\"",
+        paraphrased:
+          "Capital-gains concessions are justified in part because investment assets are often bought from income that has already been taxed.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "partially_supported",
+        confidence: 0.84,
+        reasoning:
+          "This is a real policy intuition, but it is stated too categorically. OECD work identifies double taxation of business income and the taxation of inflationary gains as standard rationales for taxing capital gains more lightly, and Australia's own Budget 2026 materials say the reform is meant to ensure investors pay tax only on their real gain. That supports the core idea that the tax system often treats capital gains differently because the underlying capital comes from already-taxed saving and because inflation can otherwise overstate gains. But not every asset purchase is cleanly funded from already-taxed personal labour income, and the post compresses several distinct rationales into one sentence.",
+        assumptionsRequired: [
+          "Assumes the investor is an individual using previously taxed personal savings rather than untaxed or differently taxed funds.",
+          "Assumes the relevant policy rationale is double taxation or inflation relief rather than a different concession objective."
+        ],
+        alternativeFramings: [
+          "A tighter version is that concessional capital-gains treatment is often justified partly by double-taxation and inflation concerns.",
+          "The Budget's own rationale is narrower: investors should pay tax on real gains rather than purely nominal gains."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Taxing capital gains: Country experiences and challenges",
+            publisher: "OECD",
+            section: "Rationales for favourable taxation of capital gains",
+            page: 21,
+            url: "https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/02/taxing-capital-gains_76a32327/9e33bd2b-en.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The paper lists addressing double taxation of business income and avoiding the taxation of inflationary gains as core rationales for favourable capital-gains treatment."
+          },
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Government says the reform means investors will only pay tax on their real capital gain, which reflects the same broad concern about overtaxing nominal gains."
+          }
+        ]
+      },
+      {
+        id: "claim-richard-holden-every-advanced-economy-lower-rate",
+        verbatim:
+          "That's why every advanced economy taxes capital gains at a lower rate than ordinary/labour income.",
+        paraphrased:
+          "All advanced economies tax capital gains more lightly than labour income.",
+        claimType: "comparative",
+        subjectDomain: "taxation",
+        verdict: "partially_supported",
+        confidence: 0.88,
+        reasoning:
+          "The direction of the claim is broadly right, but the absolute wording overshoots the evidence. Recent OECD work says most OECD countries tax capital gains more favourably than other forms of income, especially labour income, and often do so through lower rates, exemptions, or separate schedules. That supports the general pattern the post is describing. But 'every advanced economy' is stronger than the source warrants. The same OECD tables show varying approaches, including full or near-full exemptions in some jurisdictions and different integration models in others. So the safer factual statement is that most advanced OECD economies give capital gains more favourable treatment than labour income, not that every single one follows one identical lower-rate model.",
+        assumptionsRequired: [
+          "Assumes OECD member-country patterns are being used as the proxy for 'advanced economies'.",
+          "Assumes exemptions and separate-rate systems count as more favourable treatment even when the legal structure is not a simple lower statutory rate."
+        ],
+        alternativeFramings: [
+          "Most OECD economies tax capital gains more favourably than labour income, though the mechanisms vary.",
+          "The common pattern is lighter treatment than wages, not a universal single-rule lower-rate model in every country."
+        ],
+        verificationMethod: "empirical_comparison",
+        primarySources: [
+          {
+            title: "Taxing capital gains: Country experiences and challenges",
+            publisher: "OECD",
+            section: "Tax regimes and rates",
+            page: 13,
+            url: "https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/02/taxing-capital-gains_76a32327/9e33bd2b-en.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The paper says most OECD countries tax capital gains more favourably than other forms of income, and often at rates lower than labour income."
+          },
+          {
+            title: "Taxing capital gains: Country experiences and challenges",
+            publisher: "OECD",
+            section: "Capital gains tax regimes, 2023",
+            page: 14,
+            url: "https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/02/taxing-capital-gains_76a32327/9e33bd2b-en.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The country table shows multiple models across OECD economies, including separate flat-rate systems, progressive systems, exemptions, and other regimes rather than one universal design."
+          }
+        ]
+      },
+      {
+        id: "claim-richard-holden-barnaby-joyce-right",
+        verbatim:
+          "Barnaby Joyce is right.",
+        paraphrased:
+          "Barnaby Joyce's broader view on this tax issue is correct.",
+        claimType: "interpretive",
+        subjectDomain: "politics",
+        verdict: "rhetorical",
+        confidence: 0.95,
+        reasoning:
+          "This is endorsement language, not a concrete factual proposition. The rest of the post contains the actual checkable claims.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The fact-checkable content is the tax-policy rationale that follows, not the political endorsement."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Taxing capital gains: Country experiences and challenges",
+            publisher: "OECD",
+            section: "Overview",
+            page: 6,
+            url: "https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/02/taxing-capital-gains_76a32327/9e33bd2b-en.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The source helps evaluate the post's tax claims, but it cannot determine whether a politician is simply 'right' in a broad rhetorical sense."
+          }
+        ]
+      },
+      {
+        id: "claim-richard-holden-tax-labour-less-consumption-more",
+        verbatim:
+          "If we want to lower the burden on workers then we should tax labour income less and consumption more.",
+        paraphrased:
+          "Australia should shift the tax mix away from labour income and toward consumption taxes.",
+        claimType: "policy_design",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.83,
+        reasoning:
+          "This is a tax-design recommendation, not a self-proving factual statement. It depends on value judgements about who should bear tax, what distributional trade-offs are acceptable, how much consumption-tax regressivity should be offset elsewhere, and whether the economic gains from shifting the mix would outweigh those costs. OECD work does show that favourable capital-gains treatment is often defended using particular rationales and that evidence for some other justifications is mixed, but that still does not settle the separate question of whether labour taxes should be cut and consumption taxes raised.",
+        assumptionsRequired: [
+          "Assumes a consumption-tax increase would be paired with offsetting measures acceptable on distributional grounds.",
+          "Assumes reducing labour taxation is the preferred way to relieve workers relative to alternatives such as transfer or income-tax changes elsewhere.",
+          "Assumes the economic and political trade-offs of a tax-mix shift are worth it."
+        ],
+        alternativeFramings: [
+          "This is a defensible policy preference, but it is not a factual implication that follows automatically from the capital-gains comparison.",
+          "A narrower factual claim is that some tax-policy frameworks prefer lower taxes on labour and higher reliance on consumption taxes."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Taxing capital gains: Country experiences and challenges",
+            publisher: "OECD",
+            section: "Overview",
+            page: 6,
+            url: "https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/02/taxing-capital-gains_76a32327/9e33bd2b-en.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The paper says some rationales for favourable capital-gains treatment are stronger than others and that evidence for promoting investment and entrepreneurship is mixed, which shows this remains a contested design space rather than a settled policy command."
+          },
+          {
+            title: "Budget 2026-27 Tax Explainer: Negative Gearing and Capital Gains Tax Reform",
+            publisher: "Australian Government",
+            section: "Minimum tax on capital gains",
+            page: 2,
+            url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf",
+            supports: "contradicts",
+            relevantPassage:
+              "The explainer says the minimum tax keeps gains subject to a rate closer to the rate faced during working life and commensurate with most workers, which cuts against any suggestion that the labour-versus-capital balance is already obviously too harsh on workers by the Government's own lights."
+          }
+        ]
+      }
+    ]
+  },
   {
     id: "budget-2026-chris-brycki-wealth-divide-article-claim",
     title: "Chris Brycki article arguing three Budget 2026 miscalculations lock in a wider wealth divide",
