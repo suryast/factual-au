@@ -4,6 +4,58 @@ import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import { appStats, clusterSummaries, featuredSources, recentFactChecks } from "../data/demo";
 
+const linkedInPosterPattern = /^(.+?) on LinkedIn$/;
+const sourceLabelReplacements = [
+  { pattern: /^Newspaper screenshot submission$/i, replacement: "Screenshot submission" },
+  { pattern: /^LinkedIn screenshot submission$/i, replacement: "LinkedIn screenshot submission" },
+  { pattern: /^Public LinkedIn post$/i, replacement: "LinkedIn post" },
+  { pattern: /^Public founder post$/i, replacement: "Founder post" },
+  { pattern: /^Public social post$/i, replacement: "Social post" },
+  { pattern: /^Public text submission$/i, replacement: "Text submission" },
+  { pattern: /^Anonymous screenshot submission$/i, replacement: "Screenshot submission" }
+];
+
+function inferDashboardSourceLabel(item: typeof recentFactChecks[number]) {
+  for (const { pattern, replacement } of sourceLabelReplacements) {
+    if (pattern.test(item.posterLabel)) return replacement;
+  }
+  const linkedInMatch = item.posterLabel.match(linkedInPosterPattern);
+  if (linkedInMatch) return "LinkedIn post";
+  return "Claim";
+}
+
+function sanitizeDashboardCopy(item: typeof recentFactChecks[number]) {
+  const sourceLabel = inferDashboardSourceLabel(item);
+  const linkedInMatch = item.posterLabel.match(linkedInPosterPattern);
+  const explicitNames = [
+    linkedInMatch?.[1],
+    "Chris Brycki",
+    "Richard Holden",
+    "Tim Tyndale",
+    "Benjamin Humphrey",
+    "Rehan Mark D'Almeida"
+  ].filter(Boolean) as string[];
+
+  let title = item.title;
+  let summary = item.summary;
+
+  for (const name of explicitNames) {
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    title = title.replace(new RegExp(`^${escaped}\\s+`, "i"), `${sourceLabel} `);
+    title = title.replace(new RegExp(`\\b${escaped}\\b`, "gi"), sourceLabel);
+    summary = summary.replace(new RegExp(`\\b${escaped}\\b`, "gi"), sourceLabel);
+  }
+
+  title = title
+    .replace(/^Public post /i, "Post ")
+    .replace(/^Public article /i, "Article ")
+    .replace(/^LinkedIn post post /i, "LinkedIn post ")
+    .replace(/^LinkedIn post article /i, "LinkedIn article ")
+    .replace(/^Claim post /i, "Post ");
+
+  return { title, summary };
+}
+
 const sortedFactChecks = [...recentFactChecks].sort(
   (a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()
 );
@@ -93,14 +145,16 @@ const remainingClaims = sortedFactChecks.slice(initialClaimCount);
           </div>
         </div>
         <div class="card-grid card-grid-claims">
-          {visibleClaims.map((item) => (
+          {visibleClaims.map((item) => {
+            const display = sanitizeDashboardCopy(item);
+            return (
             <article class="surface-card dashboard-card dashboard-card-claim">
               <div class="card-meta">
                 <span class="eyebrow tag-main">Claim check</span>
                 <p class="muted small">{new Date(item.submittedAt).toLocaleString("en-AU", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" })}</p>
               </div>
-              <h3>{item.title}</h3>
-              <p class="muted card-summary">{item.summary}</p>
+              <h3>{display.title}</h3>
+              <p class="muted card-summary">{display.summary}</p>
               <div class="hero-actions dashboard-actions">
                 <a class="primary-link" href={`/fact-check/${item.id}`}>Open claim</a>
                 {item.calculatorLink && (
@@ -116,7 +170,8 @@ const remainingClaims = sortedFactChecks.slice(initialClaimCount);
                 </div>
               )}
             </article>
-          ))}
+            );
+          })}
         </div>
         {remainingClaims.length > 0 && (
           <details class="surface-card claims-more-block">
@@ -124,14 +179,16 @@ const remainingClaims = sortedFactChecks.slice(initialClaimCount);
               View more claims ({remainingClaims.length})
             </summary>
             <div class="card-grid card-grid-claims claims-more-grid">
-              {remainingClaims.map((item) => (
+              {remainingClaims.map((item) => {
+                const display = sanitizeDashboardCopy(item);
+                return (
                 <article class="surface-card dashboard-card dashboard-card-claim">
                   <div class="card-meta">
                     <span class="eyebrow tag-main">Claim check</span>
                     <p class="muted small">{new Date(item.submittedAt).toLocaleString("en-AU", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" })}</p>
                   </div>
-                  <h3>{item.title}</h3>
-                  <p class="muted card-summary">{item.summary}</p>
+                  <h3>{display.title}</h3>
+                  <p class="muted card-summary">{display.summary}</p>
                   <div class="hero-actions dashboard-actions">
                     <a class="primary-link" href={`/fact-check/${item.id}`}>Open claim</a>
                     {item.calculatorLink && (
@@ -147,7 +204,8 @@ const remainingClaims = sortedFactChecks.slice(initialClaimCount);
                     </div>
                   )}
                 </article>
-              ))}
+                );
+              })}
             </div>
           </details>
         )}
