@@ -70,6 +70,12 @@ const filteredClusters = activeVerdict === "all"
 const flaggedNarratives = clusterSummaries.filter(
   (cluster) => cluster.aggregateVerdict === "unsupported" || cluster.aggregateVerdict === "rhetorical"
 );
+const dashboardStats = {
+  ...appStats,
+  totalFactChecks: recentFactChecks.length,
+  activeClusters: clusterSummaries.length,
+  primarySourcesIndexed: featuredSources.length
+};
 const initialClaimCount = 6;
 const visibleClaims = sortedFactChecks.slice(0, initialClaimCount);
 const remainingClaims = sortedFactChecks.slice(initialClaimCount);
@@ -97,19 +103,19 @@ const remainingClaims = sortedFactChecks.slice(initialClaimCount);
         <div class="hero-panel stack-md">
           <div class="metric-grid">
             <article>
-              <strong>{appStats.totalFactChecks}</strong>
+              <strong>{dashboardStats.totalFactChecks}</strong>
               <span>Claims tracked</span>
             </article>
             <article>
-              <strong>{appStats.activeClusters}</strong>
+              <strong>{dashboardStats.activeClusters}</strong>
               <span>Recurring narratives</span>
             </article>
             <article>
-              <strong>{appStats.primarySourcesIndexed}</strong>
+              <strong>{dashboardStats.primarySourcesIndexed}</strong>
               <span>Core reference sources</span>
             </article>
             <article>
-              <strong>{appStats.issueLanes}</strong>
+              <strong>{dashboardStats.issueLanes}</strong>
               <span>Scrutiny lanes in scope</span>
             </article>
           </div>
