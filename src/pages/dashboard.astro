@@ -61,9 +61,10 @@ const sortedFactChecks = [...recentFactChecks].sort(
 );
 const narrativeVerdicts = [...new Set(clusterSummaries.map((cluster) => cluster.aggregateVerdict))];
 const selectedVerdict = Astro.url.searchParams.get("verdict");
+const defaultVerdict = "rhetorical";
 const activeVerdict = selectedVerdict && narrativeVerdicts.includes(selectedVerdict as typeof narrativeVerdicts[number])
   ? selectedVerdict
-  : "all";
+  : defaultVerdict;
 const filteredClusters = activeVerdict === "all"
   ? clusterSummaries
   : clusterSummaries.filter((cluster) => cluster.aggregateVerdict === activeVerdict);
@@ -76,7 +77,7 @@ const dashboardStats = {
   activeClusters: clusterSummaries.length,
   primarySourcesIndexed: featuredSources.length
 };
-const initialClaimCount = 6;
+const initialClaimCount = 3;
 const visibleClaims = sortedFactChecks.slice(0, initialClaimCount);
 const remainingClaims = sortedFactChecks.slice(initialClaimCount);
 ---

@@ -1,3 +1,5 @@
+import { generateClusterReport } from "./clustering";
+
 export type ClaimVerdict =
   | "supported"
   | "partially_supported"
@@ -69,13 +71,6 @@ export interface ClusterSummary {
   sampleVariations: string[];
   primarySources: Array<{ title: string; url: string }>;
 }
-
-export const appStats = {
-  totalFactChecks: 67,
-  activeClusters: 17,
-  primarySourcesIndexed: 11,
-  issueLanes: 3
-};
 
 const CALCULATOR_BASE_URL = "https://australia-cgt-reform-calculator.setiyaputra.me";
 
@@ -8008,6 +8003,321 @@ export const recentFactChecks: SubmissionResult[] = [
     ]
   }
   ,{
+    id: "budget-2026-paul-bassat-business-builders-claim",
+    title: "Paul Bassat post arguing the Budget's business-side CGT changes discourage business building and job creation",
+    submittedAt: "2026-05-21T01:11:00Z",
+    posterLabel: "Paul Bassat on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "Underlying the budget debate is a debate about what sort of a country we want to be. ... budget changes to CGT and negative gearing as they relate to residential property should be welcomed ... the fundamental issue in Australia is lack of supply and, by the Government's own admission, the budget does little to increase supply. ... The rhetoric is all about intergenerational fairness but the reality is that it takes from business builders in Australia and it doesn't give something back to other Australians. The CGT changes will just discourage business building and job creation and the extra revenue will fall into a massive fiscal black hole. ... The CGT hike for business builders will do nothing to increase prosperity or fairness unless your definition of fairness is reducing incentive for Australians to build successful businesses.",
+    summary:
+      "This post separates the housing-side and business-side arguments more clearly than many of the startup-only reactions. The strongest factual core is that the Budget combines housing rhetoric with a broad CGT redesign that also reaches business assets, not just property. But the harder claims about the package discouraging business building, weakening job creation, doing little for fairness, or sending the revenue into a fiscal black hole all depend on larger behavioural and fiscal assumptions than the primary source set can settle on its own. The screenshot therefore lands mostly as an incentives-and-aspiration critique rather than a clean policy-mechanics correction.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 2,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-bassat-cgt-redesign-reaches-business-builders-not-just-property",
+        verbatim:
+          "The rhetoric is all about Intergenerational fairness but the reality is that it takes from business builders in Australia",
+        paraphrased:
+          "The Budget's CGT redesign reaches business builders and business assets, not just residential property.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.92,
+        reasoning:
+          "This is the cleanest mechanics point in the post. The housing-side negative-gearing restriction is paired with a broad CGT redesign that is not confined to residential property, so business assets are indeed caught unless a separate concession applies.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The package mixes a housing-specific negative-gearing reform with a wider capital-gains redesign that also affects business owners."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          },
+          {
+            title: "Budget Paper 2 2026-27",
+            publisher: "Australian Government",
+            section: "Tax Reform – Boosting Home Ownership",
+            page: 22,
+            url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf",
+            supports: "supports",
+            relevantPassage:
+              "From 1 July 2027, negative gearing will be limited to new builds, showing the property-side reform sits alongside the broader CGT measure rather than replacing it."
+          }
+        ]
+      },
+      {
+        id: "claim-bassat-budget-does-little-to-increase-housing-supply",
+        verbatim:
+          "the fundamental issue in Australia is lack of supply and, by the Government's own admission, the budget does little to increase supply.",
+        paraphrased:
+          "Housing supply remains the core affordability problem and the Budget does relatively little to increase supply.",
+        claimType: "comparative",
+        subjectDomain: "housing",
+        verdict: "requires_assumptions",
+        confidence: 0.76,
+        reasoning:
+          "The first half of this claim is a widely used housing diagnosis, but the second half is a comparative judgement about adequacy. The Budget does include supply-linked measures, yet whether they amount to 'little' depends on the benchmark, timing, and how much weight is given to tax-side demand changes versus infrastructure and build-out policy.",
+        assumptionsRequired: [
+          "Assumes housing-supply expansion is the relevant benchmark for judging the package's adequacy.",
+          "Assumes the listed housing and infrastructure measures are too small relative to the shortage problem to count as a substantial supply response."
+        ],
+        alternativeFramings: [
+          "The package includes some housing-supply measures, but critics can still argue they are too small relative to the shortage."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Housing page",
+            publisher: "Australian Government",
+            section: "Housing package overview",
+            page: 1,
+            url: "https://budget.gov.au/content/05-housing.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Budget frames its housing package as supporting supply and affordability, but the page itself does not resolve whether the scale is large enough relative to the structural shortage."
+          }
+        ]
+      },
+      {
+        id: "claim-bassat-cgt-changes-discourage-business-building-and-job-creation",
+        verbatim:
+          "The CGT changes will just discourage business building and job creation",
+        paraphrased:
+          "The CGT redesign will discourage business building and reduce job creation in Australia.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "requires_assumptions",
+        confidence: 0.82,
+        reasoning:
+          "This is a real incentives concern, but it is still a behavioural forecast. The source set clearly establishes a tougher post-2027 tax setting for many gains, which can worsen some founder and builder outcomes. It also establishes offsetting venture, startup and R&D support elsewhere in the package. So the net effect on business formation and hiring remains contested rather than mechanically proven.",
+        assumptionsRequired: [
+          "Assumes the tougher capital-gains treatment matters more in practice than the package's offsetting startup and investment supports.",
+          "Assumes business owners and investors respond strongly enough for hiring and job-creation effects to be material."
+        ],
+        alternativeFramings: [
+          "The redesign may weaken some business-building incentives, but the size of any hiring effect is uncertain."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The policy tightens the treatment of future gains from 1 July 2027, which is the factual basis for claims about weaker business-building incentives."
+          },
+          {
+            title: "Budget 2026-27 Productivity page",
+            publisher: "Australian Government",
+            section: "Innovation and startup measures",
+            page: 1,
+            url: "https://budget.gov.au/content/03-productivity.htm",
+            supports: "contradicts",
+            relevantPassage:
+              "The Budget also expands venture capital settings, improves the R&D tax incentive, and adds other startup-support measures, which is why the net job-creation effect is not resolved by the CGT headline alone."
+          }
+        ]
+      },
+      {
+        id: "claim-bassat-fiscal-black-hole-and-no-fairness",
+        verbatim:
+          "the extra revenue will fall into a massive fiscal black hole ... will do nothing to increase prosperity or fairness",
+        paraphrased:
+          "Any extra revenue from the CGT change will disappear into wasteful fiscal use rather than improving prosperity or fairness.",
+        claimType: "interpretive",
+        subjectDomain: "fiscal_policy",
+        verdict: "rhetorical",
+        confidence: 0.9,
+        reasoning:
+          "This is political rhetoric about the quality of public spending and the meaning of fairness, not a discrete proposition the current source set can verify. The Budget papers can show where the Government says money is going, but not whether critics should describe the overall fiscal destination as a black hole.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The post's strongest factual point is the incentives critique; the 'fiscal black hole' line is evaluative rhetoric."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Overview",
+            publisher: "Australian Government",
+            section: "Overall fiscal package",
+            page: 1,
+            url: "https://budget.gov.au/",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Budget lays out the Government's intended revenue and spending package, but whether that amounts to a fiscal black hole is a political judgement rather than a source-text fact."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
+    id: "budget-2026-martin-rogers-all-assets-rationale-claim",
+    title: "Martin Rogers post arguing the all-assets CGT redesign lacks a clear housing-affordability rationale",
+    submittedAt: "2026-05-21T01:12:00Z",
+    posterLabel: "Martin Rogers on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "Now there is the Tuesday's bombshell budget that has broken numerous election promises about taxes. ... Now the PM can't explain how raising tax on shares helps housing affordability. Asked by finfluencer @tashinvests 'Why were the capital gains tax changed to all assets rather than just residential property' ... Albo accidently explained why shares shouldn't be taxed like property! How can the Prime Minister of Australia be unable to verbalise a plausible rationale for the federal Budget's headline measure more than 48 hours after the budget was released?",
+    summary:
+      "This screenshot contains one clean scope point and a broader critique of the Government's public rationale. The clean point is that the CGT redesign is not limited to residential property: it reaches shares and business assets too. The harder claim is that this broader scope has no plausible housing-affordability rationale. That criticism is understandable because the housing case is more direct for property than for non-housing assets, but whether the broader all-assets design is unjustified depends on how much weight you give to tax-neutrality, anti-arbitrage, and revenue-consistency arguments rather than housing alone. The trust and broken-promises language remains political framing rather than something this source set can settle.",
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 2,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-rogers-cgt-changed-to-all-assets-not-just-residential-property",
+        verbatim:
+          "Why were the capital gains tax changed to all assets rather than just residential property",
+        paraphrased:
+          "The Budget's CGT redesign applies to all eligible assets, including shares and business assets, not just residential property.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.94,
+        reasoning:
+          "This is a straightforward scope claim. The official reform replaces the existing 50 per cent CGT discount with indexation plus a minimum tax across the eligible gains regime rather than carving the redesign down to housing alone.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The housing reform is paired with a broad CGT redesign whose blast radius extends beyond property."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "supports",
+            relevantPassage:
+              "The Government will replace the 50 per cent Capital Gains Tax discount with a discount based on inflation and introduce a minimum 30 per cent tax on gains from 1 July 2027."
+          }
+        ]
+      },
+      {
+        id: "claim-rogers-raising-tax-on-shares-does-not-help-housing-affordability",
+        verbatim:
+          "the PM can't explain how raising tax on shares helps housing affordability",
+        paraphrased:
+          "Applying the CGT redesign to shares is hard to justify purely as a housing-affordability measure.",
+        claimType: "logical",
+        subjectDomain: "housing",
+        verdict: "requires_assumptions",
+        confidence: 0.83,
+        reasoning:
+          "This criticism identifies a real tension in the package's public framing. The housing rationale is more direct for residential-property tax settings than for gains on shares. But the all-assets design can still be defended on broader grounds such as tax-base consistency, anti-arbitrage, and maintaining a more uniform capital-gains regime. So the post is directionally fair as a critique of the housing-only explanation, but it does not prove the wider design lacks any plausible rationale at all.",
+        assumptionsRequired: [
+          "Assumes housing affordability is the only or dominant rationale that should be used to defend the CGT redesign's scope.",
+          "Assumes broader tax-design goals like neutrality, base consistency, or arbitrage reduction are insufficient to justify including shares."
+        ],
+        alternativeFramings: [
+          "The housing story is much easier to tell for property than for shares, even if the Government also has broader tax-design reasons for an all-assets approach."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Capital gains tax and housing reform",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The package sits inside a home-ownership and fairness frame, but the official policy text also presents the CGT change as a general tax-reform measure rather than a property-only rule."
+          }
+        ]
+      },
+      {
+        id: "claim-rogers-broken-election-promises-and-public-trust",
+        verbatim:
+          "the Tuesday's bombshell budget that has broken numerous election promises about taxes",
+        paraphrased:
+          "The Budget breaks numerous election promises on tax and therefore further damages public trust.",
+        claimType: "political",
+        subjectDomain: "politics",
+        verdict: "requires_assumptions",
+        confidence: 0.72,
+        reasoning:
+          "This is a broader political accountability claim that depends on which statements count as promises, how directly they map to the enacted package, and whether trust effects should be inferred from the policy reversal itself. The screenshot does not supply the promise set needed to settle that argument inside the current dashboard evidence model.",
+        assumptionsRequired: [
+          "Assumes a defined set of campaign-era tax commitments that clearly conflict with the final Budget package.",
+          "Assumes political-trust effects can be inferred from the policy shift without additional public-opinion evidence."
+        ],
+        alternativeFramings: [
+          "The source is making a political trust argument that would need a separate promise-tracking source set to verify cleanly."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Final adopted tax package",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The Budget page shows the adopted tax package, but it does not by itself establish which earlier election commitments should count as broken promises."
+          }
+        ]
+      },
+      {
+        id: "claim-rogers-no-plausible-rationale-48-hours-later",
+        verbatim:
+          "How can the Prime Minister of Australia be unable to verbalise a plausible rationale for the federal Budget's headline measure more than 48 hours after the budget was released?",
+        paraphrased:
+          "The Government's public explanation of the all-assets CGT redesign was weak enough that critics could not identify a coherent rationale from it.",
+        claimType: "interpretive",
+        subjectDomain: "politics",
+        verdict: "rhetorical",
+        confidence: 0.86,
+        reasoning:
+          "This is ultimately a judgement about the quality of public advocacy rather than a narrow policy-mechanics claim. The site can test whether the policy has plausible rationales; it cannot settle from the screenshot alone whether a particular interview or answer was persuasive enough."
+        ,
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The screenshot is best read as a communication critique layered on top of the all-assets scope argument."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Budget 2026-27 Tax reform page",
+            publisher: "Australian Government",
+            section: "Policy framing",
+            page: 1,
+            url: "https://budget.gov.au/content/04-tax-reform.htm",
+            supports: "partially_supports",
+            relevantPassage:
+              "The official package text supplies some broader rationale for the reform, but whether public spokespeople explained it well enough is a communication judgement rather than a source-text fact."
+          }
+        ]
+      }
+    ]
+  }
+  ,{
     id: "budget-2026-afr-hawke-fiscal-repair-claim",
     title: "AFR article comparing Budget 2026 to Hawke-era fiscal repair through CGT indexation and negative gearing restraint",
     submittedAt: "2026-05-17T20:21:00Z",
@@ -8057,484 +8367,179 @@ export const recentFactChecks: SubmissionResult[] = [
       }
     ]
   }
-];
-
-export const clusterSummaries: ClusterSummary[] = [
-  {
-    id: "cluster-shares-debt-recycling",
-    canonicalParaphrase:
-      "Budget 2026 narrows residential negative gearing but leaves share deductibility in place, so debt recycling into shares remains available.",
-    subjectDomain: "taxation",
-    tags: ["shares", "debt recycling", "negative gearing", "property"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T09:50:00Z",
-    aggregateVerdict: "supported",
-    commonMissingAssumptions: [
-      "The legal availability point is clean, but claims about whether this makes shares the better strategy still depend on relative-return and tax assumptions.",
-      "Do not confuse unchanged share deductibility with unchanged CGT outcomes for shares."
-    ],
-    sampleVariations: [
-      "debt recycling into shares still works",
-      "shares keep existing arrangements",
-      "negative gearing change is property-focused, not shares"
-    ],
-    primarySources: [
+  ,{
+    id: "budget-2026-linkedin-founder-concessions-thread-claim",
+    title: "LinkedIn thread disputing whether a founder with a $550k exit would qualify for small-business CGT relief",
+    submittedAt: "2026-05-24T06:53:00Z",
+    posterLabel: "Jessy Wu and Christina Hobbs on LinkedIn",
+    posterNamedPublicly: true,
+    rawText:
+      "A lot of assumptions here, particularly this entrepreneur isn't eligible for the small business CGT exemptions on sale of assets, which applies to businesses with <$2m turnover or <$6m assets. If they are exiting for $550k in Y10, they most likely would be eligible. In fact, they are likely eligible for the Small Business Retirement Exemption which makes the sale of assets from a business 100% CGT exempt up to a lifetime limit of $500k! ... Hi Jessy Wu, most founders are not eligible for this because you also need to demonstrate 'absolute control', if you have more than one co-founder who is not your spouse, neither of you will be eligible, if you take on shareholders of a different share class you're most likely not eligible. You also have to be 55 or older to get the specific retirement exemption.",
+    summary:
+      "This thread is more precise than the usual founder-tax slogans, but both sides still over-compress the rules. Jessy is directionally right that the small-business CGT concessions and retirement exemption can wipe out a large active-business gain in the right case, including up to a $500,000 lifetime retirement-exemption amount. But the leap from the thresholds to 'this $550k founder exit is most likely eligible' still depends on active-asset status, entity structure, participation percentages, and other conditions the screenshot does not supply. Christina is right that eligibility can be lost through structure and share-rights complexity, but her harder rebuttal goes too far: ATO guidance uses a significant-individual threshold of at least 20% participation, not a generic 'absolute control' rule, and the retirement exemption is not limited to people already aged 55 or older. Under-55 users can still access it by routing the exempt amount into super or an RSA.",
+    calculatorLink: {
+      label: "Open the Subdivision 152 founder scenario",
+      description:
+        "Prefills a founder-style exit with small-business relief turned on so the screenshot's $550k eligibility argument can be tested against explicit ownership and concession assumptions.",
+      href: buildScenarioCalculatorHref(
+        "budget-2026-subdiv152-founder-relief-claim",
+        "budget-2026-linkedin-founder-concessions-thread-claim"
+      )
+    },
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 0,
+      unsupported: 2,
+      unverifiable: 0,
+      requires_assumptions: 1,
+      rhetorical: 0
+    },
+    claims: [
       {
-        title: "Budget 2026–27 Tax Explainer",
-        url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf"
+        id: "claim-linkedin-founder-concessions-threshold-framework",
+        verbatim:
+          "the small business CGT exemptions on sale of assets ... applies to businesses with <$2m turnover or <$6m assets",
+        paraphrased:
+          "The small-business CGT concession framework can apply where the basic eligibility conditions are met, including the small-business-entity or maximum-net-asset pathways.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.89,
+        reasoning:
+          "This is the cleanest legal point in the thread. ATO guidance says the concessions are available only if the basic conditions are met, including either the small-business-entity pathway or the maximum net asset value test, plus the active-asset and any share-or-trust conditions.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "The turnover and asset thresholds are part of the gateway, not a complete automatic-eligibility rule.",
+          "Small-business CGT relief exists, but founders still have to clear additional active-asset and ownership tests."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "ATO: Basic conditions for the small business CGT concessions",
+            publisher: "Australian Taxation Office",
+            section: "Step 1 to Step 3",
+            page: 1,
+            url: "https://www.ato.gov.au/forms-and-instructions/capital-gains-tax-concessions-for-small-business-guide-2015/basic-conditions-for-the-small-business-cgt-concessions",
+            supports: "supports",
+            relevantPassage:
+              "The ATO says claimants must satisfy a small-business-entity or maximum-net-asset pathway, then the active-asset test, and additional conditions where the asset is a share or trust interest."
+          }
+        ]
       },
       {
-        title: "Budget 2026-27 Tax reform page",
-        url: "https://budget.gov.au/content/04-tax-reform.htm"
-      }
-    ]
-  },
-  {
-    id: "cluster-young-people-rentvesting-tax-grab",
-    canonicalParaphrase:
-      "The package barely slows house prices, grandfather-protects incumbents, and makes it harder for young people to build wealth through rentvesting and non-property assets.",
-    subjectDomain: "taxation",
-    tags: ["young Australians", "rentvesting", "housing", "shares"],
-    instanceCount: 2,
-    lastSeen: "2026-05-13T09:09:00Z",
-    aggregateVerdict: "requires_assumptions",
-    commonMissingAssumptions: [
-      "The grandfathering and non-property scope points are real, but the larger claim about overall harm to young people depends on unresolved housing-price, rent, and asset-return assumptions.",
-      "The post cites specific house-price modelling figures that are not surfaced in the current indexed source set attached to this check."
-    ],
-    sampleVariations: [
-      "house prices still up, just less up",
-      "rentvesters get hurt",
-      "young people are cooked",
-      "hard to call that intergenerational fairness"
-    ],
-    primarySources: [
-      {
-        title: "Budget Paper 2 2026-27, p.22",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
+        id: "claim-linkedin-550k-founder-exit-most-likely-eligible",
+        verbatim:
+          "If they are exiting for $550k in Y10, they most likely would be eligible. In fact, they are likely eligible for the Small Business Retirement Exemption",
+        paraphrased:
+          "A founder exiting for about $550,000 after 10 years would most likely qualify for enough small-business CGT relief to leave little or no tax on roughly the first $500,000 of gain.",
+        claimType: "distributional",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.82,
+        reasoning:
+          "The relief stack can absolutely produce that outcome in some genuine small-business cases, but the screenshot does not give the facts needed to call it 'most likely'. Eligibility still depends on whether the asset is active, whether any share sale clears the extra share-or-trust rules, whether the seller is a CGT concession stakeholder or satisfies the 90 per cent test, and whether the relevant gain fits within the lifetime retirement-exemption cap.",
+        assumptionsRequired: [
+          "Assumes the founder or entity satisfies the active-asset and basic small-business conditions rather than only the turnover or asset threshold headline.",
+          "Assumes the founder has enough participation rights to qualify as a CGT concession stakeholder or otherwise clear the share-or-trust conditions.",
+          "Assumes the founder has not already used up some or all of the $500,000 lifetime retirement-exemption limit."
+        ],
+        alternativeFramings: [
+          "A $550k founder exit can be heavily sheltered in an eligible active-business case, but the screenshot does not establish that this founder is probably one of those cases.",
+          "The stronger factual version is that small-business relief may materially soften some modest founder exits."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "ATO: Basic conditions for the small business CGT concessions",
+            publisher: "Australian Taxation Office",
+            section: "Step 2 and Step 3",
+            page: 1,
+            url: "https://www.ato.gov.au/forms-and-instructions/capital-gains-tax-concessions-for-small-business-guide-2015/basic-conditions-for-the-small-business-cgt-concessions",
+            supports: "partially_supports",
+            relevantPassage:
+              "The ATO says the turnover and asset gateways are only part of the test: the asset must be active, and share or trust interests face extra conditions."
+          },
+          {
+            title: "ATO: Small business retirement exemption",
+            publisher: "Australian Taxation Office",
+            section: "How it works",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/incentives-and-concessions/small-business-cgt-concessions/small-business-retirement-exemption",
+            supports: "partially_supports",
+            relevantPassage:
+              "The ATO says active-asset gains may be disregarded up to a lifetime limit of $500,000 per individual or CGT concession stakeholder if the extra retirement-exemption conditions are met."
+          }
+        ]
       },
       {
-        title: "Budget 2026-27 Tax reform page",
-        url: "https://budget.gov.au/content/04-tax-reform.htm"
-      }
-    ]
-  },
-  {
-    id: "cluster-negative-gearing-grandfathering",
-    canonicalParaphrase:
-      "Negative gearing is being grandfathered for current investors while future buyers of established housing lose access.",
-    subjectDomain: "taxation",
-    tags: ["negative gearing", "housing", "grandfathering", "young Australians"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T08:49:00Z",
-    aggregateVerdict: "supported",
-    commonMissingAssumptions: [
-      "The core policy mechanics are clear, but broader claims about whether this leaves young people better or worse off overall require separate housing-market assumptions.",
-      "The post's age-and-wealth framing overstates what the policy text itself says about who is protected."
-    ],
-    sampleVariations: [
-      "boomers keep negative gearing",
-      "new established-property buyers lose access",
-      "grandfathered for incumbents"
-    ],
-    primarySources: [
-      {
-        title: "Budget Paper 2 2026-27, p.22",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      }
-    ]
-  },
-  {
-    id: "cluster-long-term-etf-planning",
-    canonicalParaphrase:
-      "The CGT redesign for shares makes long-term ETF planning harder and may leave strong long-horizon investors paying more tax than under the old discount system.",
-    subjectDomain: "taxation",
-    tags: ["ETFs", "shares", "long-term investing", "planning uncertainty"],
-    instanceCount: 5,
-    lastSeen: "2026-05-13T09:34:00Z",
-    aggregateVerdict: "requires_assumptions",
-    commonMissingAssumptions: [
-      "Treats higher long-run tax outcomes as almost automatic without disclosing the inflation, return, and marginal-rate assumptions that drive the comparison.",
-      "Blends a supported scope point about shares being affected with a broader confidence-and-planning judgement that is harder to verify cleanly."
-    ],
-    sampleVariations: [
-      "shares hit too",
-      "long-term ETF investors almost certainly worse off",
-      "hard to plan when the CGT framework flips again",
-      "FI bridge-phase gets repriced before preservation age",
-      "FIRE target rises because after-tax withdrawals get worse",
-      "30% floor is regressive for share investors"
-    ],
-    primarySources: [
-      {
-        title: "Budget 2026-27 Tax reform page",
-        url: "https://budget.gov.au/content/04-tax-reform.htm"
+        id: "claim-linkedin-absolute-control-required",
+        verbatim:
+          "most founders are not eligible for this because you also need to demonstrate 'absolute control', if you have more than one co-founder who is not your spouse, neither of you will be eligible",
+        paraphrased:
+          "Founders generally need absolute control, and having multiple non-spouse co-founders usually makes none of them eligible for the relevant small-business CGT relief.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "unsupported",
+        confidence: 0.91,
+        reasoning:
+          "The ATO material does not use an 'absolute control' rule for this question. For shares or trust interests, the claimant may qualify if they are a CGT concession stakeholder, and a significant individual is defined by at least a 20 per cent small business participation percentage, not by sole or spousal control. Multiple co-founders can therefore still qualify in some structures, even though unequal rights, preference shares or low participation percentages can absolutely break eligibility in other cases.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "Entity structure matters a lot, but the bright-line issue is participation rights and stakeholder status rather than a blanket sole-control requirement.",
+          "Different share classes can create real eligibility problems without making every multi-founder company automatically fail."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "ATO: Additional conditions if the CGT asset is a share or trust interest",
+            publisher: "Australian Taxation Office",
+            section: "CGT concession stakeholder and significant individual test",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/incentives-and-concessions/small-business-cgt-concessions/small-business-cgt-concessions-eligibility-conditions/additional-conditions-if-the-cgt-asset-is-a-share-or-trust-interest",
+            supports: "contradicts",
+            relevantPassage:
+              "The ATO says a claimant can qualify as a CGT concession stakeholder if they are a significant individual, and a significant individual needs at least a 20 per cent small business participation percentage."
+          }
+        ]
       },
       {
-        title: "ATO: CGT discount",
-        url: "https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/cgt-discount"
-      },
-      {
-        title: "ATO: Tax rates – Australian resident",
-        url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents?lang=en&pubdate=636168759750000000"
-      }
-    ]
-  },
-  {
-    id: "cluster-aspiration-budget",
-    canonicalParaphrase:
-      "Budget 2026 punishes aspiration, risk-taking, and business-building rather than rewarding it.",
-    subjectDomain: "taxation",
-    tags: ["aspiration", "business owners", "negative gearing", "startups"],
-    instanceCount: 4,
-    lastSeen: "2026-05-15T02:45:00Z",
-    aggregateVerdict: "rhetorical",
-    commonMissingAssumptions: [
-      "Treats a broad normative judgement about aspiration and nation-level economic direction as if it were a single verifiable fact.",
-      "Mixes one real policy change on negative gearing into a much wider claim about the entire Budget's economic meaning."
-    ],
-    sampleVariations: [
-      "budget punishes aspiration",
-      "anti-risk budget",
-      "terrible budget for builders",
-      "fairer tax without penalising aspiration",
-      "housing reform good but anti-productivity overall",
-      "destroying ambition and aspiration"
-    ],
-    primarySources: [
-      {
-        title: "Budget Paper 2 2026-27, pp.21-22",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      },
-      {
-        title: "Budget 2026-27 Tax reform page",
-        url: "https://budget.gov.au/content/04-tax-reform.htm"
-      }
-    ]
-  },
-  {
-    id: "cluster-young-founder-net-target",
-    canonicalParaphrase:
-      "A younger founder starting under the new regime needs a much larger gross exit than an older founder under the old regime to keep the same after-tax proceeds.",
-    subjectDomain: "taxation",
-    tags: ["founders", "young Australians", "capital gains", "intergenerational equity"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T06:03:00Z",
-    aggregateVerdict: "requires_assumptions",
-    commonMissingAssumptions: [
-      "Treats precise net-to-gross founder exit numbers as if they do not depend on marginal rate, cost base, Medicare, and concession eligibility.",
-      "Uses a real directional founder-comparison point, but overstates it with an unsupported '$20 million' headline."
-    ],
-    sampleVariations: [
-      "$13m then, $20m now",
-      "young founders need much bigger exits",
-      "this is not intergenerational equity"
-    ],
-    primarySources: [
-      {
-        title: "Budget Paper 2 2026-27, p.21",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      },
-      {
-        title: "ATO: Tax rates – Australian resident",
-        url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents?lang=en&pubdate=636168759750000000"
-      },
-      {
-        title: "ATO: Small business CGT concessions",
-        url: "https://www.ato.gov.au/SBCGT"
-      }
-    ]
-  },
-  {
-    id: "cluster-australian-entrepreneurs-relief",
-    canonicalParaphrase:
-      "Budget 2026 makes Australia the most punitive developed-country tax regime for founders, so Australia needs a founder-specific relief modelled on QSBS and BADR.",
-    subjectDomain: "taxation",
-    tags: ["founders", "startups", "capital gains", "international comparison"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T06:01:00Z",
-    aggregateVerdict: "unsupported",
-    commonMissingAssumptions: [
-      "Uses a sweeping cross-country ranking without a fixed comparison basket or a like-for-like founder-relief methodology.",
-      "Blends a supported policy-design reference to QSBS and BADR into a much stronger claim that Australia is the most punitive jurisdiction."
-    ],
-    sampleVariations: [
-      "Australia most punitive for founders",
-      "need Australian Entrepreneurs Relief",
-      "model it on QSBS and BADR"
-    ],
-    primarySources: [
-      {
-        title: "Budget Paper 2 2026-27, p.21",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      },
-      {
-        title: "IRS Publication 550",
-        url: "https://www.irs.gov/publications/p550"
-      },
-      {
-        title: "GOV.UK: Business Asset Disposal Relief",
-        url: "https://www.gov.uk/entrepreneurs-relief"
-      }
-    ]
-  },
-  {
-    id: "cluster-young-etf-home-deposit",
-    canonicalParaphrase:
-      "The new CGT regime sharply worsens ETF-based first-home saving for young Australians.",
-    subjectDomain: "taxation",
-    tags: ["young Australians", "ETFs", "housing", "capital gains"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T05:52:00Z",
-    aggregateVerdict: "requires_assumptions",
-    commonMissingAssumptions: [
-      "Treats a precise dollar loss and deposit delay as if they follow without disclosing tax-rate, inflation, and deposit-target assumptions.",
-      "Collapses a supported floor-design critique into a stronger headline percentage claim that is not cleanly shown by the visible example."
-    ],
-    sampleVariations: ["ETF saver hit 260%", "first-home deposit delayed by CGT", "young investors punished by 30% floor"],
-    primarySources: [
-      {
-        title: "Budget Paper 2 2026-27, p.21",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      },
-      {
-        title: "ATO: Tax rates – Australian resident",
-        url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents?lang=en&pubdate=636168759750000000"
-      }
-    ]
-  },
-  {
-    id: "cluster-founder-better-off-countercase",
-    canonicalParaphrase:
-      "Higher CGT on founder exits can coexist with a better overall startup environment once the rest of the budget is counted.",
-    subjectDomain: "taxation",
-    tags: ["founders", "startups", "cost of living", "capital gains"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T05:36:00Z",
-    aggregateVerdict: "requires_assumptions",
-    commonMissingAssumptions: [
-      "Assumes the founder benefits enough from worker-tax and startup-support measures to offset the higher CGT exposure.",
-      "Treats a broad all-things-considered judgement as if it can be resolved without person-specific facts."
-    ],
-    sampleVariations: ["higher tax but still better off", "better startup environment overall", "CGT increase but broader gains"],
-    primarySources: [
-      {
-        title: "Budget 2026-27 Tax reform page",
-        url: "https://budget.gov.au/content/04-tax-reform.htm"
-      },
-      {
-        title: "Budget 2026-27 Cost of living page",
-        url: "https://budget.gov.au/content/02-cost-of-living.htm"
-      }
-    ]
-  },
-  {
-    id: "cluster-capital-vs-labour-tax",
-    canonicalParaphrase:
-      "The current CGT discount taxes eligible long-held gains more lightly than marginal labour income for the same taxpayer.",
-    subjectDomain: "taxation",
-    tags: ["capital gains", "tax design", "distribution"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T03:25:00Z",
-    aggregateVerdict: "supported",
-    commonMissingAssumptions: [
-      "The clean comparison is against marginal labour tax, not average tax.",
-      "The gain must be eligible for the 50 per cent CGT discount."
-    ],
-    sampleVariations: ["capital taxed less than wages", "CGT discount is a tax preference", "discounted gain below labour tax"],
-    primarySources: [
-      {
-        title: "Budget Paper 2 2026-27, p.21",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      },
-      {
-        title: "ATO: Tax rates – Australian resident",
-        url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents?lang=en&pubdate=636168759750000000"
-      }
-    ]
-  },
-  {
-    id: "cluster-subdiv152-founder-shield",
-    canonicalParaphrase:
-      "Subdivision 152 means most founder or startup exits will still be largely shielded from the Budget 2026 CGT change.",
-    subjectDomain: "taxation",
-    tags: ["founders", "startups", "Subdivision 152"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T03:10:00Z",
-    aggregateVerdict: "requires_assumptions",
-    commonMissingAssumptions: [
-      "Assumes most founder exits satisfy the active-asset and business-size conditions for Subdivision 152.",
-      "Treats legal availability of the concessions as proof of prevalence across the founder cohort."
-    ],
-    sampleVariations: ["most founders are protected by Subdivision 152", "startup exits still neutralised", "founder tax shock mostly disappears under SBCGT"],
-    primarySources: [
-      {
-        title: "ATO: Small business CGT concessions",
-        url: "https://www.ato.gov.au/SBCGT"
-      },
-      {
-        title: "Budget Paper 2 2026-27, p.21",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      }
-    ]
-  },
-  {
-    id: "cluster-pre-cgt-assets",
-    canonicalParaphrase:
-      "Budget 2026 is pulling pre-1985 assets into the CGT net.",
-    subjectDomain: "taxation",
-    tags: ["capital gains", "pre-CGT assets", "grandfathering"],
-    instanceCount: 3,
-    lastSeen: "2026-05-13T09:13:00Z",
-    aggregateVerdict: "supported",
-    commonMissingAssumptions: [
-      "The core transition is now explicit in the Budget tax explainer, but the exact valuation and apportionment mechanics still depend on legislation and ATO implementation tools.",
-      "Claims about secondary legal consequences, such as the future importance of Division 149, still need careful legislative treatment."
-    ],
-    sampleVariations: ["pre-1985 assets taxed", "pre-CGT assets dragged into net", "old assets now caught by CGT", "future gains on pre-1985 assets now taxed"],
-    primarySources: [
-      {
-        title: "Budget 2026–27 Tax Explainer",
-        url: "https://budget.gov.au/content/factsheets/download/tax-explainers-negative-gearing-capital-gains-tax.pdf"
-      },
-      {
-        title: "Budget 2026-27 Tax reform page",
-        url: "https://budget.gov.au/content/04-tax-reform.htm"
-      }
-    ]
-  },
-  {
-    id: "cluster-zero-cost-base-business-exit",
-    canonicalParaphrase:
-      "A zero-cost-base self-funded business will automatically face a full 47 per cent tax on sale under the Budget 2026 CGT reform.",
-    subjectDomain: "taxation",
-    tags: ["founders", "small business", "capital gains"],
-    instanceCount: 8,
-    lastSeen: "2026-05-15T00:12:00Z",
-    aggregateVerdict: "requires_assumptions",
-    commonMissingAssumptions: [
-      "Assumes an individual owner taxed at the top marginal rate",
-      "Ignores small business CGT concessions that can reduce or disregard gains"
-    ],
-    sampleVariations: [
-      "sweat equity taxed at 47%",
-      "zero cost base means full 47%",
-      "self-funded business exit tax",
-      "index the gain not the cost base"
-    ],
-    primarySources: [
-      {
-        title: "Budget 2026-27 Tax reform page",
-        url: "https://budget.gov.au/content/04-tax-reform.htm"
-      },
-      {
-        title: "ATO: CGT concessions eligibility overview",
-        url: "https://www.ato.gov.au/SBCGT"
-      }
-    ]
-  },
-  {
-    id: "cluster-startup-support-measures",
-    canonicalParaphrase:
-      "Budget 2026 includes startup-support measures such as stronger R&D and venture capital incentives.",
-    subjectDomain: "taxation",
-    tags: ["startups", "venture capital", "R&D"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T01:53:00Z",
-    aggregateVerdict: "supported",
-    commonMissingAssumptions: [
-      "Cleanest when limited to the measures explicitly visible in the screenshot",
-      "Do not over-extend the truncated loss carry back and refundability wording without the full post text"
-    ],
-    sampleVariations: ["boosted R&D incentives", "expanded VC tax incentives", "startup support"],
-    primarySources: [
-      {
-        title: "Budget 2026-27 Tax reform page",
-        url: "https://budget.gov.au/content/04-tax-reform.htm"
-      },
-      {
-        title: "Budget 2026-27 Productivity page",
-        url: "https://budget.gov.au/content/03-productivity.htm"
-      }
-    ]
-  },
-  {
-    id: "cluster-family-home-distortion",
-    canonicalParaphrase:
-      "CGT reform plus the continuing family-home exemption will worsen housing access or create extra distortion.",
-    subjectDomain: "taxation",
-    tags: ["housing", "family home", "capital gains"],
-    instanceCount: 1,
-    lastSeen: "2026-05-13T01:50:00Z",
-    aggregateVerdict: "rhetorical",
-    commonMissingAssumptions: [
-      "Assumes a specific housing-market transmission from CGT changes to first-home access",
-      "Treats the policy interaction as directionally clear without empirical attribution"
-    ],
-    sampleVariations: ["further distortion", "home ownership more elusive", "family home exemption"],
-    primarySources: [
-      {
-        title: "Budget Paper 2 2026-27, p.21",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      },
-      {
-        title: "ATO: Main residence exemption",
-        url: "https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/property-and-capital-gains-tax/your-main-residence---home/eligibility-for-main-residence-exemption"
-      }
-    ]
-  },
-  {
-    id: "cluster-founder-capital-flight",
-    canonicalParaphrase:
-      "Removing the CGT discount will cause founders or capital to leave Australia.",
-    subjectDomain: "taxation",
-    tags: ["founders", "capital flight", "startups"],
-    instanceCount: 17,
-    lastSeen: "2026-05-14T03:07:00Z",
-    aggregateVerdict: "requires_assumptions",
-    commonMissingAssumptions: [
-      "Treats tax as the dominant factor in founder location decisions",
-      "Ignores expanded VC incentives in the same budget package",
-      "Assumes no grandfathering or targeted founder concession affects the scenario"
-    ],
-    sampleVariations: ["mass exodus", "capital flight", "Singapore move", "fewer AI companies", "fewer reasons to stay", "best companies leave"],
-    primarySources: [
-      {
-        title: "Budget Paper 2 2026-27, p.18",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      },
-      {
-        title: "Budget Paper 2 2026-27, pp.21-22",
-        url: "https://budget.gov.au/content/bp2/download/bp2-2026-27.pdf"
-      }
-    ]
-  },
-  {
-    id: "cluster-young-australians",
-    canonicalParaphrase:
-      "The current CGT discount mainly protects young Australians trying to build wealth.",
-    subjectDomain: "taxation",
-    tags: ["young Australians", "distribution", "housing"],
-    instanceCount: 8,
-    lastSeen: "2026-05-12T14:05:00Z",
-    aggregateVerdict: "unsupported",
-    commonMissingAssumptions: [
-      "Conflicts with official age and income split data",
-      "Treats a concentrated concession as broadly distributed"
-    ],
-    sampleVariations: ["young investors", "middle-class ladder", "future homeowners"],
-    primarySources: [
-      {
-        title: "PBO: Operation of the CGT discount",
-        url: "https://www.pbo.gov.au/publications-and-data/publications/costings/operation-CGT-discount"
-      },
-      {
-        title: "Treasury TEIS chart data workbook",
-        url: "https://treasury.gov.au/sites/default/files/2025-12/p2025-721342-chart-data.xlsx"
+        id: "claim-linkedin-age-55-required-for-retirement-exemption",
+        verbatim:
+          "You also have to be 55 or older to get the specific retirement exemption.",
+        paraphrased:
+          "The small-business retirement exemption is available only to people who are already 55 or older.",
+        claimType: "descriptive",
+        subjectDomain: "taxation",
+        verdict: "unsupported",
+        confidence: 0.96,
+        reasoning:
+          "ATO guidance expressly says under-55 users can still access the retirement exemption; the main difference is that the exempt amount must be contributed to a complying super fund or retirement savings account. Being 55 or older removes that contribution requirement, but it is not a universal eligibility gate for the exemption itself.",
+        assumptionsRequired: [],
+        alternativeFramings: [
+          "Under 55 does not block the retirement exemption; it changes how the exempt amount must be handled.",
+          "Age 55 matters for the super-contribution rule, not as an across-the-board bar to the concession."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "ATO: Small business retirement exemption",
+            publisher: "Australian Taxation Office",
+            section: "You or the CGT concession stakeholder is under 55 / is 55 years old or older",
+            page: 1,
+            url: "https://www.ato.gov.au/businesses-and-organisations/income-deductions-and-concessions/incentives-and-concessions/small-business-cgt-concessions/small-business-retirement-exemption",
+            supports: "contradicts",
+            relevantPassage:
+              "The ATO says under-55 claimants can still use the exemption if the exempt amount is paid into super or an RSA, while over-55 claimants do not have that payment requirement."
+          }
+        ]
       }
     ]
   }
 ];
+
+const clusterGeneration = generateClusterReport(recentFactChecks);
+
+export const clusterSummaries: ClusterSummary[] = clusterGeneration.clusters;
 
 export const featuredSources = [
   {
@@ -8593,3 +8598,10 @@ export const featuredSources = [
     url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents?lang=en&pubdate=636168759750000000"
   }
 ];
+
+export const appStats = {
+  totalFactChecks: recentFactChecks.length,
+  activeClusters: clusterSummaries.length,
+  primarySourcesIndexed: featuredSources.length,
+  issueLanes: 3
+};
