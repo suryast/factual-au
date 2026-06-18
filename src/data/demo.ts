@@ -93,6 +93,219 @@ function buildScenarioCalculatorHref(scenarioId: string, caseFile: string) {
 
 export const recentFactChecks: SubmissionResult[] = [
   {
+    id: "budget-2026-linkedin-ibcc-dream-small-claim",
+    title:
+      "LinkedIn post arguing the proposed startup CGT concession still tells founders to dream small",
+    submittedAt: "2026-06-18T08:45:00Z",
+    posterLabel: "LinkedIn screenshot submission",
+    posterNamedPublicly: false,
+    rawText:
+      "These carve outs tell Australians to dream small. Build a successful business, sure, but just not too successful. Under the proposed startup concession founders can still face tax rates approaching 47%, while the US QSBS regime can reduce effective tax on qualifying startup gains to around half of what an Australian founder could face. Founders take personal risk, tax settings are part of the opportunity-cost calculation, and the wrong incentives mean ambitious companies may not be built in Australia.",
+    summary:
+      "The screenshot identifies a real new source: Treasury's 18 June 2026 consultation paper proposes an Innovative Business CGT Concession for qualifying innovative start-up shares and options. The proposal is materially more founder-friendly than a simple post-2027 indexation/minimum-tax regime: eligible individuals could choose the old-style 50 per cent CGT discount without the 30 per cent minimum tax, subject to a five-year holding period and a $10 million lifetime gain cap. That weakens the screenshot's broad claim that the concession itself still leaves eligible founders facing rates approaching 47 per cent. The harsher arithmetic can still arise for ineligible gains, gains above the cap, non-qualifying companies, or zero-cost-base cases outside the final concession. The QSBS comparison and 'dream small' framing are policy judgments: Treasury itself notes international concessions and a QSBS-style comparison, but it does not prove the screenshot's precise effective-rate comparison or the behavioural claim that founders will leave.",
+    calculatorLink: {
+      label: "Model an IBCC-style startup equity case",
+      description:
+        "Prefills a post-2027 business-equity scenario so the difference between ordinary post-2027 treatment, a 50 per cent concession, and top-rate assumptions can be pressure-tested.",
+      href: buildScenarioCalculatorHref(
+        "budget-2026-zero-cost-base-business-claim",
+        "budget-2026-linkedin-ibcc-dream-small-claim"
+      )
+    },
+    overallVerdictMix: {
+      supported: 1,
+      partially_supported: 1,
+      unsupported: 0,
+      unverifiable: 0,
+      requires_assumptions: 2,
+      rhetorical: 1
+    },
+    claims: [
+      {
+        id: "claim-ibcc-concession-still-approaches-47-rate",
+        verbatim:
+          "Under the proposed startup concession founders can still face tax rates approaching 47%.",
+        paraphrased:
+          "The IBCC proposal still leaves founders exposed to near-top-marginal-rate CGT in relevant startup-exit cases.",
+        claimType: "calculation",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.86,
+        reasoning:
+          "The statement is possible only under narrower assumptions. Treasury proposes that eligible innovative-startup shares and options can use a targeted 50 per cent discount on nominal gains without the 30 per cent minimum tax, capped at $10 million of lifetime gains and requiring a five-year holding period. For those eligible gains, the concession is designed to preserve the old discount treatment rather than leave the gain near the full top marginal rate. Near-47-per-cent outcomes remain plausible for ineligible shares, gains above the cap, companies that fail the innovation/activity tests, foreign/company/super investors, or zero-cost-base gains outside the final concession design.",
+        assumptionsRequired: [
+          "Assumes the founder's shares or part of the gain are outside the IBCC eligibility rules or above the $10 million lifetime gain cap.",
+          "Assumes the founder is taxed at or near the top marginal rate including Medicare.",
+          "Assumes no small-business CGT concession is chosen instead by a significant investor such as a founder."
+        ],
+        alternativeFramings: [
+          "The proposed IBCC materially reduces the harshest post-2027 startup-equity arithmetic for eligible gains, but it is capped and eligibility-tested.",
+          "Some founder gains can still face ordinary post-2027 treatment if they fall outside the proposed concession."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Capital gains tax reforms – arrangements for innovative start-ups",
+            publisher: "Australian Treasury",
+            section: "Introducing an Innovative Business CGT Concession",
+            page: 5,
+            url: "https://consult.treasury.gov.au/c2026-779186",
+            supports: "contradicts",
+            relevantPassage:
+              "Treasury proposes a targeted 50 per cent discount on nominal capital gains for eligible investors in innovative start-ups, with shareholders able to choose the 50 per cent discount without a minimum tax."
+          },
+          {
+            title: "Capital gains tax reforms – arrangements for innovative start-ups",
+            publisher: "Australian Treasury",
+            section: "Minimum holding period and lifetime cap",
+            page: 7,
+            url: "https://storage.googleapis.com/files-au-treasury/treasury/p/prj3d4fd3ab84d12a0f27df4/page/c2026_779186_cp.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "The discount would apply up to a lifetime cap of $10 million of total capital gains per individual; once the cap is exceeded, taxpayers would be taxed under cost-base indexation and the 30 per cent minimum tax."
+          }
+        ]
+      },
+      {
+        id: "claim-ibcc-carve-outs-dream-small",
+        verbatim:
+          "These carve outs tell Australians to dream small. Build a successful business, sure, but just not too successful.",
+        paraphrased:
+          "The proposed eligibility rules and lifetime cap discourage founders from building very large companies in Australia.",
+        claimType: "predictive",
+        subjectDomain: "startups",
+        verdict: "rhetorical",
+        confidence: 0.76,
+        reasoning:
+          "The paper confirms several targeting constraints — innovative and active business tests, exclusions for listed/subsidiary/passive or excluded activities, a five-year holding period, a $50 million turnover threshold, a general 10-year company-age threshold, and a $10 million lifetime gain cap. Those facts support the existence of a targeted rather than unlimited concession. But the claim that these limits tell founders to 'dream small' is a normative and behavioural conclusion, not something the consultation paper can prove or disprove by itself.",
+        assumptionsRequired: [
+          "Assumes the cap and eligibility boundaries are large enough to influence founder location or ambition decisions.",
+          "Assumes founders compare the Australian concession against more generous overseas regimes before deciding where to build."
+        ],
+        alternativeFramings: [
+          "Treasury proposes a targeted startup concession with caps and eligibility gates, not an uncapped founder-exit exclusion.",
+          "Whether the cap is too low is a policy-design judgment rather than a settled factual claim."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Capital gains tax reforms – arrangements for innovative start-ups",
+            publisher: "Australian Treasury",
+            section: "Summary of new and transitional arrangements",
+            page: 8,
+            url: "https://storage.googleapis.com/files-au-treasury/treasury/p/prj3d4fd3ab84d12a0f27df4/page/c2026_779186_cp.pdf",
+            supports: "supports",
+            relevantPassage:
+              "The summary table lists a 50 per cent discount up to a lifetime cap of $10 million of gains, a five-year holding period, turnover and age thresholds, innovation requirements and disqualifying characteristics."
+          }
+        ]
+      },
+      {
+        id: "claim-ibcc-eligibility-existing-shares-transitional",
+        verbatim:
+          "Existing founders and startup employees need to know whether pre-2027 shares are covered by the concession.",
+        paraphrased:
+          "The IBCC proposal includes transitional treatment for existing innovative-startup shares issued before 1 July 2027.",
+        claimType: "policy_mechanic",
+        subjectDomain: "taxation",
+        verdict: "supported",
+        confidence: 0.92,
+        reasoning:
+          "Treasury's detailed transitional paragraph says investors holding qualifying shares issued before 1 July 2027 can apply the concessional treatment to gains on those shares from 1 July 2027. The company must be unlisted, independent, active and innovative, less than 10 years old on 30 June 2027, under $50 million turnover in 2025-26, and not predominantly engaged in excluded activities. The shares must be or have been new equity and held for at least five years at disposal. A summary table appears to say 'less than 10 years old on 30 June 2026', but the detailed transitional paragraph uses 30 June 2027.",
+        assumptionsRequired: [
+          "Assumes the final legislation follows the consultation-paper design.",
+          "Assumes the detailed transitional paragraph controls over the apparent 2026 date in the summary table."
+        ],
+        alternativeFramings: [
+          "Pre-1 July 2027 shares are not automatically excluded; they can qualify if the transitional tests are met.",
+          "The 2026/2027 date mismatch should be treated as a consultation-paper ambiguity until clarified."
+        ],
+        verificationMethod: "policy_text_match",
+        primarySources: [
+          {
+            title: "Capital gains tax reforms – arrangements for innovative start-ups",
+            publisher: "Australian Treasury",
+            section: "Transitional arrangements",
+            page: 8,
+            url: "https://storage.googleapis.com/files-au-treasury/treasury/p/prj3d4fd3ab84d12a0f27df4/page/c2026_779186_cp.pdf",
+            supports: "supports",
+            relevantPassage:
+              "Investors holding qualifying shares before 1 July 2027 will be able to apply the concessional treatment to gains from 1 July 2027 if the company and shares meet the transitional tests, including less than 10 years old on 30 June 2027 and less than $50 million turnover in 2025-26."
+          }
+        ]
+      },
+      {
+        id: "claim-ibcc-qsbs-half-rate-comparison",
+        verbatim:
+          "The U.S. QSBS regime can reduce effective tax on qualifying startup gains to around half of what an Australian founder could face.",
+        paraphrased:
+          "QSBS-style US treatment is materially more favourable than the proposed Australian IBCC for some qualifying startup gains.",
+        claimType: "comparative",
+        subjectDomain: "taxation",
+        verdict: "requires_assumptions",
+        confidence: 0.78,
+        reasoning:
+          "The broad direction has a source basis: Treasury itself describes the US Qualified Small Business Stock regime as allowing eligible investors to exclude some or all capital gains on shares in certain early-stage companies, subject to eligibility and holding-period rules. But the screenshot's 'around half' comparison is not established by that statement alone. The result depends on which US exclusion percentage and cap applies, federal and state tax, Australian marginal rate, the IBCC cap, whether the Australian shares qualify, and whether the founder has other small-business concessions available.",
+        assumptionsRequired: [
+          "Assumes a US QSBS case that qualifies for a large exclusion and an Australian case that is capped, ineligible, or otherwise taxed more heavily.",
+          "Assumes comparable founder facts across two different tax systems.",
+          "Assumes state taxes, Medicare levy and other concessions are modelled consistently."
+        ],
+        alternativeFramings: [
+          "The Treasury paper supports the existence of more generous international startup-share concessions, including QSBS, but not a single fixed effective-rate ratio.",
+          "The precise US-versus-Australia tax gap is case-specific."
+        ],
+        verificationMethod: "empirical_comparison",
+        primarySources: [
+          {
+            title: "Capital gains tax reforms – arrangements for innovative start-ups",
+            publisher: "Australian Treasury",
+            section: "International comparisons",
+            page: 8,
+            url: "https://storage.googleapis.com/files-au-treasury/treasury/p/prj3d4fd3ab84d12a0f27df4/page/c2026_779186_cp.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "Treasury says the US Qualified Small Business Stock regime allows eligible investors to exclude some or all capital gains on shares in certain early-stage companies, subject to holding period and eligibility requirements."
+          }
+        ]
+      },
+      {
+        id: "claim-ibcc-tax-settings-opportunity-cost",
+        verbatim:
+          "Founders take personal risk and tax settings are part of the opportunity-cost calculation.",
+        paraphrased:
+          "Startup tax settings can matter to founders, employees and early investors because startup participation involves high risk, long horizons and uncertain returns.",
+        claimType: "causal",
+        subjectDomain: "startups",
+        verdict: "partially_supported",
+        confidence: 0.82,
+        reasoning:
+          "Treasury's consultation paper supports the underlying mechanism: it describes start-ups as high-risk, long-horizon and uncertain-return businesses, and frames the IBCC as a way to keep the tax system supportive where indexation would apply to low or zero cost bases. That supports the claim that tax settings can be part of the opportunity-cost calculation. It does not prove the stronger behavioural outcome that specific founders will leave or that specific companies will not be built in Australia.",
+        assumptionsRequired: [
+          "Assumes tax is material relative to non-tax factors such as talent, capital access, customers, regulation and founder preference.",
+          "Assumes the relevant founder or employee is comparing Australian treatment against overseas alternatives."
+        ],
+        alternativeFramings: [
+          "The consultation paper itself treats tax design as relevant to innovative startup risk-taking, while leaving behavioural magnitude open.",
+          "Tax can matter without being the only or decisive location factor."
+        ],
+        verificationMethod: "logical_analysis",
+        primarySources: [
+          {
+            title: "Capital gains tax reforms – arrangements for innovative start-ups",
+            publisher: "Australian Treasury",
+            section: "Start-ups, innovation and productivity",
+            page: 3,
+            url: "https://storage.googleapis.com/files-au-treasury/treasury/p/prj3d4fd3ab84d12a0f27df4/page/c2026_779186_cp.pdf",
+            supports: "partially_supports",
+            relevantPassage:
+              "Treasury describes start-ups as involving high risk, long investment horizons, uncertain returns and high growth potential, and frames support for young firms as relevant to job creation and innovation."
+          }
+        ]
+      }
+    ]
+  },
+  {
     id: "budget-2026-benjamin-humphrey-startup-equity-hiring-claim",
     title:
       "Benjamin Humphrey post arguing the CGT redesign makes startup employee equity materially less attractive",
@@ -8542,6 +8755,11 @@ const clusterGeneration = generateClusterReport(recentFactChecks);
 export const clusterSummaries: ClusterSummary[] = clusterGeneration.clusters;
 
 export const featuredSources = [
+  {
+    title: "Treasury consultation: innovative start-up CGT arrangements",
+    detail: "Primary consultation paper for the proposed Innovative Business CGT Concession, including eligibility, transitional treatment, lifetime cap and international comparisons.",
+    url: "https://consult.treasury.gov.au/c2026-779186"
+  },
   {
     title: "IRS Publication 550",
     detail: "Primary US reference for qualified small business stock treatment used when claims invoke QSBS-style founder relief.",
