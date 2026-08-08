@@ -2,7 +2,6 @@ from fastmcp import FastMCP
 
 from factual_au.pipeline import DemoVerificationPipeline
 
-
 pipeline = DemoVerificationPipeline()
 mcp = FastMCP("factual-au-verification")
 

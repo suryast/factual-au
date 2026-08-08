@@ -5,7 +5,6 @@ from factual_au.models import SubmissionCreate
 from factual_au.pipeline import DemoVerificationPipeline
 from factual_au.settings import settings
 
-
 pipeline = DemoVerificationPipeline()
 app = FastAPI(title=settings.app_name)
 

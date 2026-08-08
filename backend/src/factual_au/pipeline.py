@@ -12,10 +12,9 @@ from factual_au.models import (
     PrimarySource,
     SubmissionCreate,
     SubmissionResult,
-    VerificationMethod,
     VerdictType,
+    VerificationMethod,
 )
-
 
 PRIMARY_SOURCE_LIBRARY = {
     "budget_cgt": PrimarySource(
