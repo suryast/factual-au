@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from factual_au.models import (
     ClaimRecord,
@@ -8,8 +8,8 @@ from factual_au.models import (
     ClusterSummary,
     PrimarySource,
     SubmissionResult,
-    VerificationMethod,
     VerdictType,
+    VerificationMethod,
 )
 
 
@@ -61,7 +61,7 @@ def seeded_fact_checks() -> list[SubmissionResult]:
         SubmissionResult(
             id=submission_id,
             title="Founder-exit claim on Budget 2026 CGT reform",
-            submitted_at=datetime(2026, 5, 13, 0, 12, tzinfo=timezone.utc),
+            submitted_at=datetime(2026, 5, 13, 0, 12, tzinfo=UTC),
             source_url="https://www.linkedin.com/posts/example",
             raw_text=(
                 "The Budget 2026 CGT changes will push founders to Singapore because they double "
@@ -93,8 +93,8 @@ def seeded_clusters() -> list[ClusterSummary]:
             ),
             subject_domain="taxation",
             instance_count=12,
-            first_seen=datetime(2026, 5, 8, 2, 0, tzinfo=timezone.utc),
-            last_seen=datetime(2026, 5, 13, 0, 12, tzinfo=timezone.utc),
+            first_seen=datetime(2026, 5, 8, 2, 0, tzinfo=UTC),
+            last_seen=datetime(2026, 5, 13, 0, 12, tzinfo=UTC),
             aggregate_verdict=VerdictType.requires_assumptions,
             common_missing_assumptions=[
                 "Treats tax as the dominant factor in founder location decisions",
