@@ -14,13 +14,13 @@
     "@astrojs/cloudflare": "13.1.10",
     "@astrojs/svelte": "^8.1.2",
     "astro": "6.4.6",
-    "svelte": "^5.57.0"
+    "svelte": "^5.57.2"
   },
   "overrides": {
     "undici": ">=7.22.0",
     "wrangler": ">=4.69.0"
   },
   "devDependencies": {
-    "wrangler": "^4.129.0"
+    "wrangler": "^4.148.0"
   }
 }
